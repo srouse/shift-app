@@ -1,0 +1,45 @@
+{
+	"name": "shift-app",
+	"description": "Artwork App",
+	"author": "srouse",
+	"version": "0.0.1",
+	"dependencies": {
+	},
+	"devDependencies": {
+        "grunt": "^0.4.5",
+        "grunt-timer" : "~0.6",
+        "grunt-contrib-concat": "0.5.1",
+        "grunt-contrib-copy": "~0.8",
+        "grunt-contrib-watch": "0.6.1",
+        "grunt-react": "~0.12",
+
+        "jquery": "~1.11",
+        "moment": "~2.12",
+        "react": "~15.2",
+        "react-dom": "~15.2",
+        "classnames": "~2.2",
+
+        "routestate": "~0.4",
+        "protodata": "~0.2",
+        "cssreveal":"~0.0",
+        "svgtocssicons":"~0.0",
+        "cssmodeling":"~0.1",
+        "cssmodeling-flex":"~0.0",
+        "cssmodeling-col-12-quartered-viewport":"~0.0",
+        "cssmodeling-rows-quartered":"~0.0",
+        "cssmodeling-simple":"~0.0"
+	},
+	"main": "",
+	"scripts": {
+	    "test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/srouse/shift-app.git"
+	},
+	"license": "ISC",
+	"bugs": {
+		"url": "https://catapult.studio/bugs"
+	},
+	"homepage": "https://catapult.studio"
+}

@@ -1,0 +1,1069 @@
+@v-breakpoint-small-min: 760px;
+@v-breakpoint-small-max: 1023px;
+@v-breakpoint-medium-min: 1024px;
+@v-breakpoint-medium-max: 1399px;
+@v-breakpoint-large-min: 1400px;
+@v-breakpoint-large-max: 1699px;
+@v-breakpoint-xlarge-min: 1700px;
+@v-breakpoint-xlarge-max: 4000px;
+@v-breakpoint-tall-er: 645px;
+@v-breakpoint-tall-est: 750px;
+
+
+@v-font-family: 'Roboto', sans-serif;
+
+
+@v-text-weight-light: 300;
+@v-text-weight-normal: 400;
+@v-text-weight-bold: 700;
+
+
+@v-misused: 2px solid red;
+@v-misused-off: none;
+
+
+@v-grey: #808080;
+@v-grey-0: #000;
+@v-grey-1: #1A1A1A;
+@v-grey-2: #333;
+@v-grey-3: #4D4D4D;
+@v-grey-4: #666666;
+@v-grey-5: #808080;
+@v-grey-6: #999999;
+@v-grey-7: #B3B3B3;
+@v-grey-8: #CCCCCC;
+@v-grey-9: #eee;
+@v-grey-10: #fff;
+@v-black: #000;
+@v-white: #fff;
+@v-none: rgba(0,0,0,0);
+@v-app-grey: #fafafa;
+
+
+@v-text-color: #333;
+@v-text-color-light: #555;
+@v-text-color-lighter: #777;
+@v-text-color-lightest: #999;
+@v-text-color-dark: #222;
+@v-text-color-darker: #111;
+@v-text-color-darkest: #000;
+
+
+@v-primary-blue: #00437B;
+@v-primary-blue-light: #009AD9;
+@v-primary-blue-lighter: #79B4DB;
+@v-primary-blue-lightest: #B3D1E6;
+@v-primary-blue-dark: #004EA1;
+@v-primary-blue-darker: #023A75;
+@v-primary-blue-darkest: #022851;
+
+
+@v-brand-primary: #003F87;
+@v-brand-primary-light: #0053B1;
+@v-brand-primary-lighter: #4088DB;
+@v-brand-primary-lightest: #A1CDFF;
+@v-brand-primary-dark: #00316A;
+@v-brand-primary-darker: #001E40;
+@v-brand-primary-darkest: #000E1F;
+
+
+@v-primary-yellow: #FFBE00;
+@v-primary-yellow-light: #F5BC5B;
+@v-primary-yellow-lighter: #FFD200;
+@v-primary-yellow-lightest: #FFF2CC;
+@v-primary-yellow-dark: #F49A2C;
+@v-primary-yellow-darker: #996226;
+@v-primary-yellow-darkest: #422B14;
+
+
+@v-brand-secondary: #FFC500;
+@v-brand-secondary-light: #FFD23D;
+@v-brand-secondary-lighter: #FFE180;
+@v-brand-secondary-lightest: #FFF2C7;
+@v-brand-secondary-dark: #BF9300;
+@v-brand-secondary-darker: #826200;
+@v-brand-secondary-darkest: #523D00;
+
+
+@v-secondary-red: #FF8161;
+@v-secondary-red-light: #FF8161;
+@v-secondary-red-lighter: #FF8161;
+@v-secondary-red-lightest: #FF8161;
+@v-secondary-red-dark: #FF8161;
+@v-secondary-red-darker: #FF8161;
+@v-secondary-red-darkest: #FF8161;
+
+
+@v-warning: #FF8161;
+@v-warning-light: #FF8161;
+@v-warning-lighter: #FF8161;
+@v-warning-lightest: #FF8161;
+@v-warning-dark: #FF8161;
+@v-warning-darker: #FF8161;
+@v-warning-darkest: #FF8161;
+
+
+@v-secondaryNavBGColor: #eee;
+
+
+@v-alpha: .5;
+@v-alpha-0: 0;
+@v-alpha-1: .1;
+@v-alpha-2: .2;
+@v-alpha-3: .3;
+@v-alpha-4: .4;
+@v-alpha-5: .5;
+@v-alpha-6: .6;
+@v-alpha-7: .7;
+@v-alpha-8: .8;
+@v-alpha-9: .9;
+@v-alpha-10: 1;
+
+
+@v-alpha-grey: rgba( 0,0,0,.5 );
+@v-alpha-grey-0: rgba( 0,0,0,0 );
+@v-alpha-grey-1: rgba( 0,0,0,.1 );
+@v-alpha-grey-2: rgba( 0,0,0,.2 );
+@v-alpha-grey-3: rgba( 0,0,0,.3 );
+@v-alpha-grey-4: rgba( 0,0,0,.4 );
+@v-alpha-grey-5: rgba( 0,0,0,.5 );
+@v-alpha-grey-6: rgba( 0,0,0,.6 );
+@v-alpha-grey-7: rgba( 0,0,0,.7 );
+@v-alpha-grey-8: rgba( 0,0,0,.8 );
+@v-alpha-grey-9: rgba( 0,0,0,.9 );
+@v-alpha-grey-10: rgba( 0,0,0,1 );
+
+
+@v-transition-duration: .3s;
+
+
+@v-transition-all: all @v-transition-duration;
+@v-transition-none: none;
+@v-transition-width: width @v-transition-duration;
+@v-transition-height: height @v-transition-duration;
+@v-transition-left: left @v-transition-duration;
+@v-transition-right: right @v-transition-duration;
+@v-transition-top: top @v-transition-duration;
+@v-transition-bottom: bottom @v-transition-duration;
+
+
+@v-border: 1px solid @v-grey-8;
+@v-border-none: 0px;
+@v-border-strong: 2px solid @v-grey-8;
+@v-border-stronger: 4px solid @v-grey-8;
+@v-border-strongest: 8px solid @v-grey-8;
+@v-border-weak: 1px solid @v-grey-7;
+@v-border-weaker: 1px solid @v-grey-8;
+@v-border-weakest: 1px solid @v-grey-9;
+@v-border-top: 1px solid @v-grey-8;
+@v-border-top-none: 0px;
+@v-border-top-strong: 2px solid @v-grey-8;
+@v-border-top-stronger: 4px solid @v-grey-8;
+@v-border-top-strongest: 8px solid @v-grey-8;
+@v-border-top-weak: 1px solid @v-grey-7;
+@v-border-top-weaker: 1px solid @v-grey-8;
+@v-border-top-weakest: 1px solid @v-grey-9;
+@v-border-bottom: 1px solid @v-grey-8;
+@v-border-bottom-none: 0px;
+@v-border-bottom-strong: 2px solid @v-grey-8;
+@v-border-bottom-stronger: 4px solid @v-grey-8;
+@v-border-bottom-strongest: 8px solid @v-grey-8;
+@v-border-bottom-weak: 1px solid @v-grey-7;
+@v-border-bottom-weaker: 1px solid @v-grey-8;
+@v-border-bottom-weakest: 1px solid @v-grey-9;
+@v-border-left: 1px solid @v-grey-8;
+@v-border-left-none: 0px;
+@v-border-left-strong: 2px solid @v-grey-8;
+@v-border-left-stronger: 4px solid @v-grey-8;
+@v-border-left-strongest: 8px solid @v-grey-8;
+@v-border-left-weak: 1px solid @v-grey-7;
+@v-border-left-weaker: 1px solid @v-grey-8;
+@v-border-left-weakest: 1px solid @v-grey-9;
+@v-border-right: 1px solid @v-grey-8;
+@v-border-right-none: 0px;
+@v-border-right-strong: 2px solid @v-grey-8;
+@v-border-right-stronger: 4px solid @v-grey-8;
+@v-border-right-strongest: 8px solid @v-grey-8;
+@v-border-right-weak: 1px solid @v-grey-7;
+@v-border-right-weaker: 1px solid @v-grey-8;
+@v-border-right-weakest: 1px solid @v-grey-9;
+@v-border-height: 1px solid @v-grey-8;
+@v-border-height-none: 0px;
+@v-border-height-strong: 2px solid @v-grey-8;
+@v-border-height-stronger: 4px solid @v-grey-8;
+@v-border-height-strongest: 8px solid @v-grey-8;
+@v-border-height-weak: 1px solid @v-grey-7;
+@v-border-height-weaker: 1px solid @v-grey-8;
+@v-border-height-weakest: 1px solid @v-grey-9;
+@v-border-width: 1px solid @v-grey-8;
+@v-border-width-none: 0px;
+@v-border-width-strong: 2px solid @v-grey-8;
+@v-border-width-stronger: 4px solid @v-grey-8;
+@v-border-width-strongest: 8px solid @v-grey-8;
+@v-border-width-weak: 1px solid @v-grey-7;
+@v-border-width-weaker: 1px solid @v-grey-8;
+@v-border-width-weakest: 1px solid @v-grey-9;
+
+
+@v-border-primary-blue: 1px solid @v-primary-blue;
+@v-border-primary-blue-none: 0px;
+@v-border-primary-blue-strong: 1px solid @v-primary-blue-dark;
+@v-border-primary-blue-stronger: 1px solid @v-primary-blue-darker;
+@v-border-primary-blue-strongest: 1px solid @v-primary-blue-darkest;
+@v-border-primary-blue-weak: 1px solid @v-primary-blue-light;
+@v-border-primary-blue-weaker: 1px solid @v-primary-blue-lighter;
+@v-border-primary-blue-weakest: 1px solid @v-primary-blue-lightest;
+@v-border-primary-blue-top: 1px solid @v-primary-blue;
+@v-border-primary-blue-top-none: 0px;
+@v-border-primary-blue-top-strong: 1px solid @v-primary-blue-dark;
+@v-border-primary-blue-top-stronger: 1px solid @v-primary-blue-darker;
+@v-border-primary-blue-top-strongest: 1px solid @v-primary-blue-darkest;
+@v-border-primary-blue-top-weak: 1px solid @v-primary-blue-light;
+@v-border-primary-blue-top-weaker: 1px solid @v-primary-blue-lighter;
+@v-border-primary-blue-top-weakest: 1px solid @v-primary-blue-lightest;
+@v-border-primary-blue-bottom: 1px solid @v-primary-blue;
+@v-border-primary-blue-bottom-none: 0px;
+@v-border-primary-blue-bottom-strong: 1px solid @v-primary-blue-dark;
+@v-border-primary-blue-bottom-stronger: 1px solid @v-primary-blue-darker;
+@v-border-primary-blue-bottom-strongest: 1px solid @v-primary-blue-darkest;
+@v-border-primary-blue-bottom-weak: 1px solid @v-primary-blue-light;
+@v-border-primary-blue-bottom-weaker: 1px solid @v-primary-blue-lighter;
+@v-border-primary-blue-bottom-weakest: 1px solid @v-primary-blue-lightest;
+@v-border-primary-blue-left: 1px solid @v-primary-blue;
+@v-border-primary-blue-left-none: 0px;
+@v-border-primary-blue-left-strong: 1px solid @v-primary-blue-dark;
+@v-border-primary-blue-left-stronger: 1px solid @v-primary-blue-darker;
+@v-border-primary-blue-left-strongest: 1px solid @v-primary-blue-darkest;
+@v-border-primary-blue-left-weak: 1px solid @v-primary-blue-light;
+@v-border-primary-blue-left-weaker: 1px solid @v-primary-blue-lighter;
+@v-border-primary-blue-left-weakest: 1px solid @v-primary-blue-lightest;
+@v-border-primary-blue-right: 1px solid @v-primary-blue;
+@v-border-primary-blue-right-none: 0px;
+@v-border-primary-blue-right-strong: 1px solid @v-primary-blue-dark;
+@v-border-primary-blue-right-stronger: 1px solid @v-primary-blue-darker;
+@v-border-primary-blue-right-strongest: 1px solid @v-primary-blue-darkest;
+@v-border-primary-blue-right-weak: 1px solid @v-primary-blue-light;
+@v-border-primary-blue-right-weaker: 1px solid @v-primary-blue-lighter;
+@v-border-primary-blue-right-weakest: 1px solid @v-primary-blue-lightest;
+@v-border-primary-blue-height: 1px solid @v-primary-blue;
+@v-border-primary-blue-height-none: 0px;
+@v-border-primary-blue-height-strong: 1px solid @v-primary-blue-dark;
+@v-border-primary-blue-height-stronger: 1px solid @v-primary-blue-darker;
+@v-border-primary-blue-height-strongest: 1px solid @v-primary-blue-darkest;
+@v-border-primary-blue-height-weak: 1px solid @v-primary-blue-light;
+@v-border-primary-blue-height-weaker: 1px solid @v-primary-blue-lighter;
+@v-border-primary-blue-height-weakest: 1px solid @v-primary-blue-lightest;
+@v-border-primary-blue-width: 1px solid @v-primary-blue;
+@v-border-primary-blue-width-none: 0px;
+@v-border-primary-blue-width-strong: 1px solid @v-primary-blue-dark;
+@v-border-primary-blue-width-stronger: 1px solid @v-primary-blue-darker;
+@v-border-primary-blue-width-strongest: 1px solid @v-primary-blue-darkest;
+@v-border-primary-blue-width-weak: 1px solid @v-primary-blue-light;
+@v-border-primary-blue-width-weaker: 1px solid @v-primary-blue-lighter;
+@v-border-primary-blue-width-weakest: 1px solid @v-primary-blue-lightest;
+
+
+@v-border-primary-yellow: 1px solid @v-primary-yellow;
+@v-border-primary-yellow-none: 0px;
+@v-border-primary-yellow-strong: 1px solid @v-primary-yellow-dark;
+@v-border-primary-yellow-stronger: 1px solid @v-primary-yellow-darker;
+@v-border-primary-yellow-strongest: 1px solid @v-primary-yellow-darkest;
+@v-border-primary-yellow-weak: 1px solid @v-primary-yellow-light;
+@v-border-primary-yellow-weaker: 1px solid @v-primary-yellow-lighter;
+@v-border-primary-yellow-weakest: 1px solid @v-primary-yellow-lightest;
+@v-border-primary-yellow-top: 1px solid @v-primary-yellow;
+@v-border-primary-yellow-top-none: 0px;
+@v-border-primary-yellow-top-strong: 1px solid @v-primary-yellow-dark;
+@v-border-primary-yellow-top-stronger: 1px solid @v-primary-yellow-darker;
+@v-border-primary-yellow-top-strongest: 1px solid @v-primary-yellow-darkest;
+@v-border-primary-yellow-top-weak: 1px solid @v-primary-yellow-light;
+@v-border-primary-yellow-top-weaker: 1px solid @v-primary-yellow-lighter;
+@v-border-primary-yellow-top-weakest: 1px solid @v-primary-yellow-lightest;
+@v-border-primary-yellow-bottom: 1px solid @v-primary-yellow;
+@v-border-primary-yellow-bottom-none: 0px;
+@v-border-primary-yellow-bottom-strong: 1px solid @v-primary-yellow-dark;
+@v-border-primary-yellow-bottom-stronger: 1px solid @v-primary-yellow-darker;
+@v-border-primary-yellow-bottom-strongest: 1px solid @v-primary-yellow-darkest;
+@v-border-primary-yellow-bottom-weak: 1px solid @v-primary-yellow-light;
+@v-border-primary-yellow-bottom-weaker: 1px solid @v-primary-yellow-lighter;
+@v-border-primary-yellow-bottom-weakest: 1px solid @v-primary-yellow-lightest;
+@v-border-primary-yellow-left: 1px solid @v-primary-yellow;
+@v-border-primary-yellow-left-none: 0px;
+@v-border-primary-yellow-left-strong: 1px solid @v-primary-yellow-dark;
+@v-border-primary-yellow-left-stronger: 1px solid @v-primary-yellow-darker;
+@v-border-primary-yellow-left-strongest: 1px solid @v-primary-yellow-darkest;
+@v-border-primary-yellow-left-weak: 1px solid @v-primary-yellow-light;
+@v-border-primary-yellow-left-weaker: 1px solid @v-primary-yellow-lighter;
+@v-border-primary-yellow-left-weakest: 1px solid @v-primary-yellow-lightest;
+@v-border-primary-yellow-right: 1px solid @v-primary-yellow;
+@v-border-primary-yellow-right-none: 0px;
+@v-border-primary-yellow-right-strong: 1px solid @v-primary-yellow-dark;
+@v-border-primary-yellow-right-stronger: 1px solid @v-primary-yellow-darker;
+@v-border-primary-yellow-right-strongest: 1px solid @v-primary-yellow-darkest;
+@v-border-primary-yellow-right-weak: 1px solid @v-primary-yellow-light;
+@v-border-primary-yellow-right-weaker: 1px solid @v-primary-yellow-lighter;
+@v-border-primary-yellow-right-weakest: 1px solid @v-primary-yellow-lightest;
+@v-border-primary-yellow-height: 1px solid @v-primary-yellow;
+@v-border-primary-yellow-height-none: 0px;
+@v-border-primary-yellow-height-strong: 1px solid @v-primary-yellow-dark;
+@v-border-primary-yellow-height-stronger: 1px solid @v-primary-yellow-darker;
+@v-border-primary-yellow-height-strongest: 1px solid @v-primary-yellow-darkest;
+@v-border-primary-yellow-height-weak: 1px solid @v-primary-yellow-light;
+@v-border-primary-yellow-height-weaker: 1px solid @v-primary-yellow-lighter;
+@v-border-primary-yellow-height-weakest: 1px solid @v-primary-yellow-lightest;
+@v-border-primary-yellow-width: 1px solid @v-primary-yellow;
+@v-border-primary-yellow-width-none: 0px;
+@v-border-primary-yellow-width-strong: 1px solid @v-primary-yellow-dark;
+@v-border-primary-yellow-width-stronger: 1px solid @v-primary-yellow-darker;
+@v-border-primary-yellow-width-strongest: 1px solid @v-primary-yellow-darkest;
+@v-border-primary-yellow-width-weak: 1px solid @v-primary-yellow-light;
+@v-border-primary-yellow-width-weaker: 1px solid @v-primary-yellow-lighter;
+@v-border-primary-yellow-width-weakest: 1px solid @v-primary-yellow-lightest;
+
+
+@v-border-brand-secondary: 1px solid @v-brand-secondary;
+@v-border-brand-secondary-none: 0px;
+@v-border-brand-secondary-strong: 1px solid @v-brand-secondary-dark;
+@v-border-brand-secondary-stronger: 1px solid @v-brand-secondary-darker;
+@v-border-brand-secondary-strongest: 1px solid @v-brand-secondary-darkest;
+@v-border-brand-secondary-weak: 1px solid @v-brand-secondary-light;
+@v-border-brand-secondary-weaker: 1px solid @v-brand-secondary-lighter;
+@v-border-brand-secondary-weakest: 1px solid @v-brand-secondary-lightest;
+@v-border-brand-secondary-top: 1px solid @v-brand-secondary;
+@v-border-brand-secondary-top-none: 0px;
+@v-border-brand-secondary-top-strong: 1px solid @v-brand-secondary-dark;
+@v-border-brand-secondary-top-stronger: 1px solid @v-brand-secondary-darker;
+@v-border-brand-secondary-top-strongest: 1px solid @v-brand-secondary-darkest;
+@v-border-brand-secondary-top-weak: 1px solid @v-brand-secondary-light;
+@v-border-brand-secondary-top-weaker: 1px solid @v-brand-secondary-lighter;
+@v-border-brand-secondary-top-weakest: 1px solid @v-brand-secondary-lightest;
+@v-border-brand-secondary-bottom: 1px solid @v-brand-secondary;
+@v-border-brand-secondary-bottom-none: 0px;
+@v-border-brand-secondary-bottom-strong: 1px solid @v-brand-secondary-dark;
+@v-border-brand-secondary-bottom-stronger: 1px solid @v-brand-secondary-darker;
+@v-border-brand-secondary-bottom-strongest: 1px solid @v-brand-secondary-darkest;
+@v-border-brand-secondary-bottom-weak: 1px solid @v-brand-secondary-light;
+@v-border-brand-secondary-bottom-weaker: 1px solid @v-brand-secondary-lighter;
+@v-border-brand-secondary-bottom-weakest: 1px solid @v-brand-secondary-lightest;
+@v-border-brand-secondary-left: 1px solid @v-brand-secondary;
+@v-border-brand-secondary-left-none: 0px;
+@v-border-brand-secondary-left-strong: 1px solid @v-brand-secondary-dark;
+@v-border-brand-secondary-left-stronger: 1px solid @v-brand-secondary-darker;
+@v-border-brand-secondary-left-strongest: 1px solid @v-brand-secondary-darkest;
+@v-border-brand-secondary-left-weak: 1px solid @v-brand-secondary-light;
+@v-border-brand-secondary-left-weaker: 1px solid @v-brand-secondary-lighter;
+@v-border-brand-secondary-left-weakest: 1px solid @v-brand-secondary-lightest;
+@v-border-brand-secondary-right: 1px solid @v-brand-secondary;
+@v-border-brand-secondary-right-none: 0px;
+@v-border-brand-secondary-right-strong: 1px solid @v-brand-secondary-dark;
+@v-border-brand-secondary-right-stronger: 1px solid @v-brand-secondary-darker;
+@v-border-brand-secondary-right-strongest: 1px solid @v-brand-secondary-darkest;
+@v-border-brand-secondary-right-weak: 1px solid @v-brand-secondary-light;
+@v-border-brand-secondary-right-weaker: 1px solid @v-brand-secondary-lighter;
+@v-border-brand-secondary-right-weakest: 1px solid @v-brand-secondary-lightest;
+@v-border-brand-secondary-height: 1px solid @v-brand-secondary;
+@v-border-brand-secondary-height-none: 0px;
+@v-border-brand-secondary-height-strong: 1px solid @v-brand-secondary-dark;
+@v-border-brand-secondary-height-stronger: 1px solid @v-brand-secondary-darker;
+@v-border-brand-secondary-height-strongest: 1px solid @v-brand-secondary-darkest;
+@v-border-brand-secondary-height-weak: 1px solid @v-brand-secondary-light;
+@v-border-brand-secondary-height-weaker: 1px solid @v-brand-secondary-lighter;
+@v-border-brand-secondary-height-weakest: 1px solid @v-brand-secondary-lightest;
+@v-border-brand-secondary-width: 1px solid @v-brand-secondary;
+@v-border-brand-secondary-width-none: 0px;
+@v-border-brand-secondary-width-strong: 1px solid @v-brand-secondary-dark;
+@v-border-brand-secondary-width-stronger: 1px solid @v-brand-secondary-darker;
+@v-border-brand-secondary-width-strongest: 1px solid @v-brand-secondary-darkest;
+@v-border-brand-secondary-width-weak: 1px solid @v-brand-secondary-light;
+@v-border-brand-secondary-width-weaker: 1px solid @v-brand-secondary-lighter;
+@v-border-brand-secondary-width-weakest: 1px solid @v-brand-secondary-lightest;
+
+
+@v-grey: #808080;
+@v-grey-0: #000;
+@v-grey-1: #1A1A1A;
+@v-grey-2: #333;
+@v-grey-3: #4D4D4D;
+@v-grey-4: #666666;
+@v-grey-5: #808080;
+@v-grey-6: #999999;
+@v-grey-7: #B3B3B3;
+@v-grey-8: #CCCCCC;
+@v-grey-9: #eee;
+@v-grey-10: #fff;
+@v-black: #000;
+@v-white: #fff;
+@v-none: rgba(0,0,0,0);
+@v-app-grey: #fafafa;
+
+
+@v-shadow: 0px 0px 6px 0 rgba( 0,0,0,.1);
+@v-shadow-top-right: 3px -3px 3px 0 rgba( 0,0,0,.1);
+@v-shadow-top-left: -3px -3px 3px 0 rgba( 0,0,0,.1);
+@v-shadow-top: 0 -3px 3px 0 rgba( 0,0,0,.1);
+@v-shadow-bottom: 0 3px 3px 0 rgba( 0,0,0,.1);
+@v-shadow-bottom-right: 3px 3px 3px 0 rgba( 0,0,0,.1);
+@v-shadow-bottom-left: -3px 3px 3px 0 rgba( 0,0,0,.1);
+@v-shadow-left: -3px 0 3px 0 rgba( 0,0,0,.1);
+@v-shadow-right: 3px 0 3px 0 rgba( 0,0,0,.1);
+@v-shadow-width: -4px 0 4px -3px rgba( 0,0,0,.15),4px 0 4px -3px rgba( 0,0,0,.15);
+@v-shadow-height: 0 -4px 4px -3px rgba( 0,0,0,.15),0 4px 4px -3px rgba( 0,0,0,.15);
+@v-shadow-weak: 0px 0px 6px 0 rgba( 0,0,0,.05);
+@v-shadow-weak-top-right: 3px -3px 3px 0 rgba( 0,0,0,.05);
+@v-shadow-weak-top-left: -3px -3px 3px 0 rgba( 0,0,0,.05);
+@v-shadow-weak-top: 0 -3px 3px 0 rgba( 0,0,0,.05);
+@v-shadow-weak-bottom: 0 3px 3px 0 rgba( 0,0,0,.05);
+@v-shadow-weak-bottom-right: 3px 3px 3px 0 rgba( 0,0,0,.05);
+@v-shadow-weak-bottom-left: -3px 3px 3px 0 rgba( 0,0,0,.05);
+@v-shadow-weak-left: -3px 0 3px 0 rgba( 0,0,0,.05);
+@v-shadow-weak-right: 3px 0 3px 0 rgba( 0,0,0,.05);
+@v-shadow-weak-width: -3px 0 3px 0 rgba( 0,0,0,.05),3px 0 3px 0 rgba( 0,0,0,.05);
+@v-shadow-weak-height: 0 -3px 3px 0 rgba( 0,0,0,.05),0 3px 3px 0 rgba( 0,0,0,.05);
+@v-shadow-strong: 0px 0px 6px 0 rgba( 0,0,0,.2);
+@v-shadow-strong-top-right: 3px -3px 3px 0 rgba( 0,0,0,.2);
+@v-shadow-strong-top-left: -3px -3px 3px 0 rgba( 0,0,0,.2);
+@v-shadow-strong-top: 0 -3px 3px 0 rgba( 0,0,0,.2);
+@v-shadow-strong-bottom: 0 3px 3px 0 rgba( 0,0,0,.2);
+@v-shadow-strong-bottom-right: 3px 3px 3px 0 rgba( 0,0,0,.2);
+@v-shadow-strong-bottom-left: -3px 3px 3px 0 rgba( 0,0,0,.2);
+@v-shadow-strong-left: -3px 0 3px 0 rgba( 0,0,0,.2);
+@v-shadow-strong-right: 3px 0 3px 0 rgba( 0,0,0,.2);
+@v-shadow-strong-width: -3px 0 3px 0 rgba( 0,0,0,.2),3px 0 3px 0 rgba( 0,0,0,.2);
+@v-shadow-strong-height: 0 -3px 3px 0 rgba( 0,0,0,.2),0 3px 3px 0 rgba( 0,0,0,.2);
+
+
+@v-shadow-inset: 0px 0px 6px -3px rgba( 0,0,0,.1);
+@v-shadow-inset-top-right: -6px 6px 3px -3px rgba( 0,0,0,.1);
+@v-shadow-inset-top-left: 6px 6px 3px -3px rgba( 0,0,0,.1);
+@v-shadow-inset-top: 0 6px 3px -3px rgba( 0,0,0,.1);
+@v-shadow-inset-bottom: 0 -6px 3px -3px rgba( 0,0,0,.1);
+@v-shadow-inset-bottom-right: -6px -6px 3px -3px rgba( 0,0,0,.1);
+@v-shadow-inset-bottom-left: 6px -6px 3px -3px rgba( 0,0,0,.1);
+@v-shadow-inset-left: 6px 0 3px -3px rgba( 0,0,0,.1);
+@v-shadow-inset-right: -6px 0 3px -3px rgba( 0,0,0,.1);
+@v-shadow-inset-width: 6px 0 3px -3px rgba( 0,0,0,.1),-6px 0 3px -3px rgba( 0,0,0,.1);
+@v-shadow-inset-height: 0 6px 3px -3px rgba( 0,0,0,.1),0 -6px 6px -3px rgba( 0,0,0,.1);
+@v-shadow-inset-weak: 0px 0px 6px -3px rgba( 0,0,0,.05);
+@v-shadow-inset-weak-top-right: -6px 6px 3px -3px rgba( 0,0,0,.05);
+@v-shadow-inset-weak-top-left: 6px 6px 3px -3px rgba( 0,0,0,.05);
+@v-shadow-inset-weak-top: 0 6px 3px -3px rgba( 0,0,0,.05);
+@v-shadow-inset-weak-bottom: 0 -6px 3px -3px rgba( 0,0,0,.05);
+@v-shadow-inset-weak-bottom-right: -6px -6px 3px -3px rgba( 0,0,0,.05);
+@v-shadow-inset-weak-bottom-left: 6px -6px 3px -3px rgba( 0,0,0,.05);
+@v-shadow-inset-weak-left: 6px 0 3px -3px rgba( 0,0,0,.05);
+@v-shadow-inset-weak-right: -6px 0 3px -3px rgba( 0,0,0,.05);
+@v-shadow-inset-weak-width: 6px 0 3px -3px rgba( 0,0,0,.05),-6px 0 3px -3px rgba( 0,0,0,.05);
+@v-shadow-inset-weak-height: 0 6px 3px -3px rgba( 0,0,0,.05),0 -3px 6px -3px rgba( 0,0,0,.05);
+@v-shadow-inset-strong: 0px 0px 6px -3px rgba( 0,0,0,.2);
+@v-shadow-inset-strong-top-right: -6px 6px 3px -3px rgba( 0,0,0,.2);
+@v-shadow-inset-strong-top-left: 6px 6px 3px -3px rgba( 0,0,0,.2);
+@v-shadow-inset-strong-top: 0 6px 3px -3px rgba( 0,0,0,.2);
+@v-shadow-inset-strong-bottom: 0 -6px 3px -3px rgba( 0,0,0,.2);
+@v-shadow-inset-strong-bottom-right: -6px -6px 3px -3px rgba( 0,0,0,.2);
+@v-shadow-inset-strong-bottom-left: 6px -6px 3px -3px rgba( 0,0,0,.2);
+@v-shadow-inset-strong-left: 6px 0 3px -3px rgba( 0,0,0,.2);
+@v-shadow-inset-strong-right: -6px 0 3px -3px rgba( 0,0,0,.2);
+@v-shadow-inset-strong-width: 6px 0 3px -3px rgba( 0,0,0,.2),-6px 0 3px -3px rgba( 0,0,0,.2);
+@v-shadow-inset-strong-height: 0 6px 3px -3px rgba( 0,0,0,.2),0 -6px 6px -3px rgba( 0,0,0,.2);
+
+
+@v-border-radius: 5px;
+
+
+.a-font-family () {  font-family : @v-font-family  !important; }
+.a-text-weight-light () {  font-weight : @v-text-weight-light  !important; }
+.a-text-weight-normal () {  font-weight : @v-text-weight-normal  !important; }
+.a-text-weight-bold () {  font-weight : @v-text-weight-bold  !important; }
+.a-misused () {  outline: @v-misused !important; }
+.a-misused-off () {  outline: @v-misused-off !important; }
+.a-background-grey () {  background-color : @v-grey !important; }
+.a-background-grey-0 () {  background-color : @v-grey-0 !important; }
+.a-background-grey-1 () {  background-color : @v-grey-1 !important; }
+.a-background-grey-2 () {  background-color : @v-grey-2 !important; }
+.a-background-grey-3 () {  background-color : @v-grey-3 !important; }
+.a-background-grey-4 () {  background-color : @v-grey-4 !important; }
+.a-background-grey-5 () {  background-color : @v-grey-5 !important; }
+.a-background-grey-6 () {  background-color : @v-grey-6 !important; }
+.a-background-grey-7 () {  background-color : @v-grey-7 !important; }
+.a-background-grey-8 () {  background-color : @v-grey-8 !important; }
+.a-background-grey-9 () {  background-color : @v-grey-9 !important; }
+.a-background-grey-10 () {  background-color : @v-grey-10 !important; }
+.a-background-black () {  background-color : @v-black !important; }
+.a-background-white () {  background-color : @v-white !important; }
+.a-background-none () {  background-color : @v-none !important; }
+.a-background-app-grey () {  background-color : @v-app-grey !important; }
+.a-text-color-grey () {  color : @v-grey !important; }
+.a-text-color-grey-0 () {  color : @v-grey-0 !important; }
+.a-text-color-grey-1 () {  color : @v-grey-1 !important; }
+.a-text-color-grey-2 () {  color : @v-grey-2 !important; }
+.a-text-color-grey-3 () {  color : @v-grey-3 !important; }
+.a-text-color-grey-4 () {  color : @v-grey-4 !important; }
+.a-text-color-grey-5 () {  color : @v-grey-5 !important; }
+.a-text-color-grey-6 () {  color : @v-grey-6 !important; }
+.a-text-color-grey-7 () {  color : @v-grey-7 !important; }
+.a-text-color-grey-8 () {  color : @v-grey-8 !important; }
+.a-text-color-grey-9 () {  color : @v-grey-9 !important; }
+.a-text-color-grey-10 () {  color : @v-grey-10 !important; }
+.a-text-color-black () {  color : @v-black !important; }
+.a-text-color-white () {  color : @v-white !important; }
+.a-text-color-none () {  color : @v-none !important; }
+.a-text-color-app-grey () {  color : @v-app-grey !important; }
+.a-hover-background-grey () {  &:hover { background-color : @v-grey !important ; } }
+.a-hover-background-grey-0 () {  &:hover { background-color : @v-grey-0 !important ; } }
+.a-hover-background-grey-1 () {  &:hover { background-color : @v-grey-1 !important ; } }
+.a-hover-background-grey-2 () {  &:hover { background-color : @v-grey-2 !important ; } }
+.a-hover-background-grey-3 () {  &:hover { background-color : @v-grey-3 !important ; } }
+.a-hover-background-grey-4 () {  &:hover { background-color : @v-grey-4 !important ; } }
+.a-hover-background-grey-5 () {  &:hover { background-color : @v-grey-5 !important ; } }
+.a-hover-background-grey-6 () {  &:hover { background-color : @v-grey-6 !important ; } }
+.a-hover-background-grey-7 () {  &:hover { background-color : @v-grey-7 !important ; } }
+.a-hover-background-grey-8 () {  &:hover { background-color : @v-grey-8 !important ; } }
+.a-hover-background-grey-9 () {  &:hover { background-color : @v-grey-9 !important ; } }
+.a-hover-background-grey-10 () {  &:hover { background-color : @v-grey-10 !important ; } }
+.a-hover-background-black () {  &:hover { background-color : @v-black !important ; } }
+.a-hover-background-white () {  &:hover { background-color : @v-white !important ; } }
+.a-hover-background-none () {  &:hover { background-color : @v-none !important ; } }
+.a-hover-background-app-grey () {  &:hover { background-color : @v-app-grey !important ; } }
+.a-hover-text-color-grey () {  &:hover { color : @v-grey !important ; } }
+.a-hover-text-color-grey-0 () {  &:hover { color : @v-grey-0 !important ; } }
+.a-hover-text-color-grey-1 () {  &:hover { color : @v-grey-1 !important ; } }
+.a-hover-text-color-grey-2 () {  &:hover { color : @v-grey-2 !important ; } }
+.a-hover-text-color-grey-3 () {  &:hover { color : @v-grey-3 !important ; } }
+.a-hover-text-color-grey-4 () {  &:hover { color : @v-grey-4 !important ; } }
+.a-hover-text-color-grey-5 () {  &:hover { color : @v-grey-5 !important ; } }
+.a-hover-text-color-grey-6 () {  &:hover { color : @v-grey-6 !important ; } }
+.a-hover-text-color-grey-7 () {  &:hover { color : @v-grey-7 !important ; } }
+.a-hover-text-color-grey-8 () {  &:hover { color : @v-grey-8 !important ; } }
+.a-hover-text-color-grey-9 () {  &:hover { color : @v-grey-9 !important ; } }
+.a-hover-text-color-grey-10 () {  &:hover { color : @v-grey-10 !important ; } }
+.a-hover-text-color-black () {  &:hover { color : @v-black !important ; } }
+.a-hover-text-color-white () {  &:hover { color : @v-white !important ; } }
+.a-hover-text-color-none () {  &:hover { color : @v-none !important ; } }
+.a-hover-text-color-app-grey () {  &:hover { color : @v-app-grey !important ; } }
+.a-text-color () {  color: @v-text-color !important; }
+.a-text-color-light () {  color: @v-text-color-light !important; }
+.a-text-color-lighter () {  color: @v-text-color-lighter !important; }
+.a-text-color-lightest () {  color: @v-text-color-lightest !important; }
+.a-text-color-dark () {  color: @v-text-color-dark !important; }
+.a-text-color-darker () {  color: @v-text-color-darker !important; }
+.a-text-color-darkest () {  color: @v-text-color-darkest !important; }
+.a-background-primary-blue () {  background-color : @v-primary-blue !important; }
+.a-background-primary-blue-light () {  background-color : @v-primary-blue-light !important; }
+.a-background-primary-blue-lighter () {  background-color : @v-primary-blue-lighter !important; }
+.a-background-primary-blue-lightest () {  background-color : @v-primary-blue-lightest !important; }
+.a-background-primary-blue-dark () {  background-color : @v-primary-blue-dark !important; }
+.a-background-primary-blue-darker () {  background-color : @v-primary-blue-darker !important; }
+.a-background-primary-blue-darkest () {  background-color : @v-primary-blue-darkest !important; }
+.a-text-color-primary-blue () {  color : @v-primary-blue !important; }
+.a-text-color-primary-blue-light () {  color : @v-primary-blue-light !important; }
+.a-text-color-primary-blue-lighter () {  color : @v-primary-blue-lighter !important; }
+.a-text-color-primary-blue-lightest () {  color : @v-primary-blue-lightest !important; }
+.a-text-color-primary-blue-dark () {  color : @v-primary-blue-dark !important; }
+.a-text-color-primary-blue-darker () {  color : @v-primary-blue-darker !important; }
+.a-text-color-primary-blue-darkest () {  color : @v-primary-blue-darkest !important; }
+.a-hover-background-primary-blue () {  &:hover { background-color : @v-primary-blue !important; } }
+.a-hover-background-primary-blue-light () {  &:hover { background-color : @v-primary-blue-light !important; } }
+.a-hover-background-primary-blue-lighter () {  &:hover { background-color : @v-primary-blue-lighter !important; } }
+.a-hover-background-primary-blue-lightest () {  &:hover { background-color : @v-primary-blue-lightest !important; } }
+.a-hover-background-primary-blue-dark () {  &:hover { background-color : @v-primary-blue-dark !important; } }
+.a-hover-background-primary-blue-darker () {  &:hover { background-color : @v-primary-blue-darker !important; } }
+.a-hover-background-primary-blue-darkest () {  &:hover { background-color : @v-primary-blue-darkest !important; } }
+.a-hover-text-color-primary-blue () {  &:hover { color : @v-primary-blue !important; } }
+.a-hover-text-color-primary-blue-light () {  &:hover { color : @v-primary-blue-light !important; } }
+.a-hover-text-color-primary-blue-lighter () {  &:hover { color : @v-primary-blue-lighter !important; } }
+.a-hover-text-color-primary-blue-lightest () {  &:hover { color : @v-primary-blue-lightest !important; } }
+.a-hover-text-color-primary-blue-dark () {  &:hover { color : @v-primary-blue-dark !important; } }
+.a-hover-text-color-primary-blue-darker () {  &:hover { color : @v-primary-blue-darker !important; } }
+.a-hover-text-color-primary-blue-darkest () {  &:hover { color : @v-primary-blue-darkest !important; } }
+.a-background-brand-primary () {  background-color : @v-brand-primary !important; }
+.a-background-brand-primary-light () {  background-color : @v-brand-primary-light !important; }
+.a-background-brand-primary-lighter () {  background-color : @v-brand-primary-lighter !important; }
+.a-background-brand-primary-lightest () {  background-color : @v-brand-primary-lightest !important; }
+.a-background-brand-primary-dark () {  background-color : @v-brand-primary-dark !important; }
+.a-background-brand-primary-darker () {  background-color : @v-brand-primary-darker !important; }
+.a-background-brand-primary-darkest () {  background-color : @v-brand-primary-darkest !important; }
+.a-text-color-brand-primary () {  color : @v-brand-primary !important; }
+.a-text-color-brand-primary-light () {  color : @v-brand-primary-light !important; }
+.a-text-color-brand-primary-lighter () {  color : @v-brand-primary-lighter !important; }
+.a-text-color-brand-primary-lightest () {  color : @v-brand-primary-lightest !important; }
+.a-text-color-brand-primary-dark () {  color : @v-brand-primary-dark !important; }
+.a-text-color-brand-primary-darker () {  color : @v-brand-primary-darker !important; }
+.a-text-color-brand-primary-darkest () {  color : @v-brand-primary-darkest !important; }
+.a-hover-background-brand-primary () {  &:hover { background-color : @v-brand-primary !important; } }
+.a-hover-background-brand-primary-light () {  &:hover { background-color : @v-brand-primary-light !important; } }
+.a-hover-background-brand-primary-lighter () {  &:hover { background-color : @v-brand-primary-lighter !important; } }
+.a-hover-background-brand-primary-lightest () {  &:hover { background-color : @v-brand-primary-lightest !important; } }
+.a-hover-background-brand-primary-dark () {  &:hover { background-color : @v-brand-primary-dark !important; } }
+.a-hover-background-brand-primary-darker () {  &:hover { background-color : @v-brand-primary-darker !important; } }
+.a-hover-background-brand-primary-darkest () {  &:hover { background-color : @v-brand-primary-darkest !important; } }
+.a-hover-text-color-brand-primary () {  &:hover { color : @v-brand-primary !important; } }
+.a-hover-text-color-brand-primary-light () {  &:hover { color : @v-brand-primary-light !important; } }
+.a-hover-text-color-brand-primary-lighter () {  &:hover { color : @v-brand-primary-lighter !important; } }
+.a-hover-text-color-brand-primary-lightest () {  &:hover { color : @v-brand-primary-lightest !important; } }
+.a-hover-text-color-brand-primary-dark () {  &:hover { color : @v-brand-primary-dark !important; } }
+.a-hover-text-color-brand-primary-darker () {  &:hover { color : @v-brand-primary-darker !important; } }
+.a-hover-text-color-brand-primary-darkest () {  &:hover { color : @v-brand-primary-darkest !important; } }
+.a-background-primary-yellow () {  background-color : @v-primary-yellow !important; }
+.a-background-primary-yellow-light () {  background-color : @v-primary-yellow-light !important; }
+.a-background-primary-yellow-lighter () {  background-color : @v-primary-yellow-lighter !important; }
+.a-background-primary-yellow-lightest () {  background-color : @v-primary-yellow-lightest !important; }
+.a-background-primary-yellow-dark () {  background-color : @v-primary-yellow-dark !important; }
+.a-background-primary-yellow-darker () {  background-color : @v-primary-yellow-darker !important; }
+.a-background-primary-yellow-darkest () {  background-color : @v-primary-yellow-darkest !important; }
+.a-text-color-primary-yellow () {  color : @v-primary-yellow !important; }
+.a-text-color-primary-yellow-light () {  color : @v-primary-yellow-light !important; }
+.a-text-color-primary-yellow-lighter () {  color : @v-primary-yellow-lighter !important; }
+.a-text-color-primary-yellow-lightest () {  color : @v-primary-yellow-lightest !important; }
+.a-text-color-primary-yellow-dark () {  color : @v-primary-yellow-dark !important; }
+.a-text-color-primary-yellow-darker () {  color : @v-primary-yellow-darker !important; }
+.a-text-color-primary-yellow-darkest () {  color : @v-primary-yellow-darkest !important; }
+.a-hover-background-primary-yellow () {  &:hover { background-color : @v-primary-yellow !important; } }
+.a-hover-background-primary-yellow-light () {  &:hover { background-color : @v-primary-yellow-light !important; } }
+.a-hover-background-primary-yellow-lighter () {  &:hover { background-color : @v-primary-yellow-lighter !important; } }
+.a-hover-background-primary-yellow-lightest () {  &:hover { background-color : @v-primary-yellow-lightest !important; } }
+.a-hover-background-primary-yellow-dark () {  &:hover { background-color : @v-primary-yellow-dark !important; } }
+.a-hover-background-primary-yellow-darker () {  &:hover { background-color : @v-primary-yellow-darker !important; } }
+.a-hover-background-primary-yellow-darkest () {  &:hover { background-color : @v-primary-yellow-darkest !important; } }
+.a-hover-text-color-primary-yellow () {  &:hover { color : @v-primary-yellow !important; } }
+.a-hover-text-color-primary-yellow-light () {  &:hover { color : @v-primary-yellow-light !important; } }
+.a-hover-text-color-primary-yellow-lighter () {  &:hover { color : @v-primary-yellow-lighter !important; } }
+.a-hover-text-color-primary-yellow-lightest () {  &:hover { color : @v-primary-yellow-lightest !important; } }
+.a-hover-text-color-primary-yellow-dark () {  &:hover { color : @v-primary-yellow-dark !important; } }
+.a-hover-text-color-primary-yellow-darker () {  &:hover { color : @v-primary-yellow-darker !important; } }
+.a-hover-text-color-primary-yellow-darkest () {  &:hover { color : @v-primary-yellow-darkest !important; } }
+.a-background-brand-secondary () {  background-color : @v-brand-secondary !important; }
+.a-background-brand-secondary-light () {  background-color : @v-brand-secondary-light !important; }
+.a-background-brand-secondary-lighter () {  background-color : @v-brand-secondary-lighter !important; }
+.a-background-brand-secondary-lightest () {  background-color : @v-brand-secondary-lightest !important; }
+.a-background-brand-secondary-dark () {  background-color : @v-brand-secondary-dark !important; }
+.a-background-brand-secondary-darker () {  background-color : @v-brand-secondary-darker !important; }
+.a-background-brand-secondary-darkest () {  background-color : @v-brand-secondary-darkest !important; }
+.a-text-color-brand-secondary () {  color : @v-brand-secondary !important; }
+.a-text-color-brand-secondary-light () {  color : @v-brand-secondary-light !important; }
+.a-text-color-brand-secondary-lighter () {  color : @v-brand-secondary-lighter !important; }
+.a-text-color-brand-secondary-lightest () {  color : @v-brand-secondary-lightest !important; }
+.a-text-color-brand-secondary-dark () {  color : @v-brand-secondary-dark !important; }
+.a-text-color-brand-secondary-darker () {  color : @v-brand-secondary-darker !important; }
+.a-text-color-brand-secondary-darkest () {  color : @v-brand-secondary-darkest !important; }
+.a-hover-background-brand-secondary () {  &:hover { background-color : @v-brand-secondary !important; } }
+.a-hover-background-brand-secondary-light () {  &:hover { background-color : @v-brand-secondary-light !important; } }
+.a-hover-background-brand-secondary-lighter () {  &:hover { background-color : @v-brand-secondary-lighter !important; } }
+.a-hover-background-brand-secondary-lightest () {  &:hover { background-color : @v-brand-secondary-lightest !important; } }
+.a-hover-background-brand-secondary-dark () {  &:hover { background-color : @v-brand-secondary-dark !important; } }
+.a-hover-background-brand-secondary-darker () {  &:hover { background-color : @v-brand-secondary-darker !important; } }
+.a-hover-background-brand-secondary-darkest () {  &:hover { background-color : @v-brand-secondary-darkest !important; } }
+.a-hover-text-color-brand-secondary () {  &:hover { color : @v-brand-secondary !important; } }
+.a-hover-text-color-brand-secondary-light () {  &:hover { color : @v-brand-secondary-light !important; } }
+.a-hover-text-color-brand-secondary-lighter () {  &:hover { color : @v-brand-secondary-lighter !important; } }
+.a-hover-text-color-brand-secondary-lightest () {  &:hover { color : @v-brand-secondary-lightest !important; } }
+.a-hover-text-color-brand-secondary-dark () {  &:hover { color : @v-brand-secondary-dark !important; } }
+.a-hover-text-color-brand-secondary-darker () {  &:hover { color : @v-brand-secondary-darker !important; } }
+.a-hover-text-color-brand-secondary-darkest () {  &:hover { color : @v-brand-secondary-darkest !important; } }
+.a-background-secondary-red () {  background-color : @v-secondary-red !important; }
+.a-background-secondary-red-light () {  background-color : @v-secondary-red-light !important; }
+.a-background-secondary-red-lighter () {  background-color : @v-secondary-red-lighter !important; }
+.a-background-secondary-red-lightest () {  background-color : @v-secondary-red-lightest !important; }
+.a-background-secondary-red-dark () {  background-color : @v-secondary-red-dark !important; }
+.a-background-secondary-red-darker () {  background-color : @v-secondary-red-darker !important; }
+.a-background-secondary-red-darkest () {  background-color : @v-secondary-red-darkest !important; }
+.a-text-color-secondary-red () {  color : @v-secondary-red !important; }
+.a-text-color-secondary-red-light () {  color : @v-secondary-red-light !important; }
+.a-text-color-secondary-red-lighter () {  color : @v-secondary-red-lighter !important; }
+.a-text-color-secondary-red-lightest () {  color : @v-secondary-red-lightest !important; }
+.a-text-color-secondary-red-dark () {  color : @v-secondary-red-dark !important; }
+.a-text-color-secondary-red-darker () {  color : @v-secondary-red-darker !important; }
+.a-text-color-secondary-red-darkest () {  color : @v-secondary-red-darkest !important; }
+.a-hover-background-secondary-red () {  &:hover { background-color : @v-secondary-red !important; } }
+.a-hover-background-secondary-red-light () {  &:hover { background-color : @v-secondary-red-light !important; } }
+.a-hover-background-secondary-red-lighter () {  &:hover { background-color : @v-secondary-red-lighter !important; } }
+.a-hover-background-secondary-red-lightest () {  &:hover { background-color : @v-secondary-red-lightest !important; } }
+.a-hover-background-secondary-red-dark () {  &:hover { background-color : @v-secondary-red-dark !important; } }
+.a-hover-background-secondary-red-darker () {  &:hover { background-color : @v-secondary-red-darker !important; } }
+.a-hover-background-secondary-red-darkest () {  &:hover { background-color : @v-secondary-red-darkest !important; } }
+.a-hover-text-color-secondary-red () {  &:hover { color : @v-secondary-red !important; } }
+.a-hover-text-color-secondary-red-light () {  &:hover { color : @v-secondary-red-light !important; } }
+.a-hover-text-color-secondary-red-lighter () {  &:hover { color : @v-secondary-red-lighter !important; } }
+.a-hover-text-color-secondary-red-lightest () {  &:hover { color : @v-secondary-red-lightest !important; } }
+.a-hover-text-color-secondary-red-dark () {  &:hover { color : @v-secondary-red-dark !important; } }
+.a-hover-text-color-secondary-red-darker () {  &:hover { color : @v-secondary-red-darker !important; } }
+.a-hover-text-color-secondary-red-darkest () {  &:hover { color : @v-secondary-red-darkest !important; } }
+.a-background-warning () {  background-color : @v-warning !important; }
+.a-background-warning-light () {  background-color : @v-warning-light !important; }
+.a-background-warning-lighter () {  background-color : @v-warning-lighter !important; }
+.a-background-warning-lightest () {  background-color : @v-warning-lightest !important; }
+.a-background-warning-dark () {  background-color : @v-warning-dark !important; }
+.a-background-warning-darker () {  background-color : @v-warning-darker !important; }
+.a-background-warning-darkest () {  background-color : @v-warning-darkest !important; }
+.a-text-color-warning () {  color : @v-warning !important; }
+.a-text-color-warning-light () {  color : @v-warning-light !important; }
+.a-text-color-warning-lighter () {  color : @v-warning-lighter !important; }
+.a-text-color-warning-lightest () {  color : @v-warning-lightest !important; }
+.a-text-color-warning-dark () {  color : @v-warning-dark !important; }
+.a-text-color-warning-darker () {  color : @v-warning-darker !important; }
+.a-text-color-warning-darkest () {  color : @v-warning-darkest !important; }
+.a-hover-background-warning () {  &:hover { background-color : @v-warning !important; } }
+.a-hover-background-warning-light () {  &:hover { background-color : @v-warning-light !important; } }
+.a-hover-background-warning-lighter () {  &:hover { background-color : @v-warning-lighter !important; } }
+.a-hover-background-warning-lightest () {  &:hover { background-color : @v-warning-lightest !important; } }
+.a-hover-background-warning-dark () {  &:hover { background-color : @v-warning-dark !important; } }
+.a-hover-background-warning-darker () {  &:hover { background-color : @v-warning-darker !important; } }
+.a-hover-background-warning-darkest () {  &:hover { background-color : @v-warning-darkest !important; } }
+.a-hover-text-color-warning () {  &:hover { color : @v-warning !important; } }
+.a-hover-text-color-warning-light () {  &:hover { color : @v-warning-light !important; } }
+.a-hover-text-color-warning-lighter () {  &:hover { color : @v-warning-lighter !important; } }
+.a-hover-text-color-warning-lightest () {  &:hover { color : @v-warning-lightest !important; } }
+.a-hover-text-color-warning-dark () {  &:hover { color : @v-warning-dark !important; } }
+.a-hover-text-color-warning-darker () {  &:hover { color : @v-warning-darker !important; } }
+.a-hover-text-color-warning-darkest () {  &:hover { color : @v-warning-darkest !important; } }
+.a-background-secondaryNavBGColor () {  background-color : @v-secondaryNavBGColor !important; }
+.a-alpha () {  opacity : @v-alpha !important; }
+.a-alpha-0 () {  opacity : @v-alpha-0 !important; }
+.a-alpha-1 () {  opacity : @v-alpha-1 !important; }
+.a-alpha-2 () {  opacity : @v-alpha-2 !important; }
+.a-alpha-3 () {  opacity : @v-alpha-3 !important; }
+.a-alpha-4 () {  opacity : @v-alpha-4 !important; }
+.a-alpha-5 () {  opacity : @v-alpha-5 !important; }
+.a-alpha-6 () {  opacity : @v-alpha-6 !important; }
+.a-alpha-7 () {  opacity : @v-alpha-7 !important; }
+.a-alpha-8 () {  opacity : @v-alpha-8 !important; }
+.a-alpha-9 () {  opacity : @v-alpha-9 !important; }
+.a-alpha-10 () {  opacity : @v-alpha-10 !important; }
+.a-background-alpha-grey () {  background-color : @v-alpha-grey !important; }
+.a-background-alpha-grey-0 () {  background-color : @v-alpha-grey-0 !important; }
+.a-background-alpha-grey-1 () {  background-color : @v-alpha-grey-1 !important; }
+.a-background-alpha-grey-2 () {  background-color : @v-alpha-grey-2 !important; }
+.a-background-alpha-grey-3 () {  background-color : @v-alpha-grey-3 !important; }
+.a-background-alpha-grey-4 () {  background-color : @v-alpha-grey-4 !important; }
+.a-background-alpha-grey-5 () {  background-color : @v-alpha-grey-5 !important; }
+.a-background-alpha-grey-6 () {  background-color : @v-alpha-grey-6 !important; }
+.a-background-alpha-grey-7 () {  background-color : @v-alpha-grey-7 !important; }
+.a-background-alpha-grey-8 () {  background-color : @v-alpha-grey-8 !important; }
+.a-background-alpha-grey-9 () {  background-color : @v-alpha-grey-9 !important; }
+.a-background-alpha-grey-10 () {  background-color : @v-alpha-grey-10 !important; }
+.a-hover-background-alpha-grey () {  &:hover { background-color : @v-alpha-grey !important; } }
+.a-hover-background-alpha-grey-0 () {  &:hover { background-color : @v-alpha-grey-0 !important; } }
+.a-hover-background-alpha-grey-1 () {  &:hover { background-color : @v-alpha-grey-1 !important; } }
+.a-hover-background-alpha-grey-2 () {  &:hover { background-color : @v-alpha-grey-2 !important; } }
+.a-hover-background-alpha-grey-3 () {  &:hover { background-color : @v-alpha-grey-3 !important; } }
+.a-hover-background-alpha-grey-4 () {  &:hover { background-color : @v-alpha-grey-4 !important; } }
+.a-hover-background-alpha-grey-5 () {  &:hover { background-color : @v-alpha-grey-5 !important; } }
+.a-hover-background-alpha-grey-6 () {  &:hover { background-color : @v-alpha-grey-6 !important; } }
+.a-hover-background-alpha-grey-7 () {  &:hover { background-color : @v-alpha-grey-7 !important; } }
+.a-hover-background-alpha-grey-8 () {  &:hover { background-color : @v-alpha-grey-8 !important; } }
+.a-hover-background-alpha-grey-9 () {  &:hover { background-color : @v-alpha-grey-9 !important; } }
+.a-hover-background-alpha-grey-10 () {  &:hover { background-color : @v-alpha-grey-10 !important; } }
+.a-transition-all () {  transition: @v-transition-all !important; }
+.a-transition-none () {  transition: @v-transition-none !important; }
+.a-transition-width () {  transition: @v-transition-width !important; }
+.a-transition-height () {  transition: @v-transition-height !important; }
+.a-transition-left () {  transition: @v-transition-left !important; }
+.a-transition-right () {  transition: @v-transition-right !important; }
+.a-transition-top () {  transition: @v-transition-top !important; }
+.a-transition-bottom () {  transition: @v-transition-bottom !important; }
+.a-border () {  border: @v-border !important; }
+.a-border-none () {  border: @v-border-none !important; }
+.a-border-strong () {  border: @v-border-strong !important; }
+.a-border-stronger () {  border: @v-border-stronger !important; }
+.a-border-strongest () {  border: @v-border-strongest !important; }
+.a-border-weak () {  border: @v-border-weak !important; }
+.a-border-weaker () {  border: @v-border-weaker !important; }
+.a-border-weakest () {  border: @v-border-weakest !important; }
+.a-border-top () {  border-top: @v-border-top !important; }
+.a-border-top-none () {  border-top: @v-border-top-none !important; }
+.a-border-top-strong () {  border-top: @v-border-top-strong !important; }
+.a-border-top-stronger () {  border-top: @v-border-top-stronger !important; }
+.a-border-top-strongest () {  border-top: @v-border-top-strongest !important; }
+.a-border-top-weak () {  border-top: @v-border-top-weak !important; }
+.a-border-top-weaker () {  border-top: @v-border-top-weaker !important; }
+.a-border-top-weakest () {  border-top: @v-border-top-weakest !important; }
+.a-border-bottom () {  border-bottom: @v-border-bottom !important; }
+.a-border-bottom-none () {  border-bottom: @v-border-bottom-none !important; }
+.a-border-bottom-strong () {  border-bottom: @v-border-bottom-strong !important; }
+.a-border-bottom-stronger () {  border-bottom: @v-border-bottom-stronger !important; }
+.a-border-bottom-strongest () {  border-bottom: @v-border-bottom-strongest !important; }
+.a-border-bottom-weak () {  border-bottom: @v-border-bottom-weak !important; }
+.a-border-bottom-weaker () {  border-bottom: @v-border-bottom-weaker !important; }
+.a-border-bottom-weakest () {  border-bottom: @v-border-bottom-weakest !important; }
+.a-border-left () {  border-left: @v-border-left !important; }
+.a-border-left-none () {  border-left: @v-border-left-none !important; }
+.a-border-left-strong () {  border-left: @v-border-left-strong !important; }
+.a-border-left-stronger () {  border-left: @v-border-left-stronger !important; }
+.a-border-left-strongest () {  border-left: @v-border-left-strongest !important; }
+.a-border-left-weak () {  border-left: @v-border-left-weak !important; }
+.a-border-left-weaker () {  border-left: @v-border-left-weaker !important; }
+.a-border-left-weakest () {  border-left: @v-border-left-weakest !important; }
+.a-border-right () {  border-right: @v-border-right !important; }
+.a-border-right-none () {  border-right: @v-border-right-none !important; }
+.a-border-right-strong () {  border-right: @v-border-right-strong !important; }
+.a-border-right-stronger () {  border-right: @v-border-right-stronger !important; }
+.a-border-right-strongest () {  border-right: @v-border-right-strongest !important; }
+.a-border-right-weak () {  border-right: @v-border-right-weak !important; }
+.a-border-right-weaker () {  border-right: @v-border-right-weaker !important; }
+.a-border-right-weakest () {  border-right: @v-border-right-weakest !important; }
+.a-border-height () {  border-top: @v-border-height !important; border-bottom: @v-border-height !important; }
+.a-border-height-none () {  border-top: @v-border-height-none !important; border-bottom: @v-border-height-none !important; }
+.a-border-height-strong () {  border-top: @v-border-height-strong !important; border-bottom: @v-border-height-strong !important; }
+.a-border-height-stronger () {  border-top: @v-border-height-stronger !important; border-bottom: @v-border-height-stronger !important; }
+.a-border-height-strongest () {  border-top: @v-border-height-strongest !important; border-bottom: @v-border-height-strongest !important; }
+.a-border-height-weak () {  border-top: @v-border-height-weak !important; border-bottom: @v-border-height-weak !important; }
+.a-border-height-weaker () {  border-top: @v-border-height-weaker !important; border-bottom: @v-border-height-weaker !important; }
+.a-border-height-weakest () {  border-top: @v-border-height-weakest !important; border-bottom: @v-border-height-weakest !important; }
+.a-border-width () {  border-left: @v-border-width !important; border-right: @v-border-width !important; }
+.a-border-width-none () {  border-left: @v-border-width-none !important; border-right: @v-border-width-none !important; }
+.a-border-width-strong () {  border-left: @v-border-width-strong !important; border-right: @v-border-width-strong !important; }
+.a-border-width-stronger () {  border-left: @v-border-width-stronger !important; border-right: @v-border-width-stronger !important; }
+.a-border-width-strongest () {  border-left: @v-border-width-strongest !important; border-right: @v-border-width-strongest !important; }
+.a-border-width-weak () {  border-left: @v-border-width-weak !important; border-right: @v-border-width-weak !important; }
+.a-border-width-weaker () {  border-left: @v-border-width-weaker !important; border-right: @v-border-width-weaker !important; }
+.a-border-width-weakest () {  border-left: @v-border-width-weakest !important; border-right: @v-border-width-weakest !important; }
+.a-border-primary-blue () {  border: @v-border-primary-blue !important; }
+.a-border-primary-blue-none () {  border: @v-border-primary-blue-none !important; }
+.a-border-primary-blue-strong () {  border: @v-border-primary-blue-strong !important; }
+.a-border-primary-blue-stronger () {  border: @v-border-primary-blue-stronger !important; }
+.a-border-primary-blue-strongest () {  border: @v-border-primary-blue-strongest !important; }
+.a-border-primary-blue-weak () {  border: @v-border-primary-blue-weak !important; }
+.a-border-primary-blue-weaker () {  border: @v-border-primary-blue-weaker !important; }
+.a-border-primary-blue-weakest () {  border: @v-border-primary-blue-weakest !important; }
+.a-border-primary-blue-top () {  border-top: @v-border-primary-blue-top !important; }
+.a-border-primary-blue-top-none () {  border-top: @v-border-primary-blue-top-none !important; }
+.a-border-primary-blue-top-strong () {  border-top: @v-border-primary-blue-top-strong !important; }
+.a-border-primary-blue-top-stronger () {  border-top: @v-border-primary-blue-top-stronger !important; }
+.a-border-primary-blue-top-strongest () {  border-top: @v-border-primary-blue-top-strongest !important; }
+.a-border-primary-blue-top-weak () {  border-top: @v-border-primary-blue-top-weak !important; }
+.a-border-primary-blue-top-weaker () {  border-top: @v-border-primary-blue-top-weaker !important; }
+.a-border-primary-blue-top-weakest () {  border-top: @v-border-primary-blue-top-weakest !important; }
+.a-border-primary-blue-bottom () {  border-bottom: @v-border-primary-blue-bottom !important; }
+.a-border-primary-blue-bottom-none () {  border-bottom: @v-border-primary-blue-bottom-none !important; }
+.a-border-primary-blue-bottom-strong () {  border-bottom: @v-border-primary-blue-bottom-strong !important; }
+.a-border-primary-blue-bottom-stronger () {  border-bottom: @v-border-primary-blue-bottom-stronger !important; }
+.a-border-primary-blue-bottom-strongest () {  border-bottom: @v-border-primary-blue-bottom-strongest !important; }
+.a-border-primary-blue-bottom-weak () {  border-bottom: @v-border-primary-blue-bottom-weak !important; }
+.a-border-primary-blue-bottom-weaker () {  border-bottom: @v-border-primary-blue-bottom-weaker !important; }
+.a-border-primary-blue-bottom-weakest () {  border-bottom: @v-border-primary-blue-bottom-weakest !important; }
+.a-border-primary-blue-left () {  border-left: @v-border-primary-blue-left !important; }
+.a-border-primary-blue-left-none () {  border-left: @v-border-primary-blue-left-none !important; }
+.a-border-primary-blue-left-strong () {  border-left: @v-border-primary-blue-left-strong !important; }
+.a-border-primary-blue-left-stronger () {  border-left: @v-border-primary-blue-left-stronger !important; }
+.a-border-primary-blue-left-strongest () {  border-left: @v-border-primary-blue-left-strongest !important; }
+.a-border-primary-blue-left-weak () {  border-left: @v-border-primary-blue-left-weak !important; }
+.a-border-primary-blue-left-weaker () {  border-left: @v-border-primary-blue-left-weaker !important; }
+.a-border-primary-blue-left-weakest () {  border-left: @v-border-primary-blue-left-weakest !important; }
+.a-border-primary-blue-right () {  border-right: @v-border-primary-blue-right !important; }
+.a-border-primary-blue-right-none () {  border-right: @v-border-primary-blue-right-none !important; }
+.a-border-primary-blue-right-strong () {  border-right: @v-border-primary-blue-right-strong !important; }
+.a-border-primary-blue-right-stronger () {  border-right: @v-border-primary-blue-right-stronger !important; }
+.a-border-primary-blue-right-strongest () {  border-right: @v-border-primary-blue-right-strongest !important; }
+.a-border-primary-blue-right-weak () {  border-right: @v-border-primary-blue-right-weak !important; }
+.a-border-primary-blue-right-weaker () {  border-right: @v-border-primary-blue-right-weaker !important; }
+.a-border-primary-blue-right-weakest () {  border-right: @v-border-primary-blue-right-weakest !important; }
+.a-border-primary-blue-height () {  border-top: @v-border-primary-blue-height !important; border-bottom: @v-border-primary-blue-height !important; }
+.a-border-primary-blue-height-none () {  border-top: @v-border-primary-blue-height-none !important; border-bottom: @v-border-primary-blue-height-none !important; }
+.a-border-primary-blue-height-strong () {  border-top: @v-border-primary-blue-height-strong !important; border-bottom: @v-border-primary-blue-height-strong !important; }
+.a-border-primary-blue-height-stronger () {  border-top: @v-border-primary-blue-height-stronger !important; border-bottom: @v-border-primary-blue-height-stronger !important; }
+.a-border-primary-blue-height-strongest () {  border-top: @v-border-primary-blue-height-strongest !important; border-bottom: @v-border-primary-blue-height-strongest !important; }
+.a-border-primary-blue-height-weak () {  border-top: @v-border-primary-blue-height-weak !important; border-bottom: @v-border-primary-blue-height-weak !important; }
+.a-border-primary-blue-height-weaker () {  border-top: @v-border-primary-blue-height-weaker !important; border-bottom: @v-border-primary-blue-height-weaker !important; }
+.a-border-primary-blue-height-weakest () {  border-top: @v-border-primary-blue-height-weakest !important; border-bottom: @v-border-primary-blue-height-weakest !important; }
+.a-border-primary-blue-width () {  border-left: @v-border-primary-blue-width !important; border-right: @v-border-primary-blue-width !important; }
+.a-border-primary-blue-width-none () {  border-left: @v-border-primary-blue-width-none !important; border-right: @v-border-primary-blue-width-none !important; }
+.a-border-primary-blue-width-strong () {  border-left: @v-border-primary-blue-width-strong !important; border-right: @v-border-primary-blue-width-strong !important; }
+.a-border-primary-blue-width-stronger () {  border-left: @v-border-primary-blue-width-stronger !important; border-right: @v-border-primary-blue-width-stronger !important; }
+.a-border-primary-blue-width-strongest () {  border-left: @v-border-primary-blue-width-strongest !important; border-right: @v-border-primary-blue-width-strongest !important; }
+.a-border-primary-blue-width-weak () {  border-left: @v-border-primary-blue-width-weak !important; border-right: @v-border-primary-blue-width-weak !important; }
+.a-border-primary-blue-width-weaker () {  border-left: @v-border-primary-blue-width-weaker !important; border-right: @v-border-primary-blue-width-weaker !important; }
+.a-border-primary-blue-width-weakest () {  border-left: @v-border-primary-blue-width-weakest !important; border-right: @v-border-primary-blue-width-weakest !important; }
+.a-border-primary-yellow () {  border: @v-border-primary-yellow !important; }
+.a-border-primary-yellow-none () {  border: @v-border-primary-yellow-none !important; }
+.a-border-primary-yellow-strong () {  border: @v-border-primary-yellow-strong !important; }
+.a-border-primary-yellow-stronger () {  border: @v-border-primary-yellow-stronger !important; }
+.a-border-primary-yellow-strongest () {  border: @v-border-primary-yellow-strongest !important; }
+.a-border-primary-yellow-weak () {  border: @v-border-primary-yellow-weak !important; }
+.a-border-primary-yellow-weaker () {  border: @v-border-primary-yellow-weaker !important; }
+.a-border-primary-yellow-weakest () {  border: @v-border-primary-yellow-weakest !important; }
+.a-border-primary-yellow-top () {  border-top: @v-border-primary-yellow-top !important; }
+.a-border-primary-yellow-top-none () {  border-top: @v-border-primary-yellow-top-none !important; }
+.a-border-primary-yellow-top-strong () {  border-top: @v-border-primary-yellow-top-strong !important; }
+.a-border-primary-yellow-top-stronger () {  border-top: @v-border-primary-yellow-top-stronger !important; }
+.a-border-primary-yellow-top-strongest () {  border-top: @v-border-primary-yellow-top-strongest !important; }
+.a-border-primary-yellow-top-weak () {  border-top: @v-border-primary-yellow-top-weak !important; }
+.a-border-primary-yellow-top-weaker () {  border-top: @v-border-primary-yellow-top-weaker !important; }
+.a-border-primary-yellow-top-weakest () {  border-top: @v-border-primary-yellow-top-weakest !important; }
+.a-border-primary-yellow-bottom () {  border-bottom: @v-border-primary-yellow-bottom !important; }
+.a-border-primary-yellow-bottom-none () {  border-bottom: @v-border-primary-yellow-bottom-none !important; }
+.a-border-primary-yellow-bottom-strong () {  border-bottom: @v-border-primary-yellow-bottom-strong !important; }
+.a-border-primary-yellow-bottom-stronger () {  border-bottom: @v-border-primary-yellow-bottom-stronger !important; }
+.a-border-primary-yellow-bottom-strongest () {  border-bottom: @v-border-primary-yellow-bottom-strongest !important; }
+.a-border-primary-yellow-bottom-weak () {  border-bottom: @v-border-primary-yellow-bottom-weak !important; }
+.a-border-primary-yellow-bottom-weaker () {  border-bottom: @v-border-primary-yellow-bottom-weaker !important; }
+.a-border-primary-yellow-bottom-weakest () {  border-bottom: @v-border-primary-yellow-bottom-weakest !important; }
+.a-border-primary-yellow-left () {  border-left: @v-border-primary-yellow-left !important; }
+.a-border-primary-yellow-left-none () {  border-left: @v-border-primary-yellow-left-none !important; }
+.a-border-primary-yellow-left-strong () {  border-left: @v-border-primary-yellow-left-strong !important; }
+.a-border-primary-yellow-left-stronger () {  border-left: @v-border-primary-yellow-left-stronger !important; }
+.a-border-primary-yellow-left-strongest () {  border-left: @v-border-primary-yellow-left-strongest !important; }
+.a-border-primary-yellow-left-weak () {  border-left: @v-border-primary-yellow-left-weak !important; }
+.a-border-primary-yellow-left-weaker () {  border-left: @v-border-primary-yellow-left-weaker !important; }
+.a-border-primary-yellow-left-weakest () {  border-left: @v-border-primary-yellow-left-weakest !important; }
+.a-border-primary-yellow-right () {  border-right: @v-border-primary-yellow-right !important; }
+.a-border-primary-yellow-right-none () {  border-right: @v-border-primary-yellow-right-none !important; }
+.a-border-primary-yellow-right-strong () {  border-right: @v-border-primary-yellow-right-strong !important; }
+.a-border-primary-yellow-right-stronger () {  border-right: @v-border-primary-yellow-right-stronger !important; }
+.a-border-primary-yellow-right-strongest () {  border-right: @v-border-primary-yellow-right-strongest !important; }
+.a-border-primary-yellow-right-weak () {  border-right: @v-border-primary-yellow-right-weak !important; }
+.a-border-primary-yellow-right-weaker () {  border-right: @v-border-primary-yellow-right-weaker !important; }
+.a-border-primary-yellow-right-weakest () {  border-right: @v-border-primary-yellow-right-weakest !important; }
+.a-border-primary-yellow-height () {  border-top: @v-border-primary-yellow-height !important; border-bottom: @v-border-primary-yellow-height !important; }
+.a-border-primary-yellow-height-none () {  border-top: @v-border-primary-yellow-height-none !important; border-bottom: @v-border-primary-yellow-height-none !important; }
+.a-border-primary-yellow-height-strong () {  border-top: @v-border-primary-yellow-height-strong !important; border-bottom: @v-border-primary-yellow-height-strong !important; }
+.a-border-primary-yellow-height-stronger () {  border-top: @v-border-primary-yellow-height-stronger !important; border-bottom: @v-border-primary-yellow-height-stronger !important; }
+.a-border-primary-yellow-height-strongest () {  border-top: @v-border-primary-yellow-height-strongest !important; border-bottom: @v-border-primary-yellow-height-strongest !important; }
+.a-border-primary-yellow-height-weak () {  border-top: @v-border-primary-yellow-height-weak !important; border-bottom: @v-border-primary-yellow-height-weak !important; }
+.a-border-primary-yellow-height-weaker () {  border-top: @v-border-primary-yellow-height-weaker !important; border-bottom: @v-border-primary-yellow-height-weaker !important; }
+.a-border-primary-yellow-height-weakest () {  border-top: @v-border-primary-yellow-height-weakest !important; border-bottom: @v-border-primary-yellow-height-weakest !important; }
+.a-border-primary-yellow-width () {  border-left: @v-border-primary-yellow-width !important; border-right: @v-border-primary-yellow-width !important; }
+.a-border-primary-yellow-width-none () {  border-left: @v-border-primary-yellow-width-none !important; border-right: @v-border-primary-yellow-width-none !important; }
+.a-border-primary-yellow-width-strong () {  border-left: @v-border-primary-yellow-width-strong !important; border-right: @v-border-primary-yellow-width-strong !important; }
+.a-border-primary-yellow-width-stronger () {  border-left: @v-border-primary-yellow-width-stronger !important; border-right: @v-border-primary-yellow-width-stronger !important; }
+.a-border-primary-yellow-width-strongest () {  border-left: @v-border-primary-yellow-width-strongest !important; border-right: @v-border-primary-yellow-width-strongest !important; }
+.a-border-primary-yellow-width-weak () {  border-left: @v-border-primary-yellow-width-weak !important; border-right: @v-border-primary-yellow-width-weak !important; }
+.a-border-primary-yellow-width-weaker () {  border-left: @v-border-primary-yellow-width-weaker !important; border-right: @v-border-primary-yellow-width-weaker !important; }
+.a-border-primary-yellow-width-weakest () {  border-left: @v-border-primary-yellow-width-weakest !important; border-right: @v-border-primary-yellow-width-weakest !important; }
+.a-border-brand-secondary () {  border: @v-border-brand-secondary !important; }
+.a-border-brand-secondary-none () {  border: @v-border-brand-secondary-none !important; }
+.a-border-brand-secondary-strong () {  border: @v-border-brand-secondary-strong !important; }
+.a-border-brand-secondary-stronger () {  border: @v-border-brand-secondary-stronger !important; }
+.a-border-brand-secondary-strongest () {  border: @v-border-brand-secondary-strongest !important; }
+.a-border-brand-secondary-weak () {  border: @v-border-brand-secondary-weak !important; }
+.a-border-brand-secondary-weaker () {  border: @v-border-brand-secondary-weaker !important; }
+.a-border-brand-secondary-weakest () {  border: @v-border-brand-secondary-weakest !important; }
+.a-border-brand-secondary-top () {  border-top: @v-border-brand-secondary-top !important; }
+.a-border-brand-secondary-top-none () {  border-top: @v-border-brand-secondary-top-none !important; }
+.a-border-brand-secondary-top-strong () {  border-top: @v-border-brand-secondary-top-strong !important; }
+.a-border-brand-secondary-top-stronger () {  border-top: @v-border-brand-secondary-top-stronger !important; }
+.a-border-brand-secondary-top-strongest () {  border-top: @v-border-brand-secondary-top-strongest !important; }
+.a-border-brand-secondary-top-weak () {  border-top: @v-border-brand-secondary-top-weak !important; }
+.a-border-brand-secondary-top-weaker () {  border-top: @v-border-brand-secondary-top-weaker !important; }
+.a-border-brand-secondary-top-weakest () {  border-top: @v-border-brand-secondary-top-weakest !important; }
+.a-border-brand-secondary-bottom () {  border-bottom: @v-border-brand-secondary-bottom !important; }
+.a-border-brand-secondary-bottom-none () {  border-bottom: @v-border-brand-secondary-bottom-none !important; }
+.a-border-brand-secondary-bottom-strong () {  border-bottom: @v-border-brand-secondary-bottom-strong !important; }
+.a-border-brand-secondary-bottom-stronger () {  border-bottom: @v-border-brand-secondary-bottom-stronger !important; }
+.a-border-brand-secondary-bottom-strongest () {  border-bottom: @v-border-brand-secondary-bottom-strongest !important; }
+.a-border-brand-secondary-bottom-weak () {  border-bottom: @v-border-brand-secondary-bottom-weak !important; }
+.a-border-brand-secondary-bottom-weaker () {  border-bottom: @v-border-brand-secondary-bottom-weaker !important; }
+.a-border-brand-secondary-bottom-weakest () {  border-bottom: @v-border-brand-secondary-bottom-weakest !important; }
+.a-border-brand-secondary-left () {  border-left: @v-border-brand-secondary-left !important; }
+.a-border-brand-secondary-left-none () {  border-left: @v-border-brand-secondary-left-none !important; }
+.a-border-brand-secondary-left-strong () {  border-left: @v-border-brand-secondary-left-strong !important; }
+.a-border-brand-secondary-left-stronger () {  border-left: @v-border-brand-secondary-left-stronger !important; }
+.a-border-brand-secondary-left-strongest () {  border-left: @v-border-brand-secondary-left-strongest !important; }
+.a-border-brand-secondary-left-weak () {  border-left: @v-border-brand-secondary-left-weak !important; }
+.a-border-brand-secondary-left-weaker () {  border-left: @v-border-brand-secondary-left-weaker !important; }
+.a-border-brand-secondary-left-weakest () {  border-left: @v-border-brand-secondary-left-weakest !important; }
+.a-border-brand-secondary-right () {  border-right: @v-border-brand-secondary-right !important; }
+.a-border-brand-secondary-right-none () {  border-right: @v-border-brand-secondary-right-none !important; }
+.a-border-brand-secondary-right-strong () {  border-right: @v-border-brand-secondary-right-strong !important; }
+.a-border-brand-secondary-right-stronger () {  border-right: @v-border-brand-secondary-right-stronger !important; }
+.a-border-brand-secondary-right-strongest () {  border-right: @v-border-brand-secondary-right-strongest !important; }
+.a-border-brand-secondary-right-weak () {  border-right: @v-border-brand-secondary-right-weak !important; }
+.a-border-brand-secondary-right-weaker () {  border-right: @v-border-brand-secondary-right-weaker !important; }
+.a-border-brand-secondary-right-weakest () {  border-right: @v-border-brand-secondary-right-weakest !important; }
+.a-border-brand-secondary-height () {  border-top: @v-border-brand-secondary-height !important; border-bottom: @v-border-brand-secondary-height !important; }
+.a-border-brand-secondary-height-none () {  border-top: @v-border-brand-secondary-height-none !important; border-bottom: @v-border-brand-secondary-height-none !important; }
+.a-border-brand-secondary-height-strong () {  border-top: @v-border-brand-secondary-height-strong !important; border-bottom: @v-border-brand-secondary-height-strong !important; }
+.a-border-brand-secondary-height-stronger () {  border-top: @v-border-brand-secondary-height-stronger !important; border-bottom: @v-border-brand-secondary-height-stronger !important; }
+.a-border-brand-secondary-height-strongest () {  border-top: @v-border-brand-secondary-height-strongest !important; border-bottom: @v-border-brand-secondary-height-strongest !important; }
+.a-border-brand-secondary-height-weak () {  border-top: @v-border-brand-secondary-height-weak !important; border-bottom: @v-border-brand-secondary-height-weak !important; }
+.a-border-brand-secondary-height-weaker () {  border-top: @v-border-brand-secondary-height-weaker !important; border-bottom: @v-border-brand-secondary-height-weaker !important; }
+.a-border-brand-secondary-height-weakest () {  border-top: @v-border-brand-secondary-height-weakest !important; border-bottom: @v-border-brand-secondary-height-weakest !important; }
+.a-border-brand-secondary-width () {  border-left: @v-border-brand-secondary-width !important; border-right: @v-border-brand-secondary-width !important; }
+.a-border-brand-secondary-width-none () {  border-left: @v-border-brand-secondary-width-none !important; border-right: @v-border-brand-secondary-width-none !important; }
+.a-border-brand-secondary-width-strong () {  border-left: @v-border-brand-secondary-width-strong !important; border-right: @v-border-brand-secondary-width-strong !important; }
+.a-border-brand-secondary-width-stronger () {  border-left: @v-border-brand-secondary-width-stronger !important; border-right: @v-border-brand-secondary-width-stronger !important; }
+.a-border-brand-secondary-width-strongest () {  border-left: @v-border-brand-secondary-width-strongest !important; border-right: @v-border-brand-secondary-width-strongest !important; }
+.a-border-brand-secondary-width-weak () {  border-left: @v-border-brand-secondary-width-weak !important; border-right: @v-border-brand-secondary-width-weak !important; }
+.a-border-brand-secondary-width-weaker () {  border-left: @v-border-brand-secondary-width-weaker !important; border-right: @v-border-brand-secondary-width-weaker !important; }
+.a-border-brand-secondary-width-weakest () {  border-left: @v-border-brand-secondary-width-weakest !important; border-right: @v-border-brand-secondary-width-weakest !important; }
+.a-border-color-grey () {  border-color : @v-grey !important; }
+.a-border-color-grey-0 () {  border-color : @v-grey-0 !important; }
+.a-border-color-grey-1 () {  border-color : @v-grey-1 !important; }
+.a-border-color-grey-2 () {  border-color : @v-grey-2 !important; }
+.a-border-color-grey-3 () {  border-color : @v-grey-3 !important; }
+.a-border-color-grey-4 () {  border-color : @v-grey-4 !important; }
+.a-border-color-grey-5 () {  border-color : @v-grey-5 !important; }
+.a-border-color-grey-6 () {  border-color : @v-grey-6 !important; }
+.a-border-color-grey-7 () {  border-color : @v-grey-7 !important; }
+.a-border-color-grey-8 () {  border-color : @v-grey-8 !important; }
+.a-border-color-grey-9 () {  border-color : @v-grey-9 !important; }
+.a-border-color-grey-10 () {  border-color : @v-grey-10 !important; }
+.a-border-color-black () {  border-color : @v-black !important; }
+.a-border-color-white () {  border-color : @v-white !important; }
+.a-border-color-none () {  border-color : @v-none !important; }
+.a-border-color-app-grey () {  border-color : @v-app-grey !important; }
+.a-shadow () {  box-shadow : 0px 0px 6px 0 rgba( 0,0,0,.1) !important; }
+.a-shadow-top-right () {  box-shadow : 3px -3px 3px 0 rgba( 0,0,0,.1) !important; }
+.a-shadow-top-left () {  box-shadow : -3px -3px 3px 0 rgba( 0,0,0,.1) !important; }
+.a-shadow-top () {  box-shadow : 0 -3px 3px 0 rgba( 0,0,0,.1) !important; }
+.a-shadow-bottom () {  box-shadow : 0 3px 3px 0 rgba( 0,0,0,.1) !important; }
+.a-shadow-bottom-right () {  box-shadow : 3px 3px 3px 0 rgba( 0,0,0,.1) !important; }
+.a-shadow-bottom-left () {  box-shadow : -3px 3px 3px 0 rgba( 0,0,0,.1) !important; }
+.a-shadow-left () {  box-shadow : -3px 0 3px 0 rgba( 0,0,0,.1) !important; }
+.a-shadow-right () {  box-shadow : 3px 0 3px 0 rgba( 0,0,0,.1) !important; }
+.a-shadow-width () {  box-shadow : -4px 0 4px -3px rgba( 0,0,0,.15),4px 0 4px -3px rgba( 0,0,0,.15) !important; }
+.a-shadow-height () {  box-shadow : 0 -4px 4px -3px rgba( 0,0,0,.15),0 4px 4px -3px rgba( 0,0,0,.15) !important; }
+.a-shadow-weak () {  box-shadow : 0px 0px 6px 0 rgba( 0,0,0,.05) !important; }
+.a-shadow-weak-top-right () {  box-shadow : 3px -3px 3px 0 rgba( 0,0,0,.05) !important; }
+.a-shadow-weak-top-left () {  box-shadow : -3px -3px 3px 0 rgba( 0,0,0,.05) !important; }
+.a-shadow-weak-top () {  box-shadow : 0 -3px 3px 0 rgba( 0,0,0,.05) !important; }
+.a-shadow-weak-bottom () {  box-shadow : 0 3px 3px 0 rgba( 0,0,0,.05) !important; }
+.a-shadow-weak-bottom-right () {  box-shadow : 3px 3px 3px 0 rgba( 0,0,0,.05) !important; }
+.a-shadow-weak-bottom-left () {  box-shadow : -3px 3px 3px 0 rgba( 0,0,0,.05) !important; }
+.a-shadow-weak-left () {  box-shadow : -3px 0 3px 0 rgba( 0,0,0,.05) !important; }
+.a-shadow-weak-right () {  box-shadow : 3px 0 3px 0 rgba( 0,0,0,.05) !important; }
+.a-shadow-weak-width () {  box-shadow : -3px 0 3px 0 rgba( 0,0,0,.05),3px 0 3px 0 rgba( 0,0,0,.05) !important; }
+.a-shadow-weak-height () {  box-shadow : 0 -3px 3px 0 rgba( 0,0,0,.05),0 3px 3px 0 rgba( 0,0,0,.05) !important; }
+.a-shadow-strong () {  box-shadow : 0px 0px 6px 0 rgba( 0,0,0,.2) !important; }
+.a-shadow-strong-top-right () {  box-shadow : 3px -3px 3px 0 rgba( 0,0,0,.2) !important; }
+.a-shadow-strong-top-left () {  box-shadow : -3px -3px 3px 0 rgba( 0,0,0,.2) !important; }
+.a-shadow-strong-top () {  box-shadow : 0 -3px 3px 0 rgba( 0,0,0,.2) !important; }
+.a-shadow-strong-bottom () {  box-shadow : 0 3px 3px 0 rgba( 0,0,0,.2) !important; }
+.a-shadow-strong-bottom-right () {  box-shadow : 3px 3px 3px 0 rgba( 0,0,0,.2) !important; }
+.a-shadow-strong-bottom-left () {  box-shadow : -3px 3px 3px 0 rgba( 0,0,0,.2) !important; }
+.a-shadow-strong-left () {  box-shadow : -3px 0 3px 0 rgba( 0,0,0,.2) !important; }
+.a-shadow-strong-right () {  box-shadow : 3px 0 3px 0 rgba( 0,0,0,.2) !important; }
+.a-shadow-strong-width () {  box-shadow : -3px 0 3px 0 rgba( 0,0,0,.2),3px 0 3px 0 rgba( 0,0,0,.2) !important; }
+.a-shadow-strong-height () {  box-shadow : 0 -3px 3px 0 rgba( 0,0,0,.2),0 3px 3px 0 rgba( 0,0,0,.2) !important; }
+.a-shadow-inset () {  box-shadow : inset 0px 0px 6px -3px rgba( 0,0,0,.1) !important; }
+.a-shadow-inset-top-right () {  box-shadow : inset -6px 6px 3px -3px rgba( 0,0,0,.1) !important; }
+.a-shadow-inset-top-left () {  box-shadow : inset 6px 6px 3px -3px rgba( 0,0,0,.1) !important; }
+.a-shadow-inset-top () {  box-shadow : inset 0 6px 3px -3px rgba( 0,0,0,.1) !important; }
+.a-shadow-inset-bottom () {  box-shadow : inset 0 -6px 3px -3px rgba( 0,0,0,.1) !important; }
+.a-shadow-inset-bottom-right () {  box-shadow : inset -6px -6px 3px -3px rgba( 0,0,0,.1) !important; }
+.a-shadow-inset-bottom-left () {  box-shadow : inset 6px -6px 3px -3px rgba( 0,0,0,.1) !important; }
+.a-shadow-inset-left () {  box-shadow : inset 6px 0 3px -3px rgba( 0,0,0,.1) !important; }
+.a-shadow-inset-right () {  box-shadow : inset -6px 0 3px -3px rgba( 0,0,0,.1) !important; }
+.a-shadow-inset-width () {  box-shadow : inset 6px 0 3px -3px rgba( 0,0,0,.1),-6px 0 3px -3px rgba( 0,0,0,.1) !important; }
+.a-shadow-inset-height () {  box-shadow : inset 0 6px 3px -3px rgba( 0,0,0,.1),0 -6px 6px -3px rgba( 0,0,0,.1) !important; }
+.a-shadow-inset-weak () {  box-shadow : inset 0px 0px 6px -3px rgba( 0,0,0,.05) !important; }
+.a-shadow-inset-weak-top-right () {  box-shadow : inset -6px 6px 3px -3px rgba( 0,0,0,.05) !important; }
+.a-shadow-inset-weak-top-left () {  box-shadow : inset 6px 6px 3px -3px rgba( 0,0,0,.05) !important; }
+.a-shadow-inset-weak-top () {  box-shadow : inset 0 6px 3px -3px rgba( 0,0,0,.05) !important; }
+.a-shadow-inset-weak-bottom () {  box-shadow : inset 0 -6px 3px -3px rgba( 0,0,0,.05) !important; }
+.a-shadow-inset-weak-bottom-right () {  box-shadow : inset -6px -6px 3px -3px rgba( 0,0,0,.05) !important; }
+.a-shadow-inset-weak-bottom-left () {  box-shadow : inset 6px -6px 3px -3px rgba( 0,0,0,.05) !important; }
+.a-shadow-inset-weak-left () {  box-shadow : inset 6px 0 3px -3px rgba( 0,0,0,.05) !important; }
+.a-shadow-inset-weak-right () {  box-shadow : inset -6px 0 3px -3px rgba( 0,0,0,.05) !important; }
+.a-shadow-inset-weak-width () {  box-shadow : inset 6px 0 3px -3px rgba( 0,0,0,.05),-6px 0 3px -3px rgba( 0,0,0,.05) !important; }
+.a-shadow-inset-weak-height () {  box-shadow : inset 0 6px 3px -3px rgba( 0,0,0,.05),0 -3px 6px -3px rgba( 0,0,0,.05) !important; }
+.a-shadow-inset-strong () {  box-shadow : inset 0px 0px 6px -3px rgba( 0,0,0,.2) !important; }
+.a-shadow-inset-strong-top-right () {  box-shadow : inset -6px 6px 3px -3px rgba( 0,0,0,.2) !important; }
+.a-shadow-inset-strong-top-left () {  box-shadow : inset 6px 6px 3px -3px rgba( 0,0,0,.2) !important; }
+.a-shadow-inset-strong-top () {  box-shadow : inset 0 6px 3px -3px rgba( 0,0,0,.2) !important; }
+.a-shadow-inset-strong-bottom () {  box-shadow : inset 0 -6px 3px -3px rgba( 0,0,0,.2) !important; }
+.a-shadow-inset-strong-bottom-right () {  box-shadow : inset -6px -6px 3px -3px rgba( 0,0,0,.2) !important; }
+.a-shadow-inset-strong-bottom-left () {  box-shadow : inset 6px -6px 3px -3px rgba( 0,0,0,.2) !important; }
+.a-shadow-inset-strong-left () {  box-shadow : inset 6px 0 3px -3px rgba( 0,0,0,.2) !important; }
+.a-shadow-inset-strong-right () {  box-shadow : inset -6px 0 3px -3px rgba( 0,0,0,.2) !important; }
+.a-shadow-inset-strong-width () {  box-shadow : inset 6px 0 3px -3px rgba( 0,0,0,.2),-6px 0 3px -3px rgba( 0,0,0,.2) !important; }
+.a-shadow-inset-strong-height () {  box-shadow : inset 0 6px 3px -3px rgba( 0,0,0,.2),0 -6px 6px -3px rgba( 0,0,0,.2) !important; }
+.a-border-radius () {  border-radius : @v-border-radius  !important; }

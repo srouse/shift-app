@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>ShiftApp Prototype</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+		<!--link href='style/prototype/advisor_prototype.css' type='text/css' rel='stylesheet'-->
+		<link href='../cssmodeling/core_all.css' type='text/css' rel='stylesheet'>
+
+		<script src='prototype.js'></script>
+
+		<script>
+
+			var Model,RS,AdMod;
+			$(window).ready(function () {
+				//Model = Mod = protoData;
+				//console.log( AMod );
+
+				RouteState.listenToHash();
+				RS = RouteState;
+
+				if (
+					!RS.route.page ||
+					RS.route.page == ""
+				){
+					RS.replace({
+						page:"home"
+					})
+				}
+
+                ReactDOM.render(
+                    React.createElement(
+                        ShiftApp,{}
+                    ),
+                    document.querySelector("#root")
+                );
+			});
+
+		</script>
+	</head>
+	<body>
+        <div id="root">loading...</div>
+    </body>
+</html>
