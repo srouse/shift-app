@@ -6,30 +6,31 @@
 		}
 	},
 
-    "states_OFF":{
+    "states":{
 		"breakpoint-medium":{
 			"name":"breakpoint-md",
+			"wrapper":["@media ( max-width: _@_v-breakpoint-medium-max ) and ( min-width: _@_v-breakpoint-medium-min ) {","}"],
+            "mixin_only":true
+		},
+        "breakpoint-medium-and-up":{
+			"name":"breakpoint-md-up",
 			"wrapper":["@media ( min-width: _@_v-breakpoint-medium-min ) {","}"],
-			"mixins_only":true,
-			"important":true
+            "mixin_only":true
 		},
         "breakpoint-small":{
 			"name":"breakpoint-sm",
 			"wrapper":["@media ( max-width: _@_v-breakpoint-small-max ) and ( min-width: _@_v-breakpoint-small-min )  {","}"],
-			"mixins_only":true,
-			"important":true
+			"mixin_only":true
 		},
         "breakpoint-xsmall":{
 			"name":"breakpoint-xsm",
 			"wrapper":["@media ( max-width: _@_v-breakpoint-small-min ) {","}"],
-			"mixins_only":true,
-			"important":true
+			"mixin_only":true
 		},
 		"breakpoint-large":{
 			"name":"breakpoint-lg",
 			"wrapper":["@media ( min-width: _@_v-breakpoint-large-min ) {","}"],
-			"mixins_only":true,
-			"important":true
+			"mixin_only":true
 		}
     },
 

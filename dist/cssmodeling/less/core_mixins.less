@@ -1067,3 +1067,29 @@
 .a-shadow-inset-strong-width () {  box-shadow : inset 6px 0 3px -3px rgba( 0,0,0,.2),-6px 0 3px -3px rgba( 0,0,0,.2) !important; }
 .a-shadow-inset-strong-height () {  box-shadow : inset 0 6px 3px -3px rgba( 0,0,0,.2),0 -6px 6px -3px rgba( 0,0,0,.2) !important; }
 .a-border-radius () {  border-radius : @v-border-radius  !important; }
+
+.breakpoint-md ( @content ) {
+	@media ( max-width: @v-breakpoint-medium-max ) and ( min-width: @v-breakpoint-medium-min ) {
+		@content();
+	}
+}
+.breakpoint-md-up ( @content ) {
+	@media ( min-width: @v-breakpoint-medium-min ) {
+		@content();
+	}
+}
+.breakpoint-sm ( @content ) {
+	@media ( max-width: @v-breakpoint-small-max ) and ( min-width: @v-breakpoint-small-min )  {
+		@content();
+	}
+}
+.breakpoint-xsm ( @content ) {
+	@media ( max-width: @v-breakpoint-small-min ) {
+		@content();
+	}
+}
+.breakpoint-lg ( @content ) {
+	@media ( min-width: @v-breakpoint-large-min ) {
+		@content();
+	}
+}

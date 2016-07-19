@@ -5,6 +5,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-react');
 
     grunt.loadNpmTasks('cssmodeling');
@@ -38,7 +39,7 @@ module.exports = function(grunt) {
         files:[
             'cssmodeling/cssmodeling_shift_app.json'
         ],
-        tasks: ["cssmodeling"]
+        tasks: ["cssmodeling","concat:cssmodeling","concat:cssmodeling_mixins"]
     };
 
     configObj.concat = configObj.concat || {};
@@ -47,7 +48,7 @@ module.exports = function(grunt) {
         .files['dist/cssmodeling/core_all.css']
             = [
                 'dist/cssmodeling/core.css',
-                'node_modules/cssmodeling-col-12-quartered-viewport/dist/core.css',
+                'node_modules/cssmodeling-cols/dist/cssmodeling_col_12_quartered_viewport/core.css',
                 'node_modules/cssmodeling-rows-quartered/dist/core.css',
                 'node_modules/cssmodeling-simple/dist/core.css',
                 'node_modules/cssmodeling-flex/dist/core.css'
@@ -55,10 +56,10 @@ module.exports = function(grunt) {
 
     configObj.concat["cssmodeling_mixins"] = {files:{}};
     configObj.concat["cssmodeling_mixins"]
-        .files['dist/cssmodeling/core_mixins.less']
+        .files['dist/cssmodeling/core_mixins_all.less']
             = [
                 'dist/cssmodeling/less/core_mixins.less',
-                'node_modules/cssmodeling-col-12-quartered-viewport/dist/less/core_mixins.less',
+                'node_modules/cssmodeling-cols/dist/cssmodeling_col_12_quartered_viewport/less/core_mixins.less',
                 'node_modules/cssmodeling-rows-quartered/dist/less/core_mixins.less',
                 'node_modules/cssmodeling-simple/dist/less/core_mixins.less',
                 'node_modules/cssmodeling-flex/dist/less/core_mixins.less'
@@ -121,10 +122,41 @@ module.exports = function(grunt) {
     };
 
 
+    /*=============================
+    LESS
+    =============================*/
+    configObj.concat = configObj.concat || {};
+    configObj.concat["less"] = {
+        files: {
+            'dist/prototype/prototype.less':
+            [
+                'dist/cssmodeling/core_mixins_all.less',
+                'prototype/**/*.less',
+            ]
+        }
+    }
+    configObj.less = configObj.less || {};
+    configObj.less["prototype"] = {
+        files: {
+            'dist/prototype/prototype.css':
+            [
+                'dist/prototype/prototype.less'
+            ]
+        }
+    };
+    configObj.watch = configObj.watch || {};
+    configObj.watch["less"] = {
+        files:[
+            'prototype/**/*.less'
+        ],
+        tasks: ["concat:less","less"]
+    };
+
+
 
     grunt.initConfig( configObj );
     grunt.registerTask( 'default' , [
-        'cssmodeling','concat','react','copy'
+        'cssmodeling','concat','react','copy','less'
     ] );
 
 }

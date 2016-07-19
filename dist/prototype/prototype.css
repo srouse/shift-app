@@ -1,0 +1,114 @@
+.c-shiftApp {
+  width: 100% !important;
+  height: 100% !important;
+}
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  padding: 0px;
+  margin: 0px;
+}
+* {
+  box-sizing: border-box;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: relative;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  font-weight: 300;
+  padding: 0px;
+  margin: 0px;
+}
+.c-landing {
+  width: 100% !important;
+  height: 100% !important;
+  background-color: #fff !important;
+  display: -ms-flexbox;
+  -ms-flex-direction: row ;
+  -ms-flex-pack: start ;
+  -ms-flex-align: stretch ;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: stretch;
+}
+.c-landing__title {
+  width: 41.66665vw !important;
+  display: -ms-flexbox;
+  -ms-flex-direction: row ;
+  -ms-flex-pack: start ;
+  -ms-flex-align: stretch ;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: stretch;
+}
+.c-landing__colorsLeft {
+  width: 8.33333vw !important;
+  background-image: url('_assets/colors_left.png');
+  background-size: 100% 100%;
+}
+.c-landing__colorsLeftTransition {
+  width: 4.166665vw !important;
+  background-image: url('_assets/colors_left_transition.png');
+  background-size: 100% 100%;
+}
+.c-landing__colorsCenter {
+  -ms-flex: 1 ;
+  flex: 1;
+  min-height: 0;
+  /* firefox hack for scrolling children */
+  display: flex;
+  /* webkit hack for height issues */
+  background-image: url('_assets/colors_center.png');
+  background-size: 100% 100%;
+}
+.c-landing__colorsRightTransition {
+  width: 4.166665vw !important;
+  background-image: url('_assets/colors_right_transition.png');
+  background-size: 100% 100%;
+}
+.c-landing__splashContainer {
+  background-image: url('_assets/colors_right.png');
+  background-size: 100% 100%;
+  -ms-flex: 1 ;
+  flex: 1;
+  min-height: 0;
+  /* firefox hack for scrolling children */
+  display: flex;
+  /* webkit hack for height issues */
+}
+.c-landing__splashRight {
+  position: absolute  !important;
+  top: 0px  !important;
+  right: 0px  !important;
+  width: 16.66666vw !important;
+  height: 100% !important;
+  background-image: url('_assets/colors_right_right.png');
+  background-size: 100% 100%;
+}
+.c-landing__splash {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  background-image: url('_assets/ShiftApp_Splash.png');
+  background-size: contain;
+}
+.c-landing__content {
+  position: absolute  !important;
+  top: 0px  !important;
+  right: 16.66666vw !important;
+  width: 24.99999vw !important;
+  height: 100% !important;
+  background-color: rgba(0, 0, 0, 0.8);
+}

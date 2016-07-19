@@ -27,7 +27,7 @@ var ShiftApp = React.createClass({
     },
 
     componentWillUnmount: function(){
-        //RouteState.removeDiffListenersViaClusterId( "Advisor" );
+        //RouteState.removeDiffListenersViaClusterId( "ShiftApp" );
     },
 
     componentDidMount: function(){
@@ -37,12 +37,12 @@ var ShiftApp = React.createClass({
 
     render: function() {
 
+        var content = <Landing />;
+
         return  <div className={classNames([
                         "c-shiftApp"
                     ])}>
-
-                    hi
-
+                    { content }
                 </div>;
     }
 
