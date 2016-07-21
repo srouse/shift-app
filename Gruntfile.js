@@ -62,7 +62,7 @@ module.exports = function(grunt) {
                 'node_modules/cssmodeling-cols/dist/cssmodeling_col_12_quartered_viewport/less/core_mixins.less',
                 'node_modules/cssmodeling-rows-quartered/dist/less/core_mixins.less',
                 'node_modules/cssmodeling-simple/dist/less/core_mixins.less',
-                'node_modules/cssmodeling-flex/dist/less/core_mixins.less'
+                'node_modules/cssmodeling-flex/dist/cssmodeling_flex/less/core_mixins.less'
             ];
 
     configObj.concat["prototype_js"] = {files:{}};
@@ -110,13 +110,20 @@ module.exports = function(grunt) {
             cwd: "prototype/",
             src: "*.html",
             expand: true
-        }
+        },
+        {
+            dest: 'dist/prototype/_assets',
+            cwd: "prototype/_assets",
+            src: ["**/*"],
+            expand: true
+        },
     ]};
 
     configObj.watch = configObj.watch || {};
     configObj.watch["copy_prototype"] = {
         files:[
-            'prototype/**/*.html'
+            'prototype/**/*.html',
+            'prototype/_assets/**/*'
         ],
         tasks: ["copy"]
     };
