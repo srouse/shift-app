@@ -51,7 +51,8 @@ module.exports = function(grunt) {
                 'node_modules/cssmodeling-cols/dist/cssmodeling_col_12_quartered_viewport/core.css',
                 'node_modules/cssmodeling-rows-quartered/dist/core.css',
                 'node_modules/cssmodeling-simple/dist/core.css',
-                'node_modules/cssmodeling-flex/dist/core.css'
+                'node_modules/cssmodeling-flex/dist/cssmodeling_flex/core.css',
+                'node_modules/perfect-scrollbar/dist/css/perfect-scrollbar.min.css'
             ];
 
     configObj.concat["cssmodeling_mixins"] = {files:{}};
@@ -62,7 +63,8 @@ module.exports = function(grunt) {
                 'node_modules/cssmodeling-cols/dist/cssmodeling_col_12_quartered_viewport/less/core_mixins.less',
                 'node_modules/cssmodeling-rows-quartered/dist/less/core_mixins.less',
                 'node_modules/cssmodeling-simple/dist/less/core_mixins.less',
-                'node_modules/cssmodeling-flex/dist/cssmodeling_flex/less/core_mixins.less'
+                'node_modules/cssmodeling-flex/dist/cssmodeling_flex/less/core_mixins.less',
+                'dist/icons/icons.css'
             ];
 
     configObj.concat["prototype_js"] = {files:{}};
@@ -75,7 +77,8 @@ module.exports = function(grunt) {
         		'node_modules/routestate/RouteState.js',
                 'node_modules/moment/min/moment.min.js',
                 'node_modules/classnames/index.js',
-
+                'node_modules/perfect-scrollbar/dist/js/perfect-scrollbar.min.js',
+                'node_modules/raphael/raphael.min.js',
                 'dist/prototype/prototype_jsx.js',
                 'prototype/**/*.js'
             ];
@@ -159,11 +162,58 @@ module.exports = function(grunt) {
         tasks: ["concat:less","less"]
     };
 
+    /*==========================
+    PROTODATA
+    ==========================*/
+    configObj.protodata = configObj.protodata || {};
+    configObj.protodata["protodata"] = {files:{}};
+    configObj.protodata["protodata"]
+        .files['dist/prototype/protodata/prototype_data.json']
+            = ['protodata/PrototypeData.js'];
+
+    configObj.watch = configObj.watch || {};
+    configObj.watch["protodata"] = {
+        files:[
+            'protodata/**/*.js',
+            'protodata/**/*.json'
+        ],
+        tasks: ["protodata"]
+    };
+
+    /*=============================
+    SVG ICONS
+    =============================*/
+    configObj.svgtocssicons = configObj.svgtocssicons || {};
+    configObj.svgtocssicons["icons"] = {
+        files:{
+            'dist/icons/icons':[
+                'assets/_icons/*.svg'
+            ]
+        },
+        options:{
+            prefix:"o-icon-"
+        }
+    };
+
+    configObj.watch = configObj.watch || {};
+    configObj.watch["svgtocssicons"] = {
+        files:[
+            'assets/_icons/**/*.svg'
+        ],
+        tasks: [
+            "svgtocssicons",
+            "concat",
+            "less"
+        ]
+    };
+
 
 
     grunt.initConfig( configObj );
     grunt.registerTask( 'default' , [
-        'cssmodeling','concat','react','copy','less'
+        'protodata','cssmodeling',
+        'concat','react',
+        'copy','svgtocssicons','less'
     ] );
 
 }

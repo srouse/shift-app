@@ -19,6 +19,8 @@
         "react": "~15.2",
         "react-dom": "~15.2",
         "classnames": "~2.2",
+		"perfect-scrollbar":"~0.6",
+		"raphael":"~2.2",
 
         "routestate": "~0.4",
         "protodata": "~0.2",

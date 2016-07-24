@@ -1,0 +1,71 @@
+
+
+
+
+
+
+.o-button, .o-roundedButton {
+
+    // progressive styling...define size locally.
+    //.a-width-col-2;
+    //.a-height-row-2;
+
+    .a-flex-center;
+    .a-text-color-grey-5;
+    .a-text-size;
+    .a-interactive;
+    .a-no-select;
+
+    .a-hover-text-color-grey-1;
+
+    &--brand-primary {
+        /* */
+        .a-background-brand-primary;
+        .a-text-color-white;
+
+        .a-hover-background-brand-primary-light;
+        .a-hover-text-color-white;
+    }
+
+    &--brand-secondary {
+        /* */
+        .a-background-brand-secondary;
+        .a-text-color-white;
+
+        .a-hover-background-brand-secondary-light;
+        .a-hover-text-color-white;
+    }
+
+    &--disabled {
+        .a-background-grey-9;
+        .a-text-color-grey-6;
+        .a-uninteractive;
+    }
+
+    &--blurred {
+        .o-button--blurred;
+    }
+}
+
+.o-button--blurred {
+    .a-background-grey-9;
+    .a-text-color-grey-6;
+    .a-hover-background-white;
+}
+
+.o-roundedButton {
+    .a-border-radius;
+    .a-border-weakest;
+
+    &--brand-primary, &--brand-secondary {
+        .a-border-none;
+    }
+}
+
+
+.o-link {
+    .a-text-size;
+    .a-interactive;
+    .a-text-color-grey-5;
+    .a-hover-text-color-grey-1;
+}

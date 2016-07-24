@@ -39,6 +39,10 @@ var ShiftApp = React.createClass({
 
         var content = <Landing />;
 
+        if ( RS.route.page == "timeline" ) {
+            content = <TimelineEditor />;
+        }
+
         return  <div className={classNames([
                         "c-shiftApp"
                     ])}>

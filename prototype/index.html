@@ -9,13 +9,14 @@
 		<link href='prototype.css' type='text/css' rel='stylesheet'>
 
 		<script src='prototype.js'></script>
+		<script src='protodata/prototype_data.json.js'></script>
 
 		<script>
 
 			var Model,RS,AdMod;
 			$(window).ready(function () {
-				//Model = Mod = protoData;
-				//console.log( AMod );
+				Model = Mod = protoData;
+				console.log( Mod );
 
 				RouteState.listenToHash();
 				RS = RouteState;

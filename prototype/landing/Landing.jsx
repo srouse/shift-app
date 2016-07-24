@@ -3,21 +3,21 @@
 var Landing = React.createClass({
 
     componentWillMount: function() {
-        /*var me = this;
+        var me = this;
         RouteState.addDiffListeners(
     		[
-                "page"
+                "landing_page"
             ],
     		function ( route , prev_route ) {
                 // update
                 me.forceUpdate();
     		},
             "Landing"
-    	);*/
+    	);
     },
 
     componentWillUnmount: function(){
-        //RouteState.removeDiffListenersViaClusterId( "Landing" );
+        RouteState.removeDiffListenersViaClusterId( "Landing" );
     },
 
     componentDidMount: function(){
@@ -26,8 +26,14 @@ var Landing = React.createClass({
 
     render: function() {
 
+        var landing_content = <Login />;
+        if ( RS.route.landing_page == "timelines" ) {
+            landing_content = <Timelines />;
+        }
+
         return  <div className={classNames([
-                        "c-landing"
+                        "c-landing",
+                        {"c-landing--timelines":RS.route.landing_page == "timelines"}
                     ])}>
                     <div className="c-landing__titleContainer">
                         <div className="c-landing__colorsLeft"></div>
@@ -78,7 +84,7 @@ var Landing = React.createClass({
                                 </div>
                             </div>
                             <div className="c-landing__summary">
-                                Shift is an app and artwork that captures and
+                                Shift is an artwork app that captures and
                                 visualizes long term experiences.
                             </div>
                         </div>
@@ -89,9 +95,7 @@ var Landing = React.createClass({
                         <div className="c-landing__splashRight"></div>
                         <div className="c-landing__splash"></div>
                         <div className="c-landing__content">
-                            <div className="">
-                                <input className="o-form__input" />
-                            </div>
+                            { landing_content }
                         </div>
                     </div>
                 </div>;

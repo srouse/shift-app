@@ -721,6 +721,35 @@
 			]
 		},
         {
+			"name":"border-power-light-values",
+            "group":"skin",
+			"base":"border-light",
+			"scheme":"skin-location-power-values",
+			"values":[
+				"4px solid _@_v-grey-8","0px",
+				"5px solid _@_v-grey-8","6px solid _@_v-grey-8","8px solid _@_v-grey-8",
+				"3px solid _@_v-grey-8","2px solid _@_v-grey-8","1px solid _@_v-grey-8"
+			],
+			"atoms":[
+				{
+					"name":"borders",
+                    "group":"skin",
+					"sub_group":"skins",
+					"example":"<div ... style='width: 50px; height: 50px; position: absolute; top: 50px; left: 50px; background-color:#fff;'></div>",
+					"selector":".a-@var_name",
+                    "declaration_iteration_values":[
+						"border: _@_@var_name;",
+						"border-top: _@_@var_name;",
+						"border-bottom: _@_@var_name;",
+						"border-left: _@_@var_name;",
+						"border-right: _@_@var_name;",
+						"border-top: _@_@var_name; border-bottom: _@_@var_name;",
+						"border-left: _@_@var_name; border-right: _@_@var_name;"
+					]
+				}
+			]
+		},
+        {
 			"name":"primary-blue-border-power-values",
             "group":"skin",
 			"base":"border-primary-blue",
