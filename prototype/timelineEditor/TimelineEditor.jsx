@@ -196,6 +196,9 @@ var TimelineEditor = React.createClass({
 
         var timeline = Model.get( RS.route.timeline );
 
+        console.log( timeline );
+        console.log( new Date( timeline.events[0].date ) );
+
         return  <div className={classNames([
                         "c-timelineEditor"
                     ])}>

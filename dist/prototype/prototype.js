@@ -22002,6 +22002,9 @@ var TimelineEditor = React.createClass({displayName: "TimelineEditor",
 
         var timeline = Model.get( RS.route.timeline );
 
+        console.log( timeline );
+        console.log( new Date( timeline.events[0].date ) );
+
         return  React.createElement("div", {className: classNames([
                         "c-timelineEditor"
                     ])}, 
