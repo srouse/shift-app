@@ -48,10 +48,10 @@ module.exports = function(grunt) {
         .files['dist/cssmodeling/core_all.css']
             = [
                 'dist/cssmodeling/core.css',
-                'node_modules/cssmodeling-cols/dist/cssmodeling_col_12_quartered_viewport/core.css',
-                'node_modules/cssmodeling-rows-quartered/dist/core.css',
-                'node_modules/cssmodeling-simple/dist/core.css',
-                'node_modules/cssmodeling-flex/dist/cssmodeling_flex/core.css',
+                'node_modules/cssmodeling-styles/dist/cols/cssmodeling_col_12_quartered_viewport/core.css',
+                'node_modules/cssmodeling-styles/dist/rows/cssmodeling_rows_quartered/core.css',
+                'node_modules/cssmodeling-styles/dist/simple/cssmodeling_simple/core.css',
+                'node_modules/cssmodeling-styles/dist/flexcssmodeling_flex/core.css',
                 'node_modules/perfect-scrollbar/dist/css/perfect-scrollbar.min.css'
             ];
 
@@ -60,10 +60,10 @@ module.exports = function(grunt) {
         .files['dist/cssmodeling/core_mixins_all.less']
             = [
                 'dist/cssmodeling/less/core_mixins.less',
-                'node_modules/cssmodeling-cols/dist/cssmodeling_col_12_quartered_viewport/less/core_mixins.less',
-                'node_modules/cssmodeling-rows-quartered/dist/less/core_mixins.less',
-                'node_modules/cssmodeling-simple/dist/less/core_mixins.less',
-                'node_modules/cssmodeling-flex/dist/cssmodeling_flex/less/core_mixins.less',
+                'node_modules/cssmodeling-styles/dist/cols/cssmodeling_col_12_quartered_viewport/less/core_mixins.less',
+                'node_modules/cssmodeling-styles/dist/rows/cssmodeling_rows_quartered/less/core_mixins.less',
+                'node_modules/cssmodeling-styles/dist/simple/cssmodeling_simple/less/core_mixins.less',
+                'node_modules/cssmodeling-styles/dist/flex/cssmodeling_flex/less/core_mixins.less',
                 'dist/icons/icons.css'
             ];
 
