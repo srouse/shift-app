@@ -21807,7 +21807,13 @@ var Timelines = React.createClass({displayName: "Timelines",
 
 
 
-var TimelineEditor = React.createClass({displayName: "TimelineEditor",
+var Circles = React.createClass({displayName: "Circles",
+
+    getDefaultProps: function() {
+        return {
+            timeline:false
+        };
+    },
 
     componentWillMount: function() {
         /*var me = this;
@@ -21828,8 +21834,6 @@ var TimelineEditor = React.createClass({displayName: "TimelineEditor",
             me.resizeTimeout = setTimeout( function () {
                 me.renderCircles();
             },300);
-
-            //me.renderCircles();
         });
     },
 
@@ -21845,12 +21849,94 @@ var TimelineEditor = React.createClass({displayName: "TimelineEditor",
         this.renderCircles();
     },
 
+    findLayerValues : function () {
+        var timeline = this.props.timeline;
+
+        var start = new Date( timeline.start_date );
+        var end = new Date();
+        if ( !timeline.is_open_ended ) {
+            end = new Date( timeline.end_date );
+        }
+        var time_span = end.getTime() - start.getTime();
+
+        var values = [0,0,0,0,0];
+        var mood,mood_date,next_mood_date,prev_mood_date;
+        var prev_mood_time_span,next_mood_time_span;
+        var totes_moods = timeline.moods.length;
+        var totes_values = 0;
+        for ( var i=0; i<totes_moods; i++ ) {
+            mood = timeline.moods[i];
+            mood_date = new Date( mood.date );
+
+            if ( i < totes_moods-1 ) {
+                next_mood_date = new Date( timeline.moods[i+1].date );
+            }else{
+                next_mood_date = end;
+            }
+
+            if ( i == 0 ) {
+                prev_mood_date = start;
+            }else{
+                prev_mood_date = new Date( timeline.moods[i-1].date );
+            }
+
+            prev_mood_time_span = (( mood_date.getTime() - prev_mood_date.getTime() ) / time_span  ) / 2;
+            next_mood_time_span = (( next_mood_date.getTime() - mood_date.getTime() ) / time_span  ) / 2;
+            //console.log( prev_mood_time_span );
+            //console.log( next_mood_time_span  );
+            //console.log( mood_date + " | " + mood.value + " | " + next_mood_date + " | " + prev_mood_date );
+
+            values[mood.value] += ( prev_mood_time_span + next_mood_time_span );
+
+            totes_values += ( prev_mood_time_span + next_mood_time_span );
+        }
+
+        // it may not add up to 100% b/c of end values being blank
+        var extra_percents = 1 - totes_values;
+        var negative_distortion,totes_negative=0;
+        var positive_distortion,totes_positive=0;
+        var pessimism_values = [];
+        var optimism_values = [];
+        var optimism_intensity = .8;
+        var pessimism_intensity = .8;
+        for ( var v=0; v<values.length; v++ ) {
+            values[v] += extra_percents / 5;
+
+            negative_distortion = -pessimism_intensity + ( (v/4) * (pessimism_intensity*1.5) );
+            positive_distortion = optimism_intensity - ( (v/4) * (optimism_intensity*1.5) );
+            pessimism_values[v] = values[v] - (values[v]*negative_distortion);
+            optimism_values[v] = values[v] - (values[v]*positive_distortion);
+
+            totes_negative += pessimism_values[v];
+            totes_positive += optimism_values[v];
+            //console.log( Math.round( positive_distortion * 100 ) );
+            //console.log("");
+        }
+
+        for ( var v=0; v<values.length; v++ ) {
+            pessimism_values[v] = pessimism_values[v] / totes_negative;
+            optimism_values[v] = optimism_values[v] / totes_positive;
+        }
+
+        console.log( values , optimism_values, pessimism_values );
+
+        return {
+            pessimism:pessimism_values,//[.20,.10,.30,.35,.05],
+            optimism:optimism_values//[.10,.50,.05,.2,.15]
+        }
+    },
+
     renderCircles : function() {
-        var left_layers = [.20,.10,.30,.35,.05];
-        var right_layers = [.10,.50,.05,.2,.15];
+        var layer_values = this.findLayerValues();
+        var left_layers = layer_values.pessimism;
+        var right_layers = layer_values.optimism;
 
         var strokeWidth = 0;
-        var fills = ["#EF45FF","#52DFFF","#FAFF69","#FF9425","#FE4040"];
+        //var fills = ["#EF45FF","#52DFFF","#FAFF69","#FF9425","#FE4040"];
+        //var fills_faded = ["#F58EFF","#92E6FA","#F8FBA0","#FFBE7A","#FD8A8A"];
+
+        var fills = ["#FE4040","#FF9425","#FAFF69","#52DFFF","#EF45FF"];
+        var fills_faded = ["#FD8A8A","#FFBE7A","#F8FBA0","#92E6FA","#F58EFF"];
 
         //var strokeWidth = 1;
         //var fills = ["#fff","#fff","#fff","#fff","#fff"];
@@ -21866,7 +21952,7 @@ var TimelineEditor = React.createClass({displayName: "TimelineEditor",
         this.paper.clear();
         this.paper.setSize( width, height );
 
-        var me = this;
+        /*var me = this;
         function sector(cx, cy, r, startAngle, endAngle, params) {
             var rad = Math.PI / 180;
             var x1 = cx + r * Math.cos(-startAngle * rad),
@@ -21875,8 +21961,9 @@ var TimelineEditor = React.createClass({displayName: "TimelineEditor",
                 y2 = cy + r * Math.sin(-endAngle * rad);
             return me.paper.path(["M", cx, cy, "L", x1, y1, "A", r, r, 0, +(endAngle - startAngle > 180), 0, x2, y2, "z"]).attr(params);
             //return me.paper.path(["M", x1, y1, "A", r, r, 0, +(endAngle - startAngle > 180), 0, x2, y2]).attr(params);
-        }
+        }*/
 
+        var me = this;
         function horzSector(
             cx, cy, r,
             leftStartAngle, leftEndAngle,
@@ -21926,7 +22013,8 @@ var TimelineEditor = React.createClass({displayName: "TimelineEditor",
         var right_prev_deg = 0;
         var right_deg = 0;
 
-        for ( var i=0; i<left_layers.length; i++ ) {
+        //for ( var i=0; i<left_layers.length; i++ ) {
+        for ( var i=4; i>=0; i-- ) {
             left_layer = left_layers[i];
             right_layer = right_layers[i];
 
@@ -21966,7 +22054,6 @@ var TimelineEditor = React.createClass({displayName: "TimelineEditor",
                     'fill-opacity': .61
                 });
 
-
             left_prev_deg = left_deg;
             if ( left_layer_y < circle_radius ) {
                 left_deg = Math.asin( (left_layer_width/2) / circle_radius ) * (180/Math.PI);
@@ -22002,8 +22089,200 @@ var TimelineEditor = React.createClass({displayName: "TimelineEditor",
 
         var timeline = Model.get( RS.route.timeline );
 
+        return  React.createElement("div", {className: "c-timelineEditor__shift__circles"});
+    }
+
+});
+
+
+
+
+var Timeline = React.createClass({displayName: "Timeline",
+
+    getDefaultProps: function() {
+        return {
+            timeline:false
+        };
+    },
+
+    componentWillMount: function() {
+        /*var me = this;
+        RouteState.addDiffListeners(
+    		[
+                "page"
+            ],
+    		function ( route , prev_route ) {
+                // update
+                me.forceUpdate();
+    		},
+            "TimelineEditor"
+    	);*/
+
+    },
+
+    componentWillUnmount: function(){
+        //RouteState.removeDiffListenersViaClusterId( "TimelineEditor" );
+    },
+
+    componentDidMount: function(){
+        this.renderTimeline();
+    },
+
+    componentDidUpdate: function(){
+    },
+
+    renderTimeline : function() {
+
+        var graph_dom = $(".c-timeline__graph");
+        var labels_dom = $(".c-timeline__xaxis");
+
+        var timeline = this.props.timeline;//Model.get( RS.route.timeline );
+
+        var fills = ["#EF45FF","#52DFFF","#FAFF69","#FF9425","#FE4040"];
+        var fills_faded = ["#F58EFF","#92E6FA","#F8FBA0","#FFBE7A","#FD8A8A"];
+
+        var start = new Date( timeline.start_date );
+        var end = new Date();
+        if ( !timeline.is_open_ended ) {
+            end = new Date( timeline.end_date );
+        }
+
+        var time_span = end.getTime() - start.getTime();
+
+        var event,grads=["#e9e9e9"],event_time,event_percent,event_css;
+        for ( var i=0; i<timeline.events.length; i++ ) {
+            event = timeline.events[i];
+            event_time = new Date( event.date ).getTime() - start.getTime();
+            event_percent = event_time/time_span;
+
+            if (
+                event_percent <= 1 && event_percent >=0
+            ) {
+                event_css = "left: " + Math.round( event_percent * 100 ) + "%";
+                graph_dom.append(
+                    $( "<div class='c-timeline__circle c-timeline__circle--intensity_" +
+                    event.intensity + " c-timeline--value_" +
+                    (event.value+1) +"' style='"+event_css+"'></div>" )
+                );
+            }
+        }
+
+        var mood,grads=["#e9e9e9"],mood_time,mood_percent,mood_css;
+        for ( var i=0; i<timeline.moods.length; i++ ) {
+            mood = timeline.moods[i];
+            mood_time = new Date( mood.date ).getTime() - start.getTime();
+            mood_percent = mood_time/time_span;
+
+            if (
+                mood_percent <= 1 && mood_percent >=0
+            ) {
+                grads.push(
+                    fills_faded[ 4 - mood.value] + " " +
+                    Math.round( mood_percent * 100 ) + "%"
+                );
+            }
+        }
+
+        grads.push("#e9e9e9");
+        graph_dom.css(
+            "background",
+            "linear-gradient( 90deg, " + grads.join(",") + " )"
+        );
+
+        //=====NOW LABELS======
+        var years = time_span / 1000 / 60 / 60 / 24 / 365;
+        var year_css,year,year_percent;
+        if ( years < 10 ) {
+            for ( var i=0; i<20; i++ ) {
+                year = new Date( start.getFullYear() + i, 0 , 1 );
+                if ( year.getTime() > end.getTime() ) {
+                    break;
+                }
+                this.renderLabel( year, start, end, time_span, labels_dom );
+            }
+        }else if ( years < 30 ){
+            var start_rounded;
+            for ( var i=0; i<20; i++ ) {
+                start_rounded = Math.floor( start.getFullYear() / 5 ) * 5;
+                year = new Date( start_rounded + ( i*5 ), 0 , 1 );
+                if ( year.getTime() > end.getTime() ) {
+                    break;
+                }
+                this.renderLabel( year, start, end, time_span, labels_dom );
+            }
+        }else{
+            var start_rounded;
+            for ( var i=0; i<20; i++ ) {
+                start_rounded = Math.floor( start.getFullYear() / 10 ) * 10;
+                year = new Date( start_rounded + ( i*10 ), 0 , 1 );
+                if ( year.getTime() > end.getTime() ) {
+                    break;
+                }
+                this.renderLabel( year, start, end, time_span, labels_dom );
+            }
+        }
+    },
+
+    renderLabel: function ( year, start, end, time_span, labels_dom ) {
+        year_percent = ( year.getTime() - start.getTime() ) / time_span;
+        year_css = "left: " + Math.round( year_percent * 100 ) + "%";
+        if (
+            year.getTime() > start.getTime() &&
+            year.getTime() < end.getTime()
+        ) {
+            labels_dom.append(
+                $(
+                    "<div class='c-timeline__label' style='"+year_css+"'>" +
+                    year.getFullYear() +
+                    "</div>"
+                )
+            );
+        }
+    },
+
+    render: function() {
+        return  React.createElement("div", {className: "c-timeline"}, 
+                    React.createElement("div", {className: "c-timeline__xaxis"}), 
+                    React.createElement("div", {className: "c-timeline__graph"})
+                );
+    }
+
+});
+
+
+
+
+var TimelineEditor = React.createClass({displayName: "TimelineEditor",
+
+    componentWillMount: function() {
+        /*var me = this;
+        RouteState.addDiffListeners(
+    		[
+                "page"
+            ],
+    		function ( route , prev_route ) {
+                // update
+                me.forceUpdate();
+    		},
+            "TimelineEditor"
+    	);*/
+    },
+
+    componentWillUnmount: function(){
+        //RouteState.removeDiffListenersViaClusterId( "TimelineEditor" );
+    },
+
+    componentDidMount: function(){
+    },
+
+    componentDidUpdate: function(){
+    },
+
+    render: function() {
+
+        var timeline = Model.get( RS.route.timeline );
+
         console.log( timeline );
-        console.log( new Date( timeline.events[0].date ) );
 
         return  React.createElement("div", {className: classNames([
                         "c-timelineEditor"
@@ -22034,11 +22313,10 @@ var TimelineEditor = React.createClass({displayName: "TimelineEditor",
                         )
                     ), 
                     React.createElement("div", {className: "c-timelineEditor__shift"}, 
-                        React.createElement("div", {className: "c-timelineEditor__shift__circles", 
-                            id: "canvas_container"})
+                        React.createElement(Circles, {timeline:  timeline })
                     ), 
-                    React.createElement("div", {className: "c-timelineEditor__timeline"}
-
+                    React.createElement("div", {className: "c-timelineEditor__timeline"}, 
+                        React.createElement(Timeline, {timeline:  timeline })
                     )
                 );
     }

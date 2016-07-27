@@ -9,7 +9,7 @@ module.exports = {
             this.timelines = pd.generateArray(
                             "timeline" , pd.random( 10, 15 )
                         );
-                        
+
         },
         root:true
     },
@@ -38,11 +38,20 @@ module.exports = {
             }
 
             this.events = pd.generateArray(
+                            "event" , pd.random( 5 , 10 ),
+                            this, "timeline", {timeline:this,type:"event"}
+                        );
+
+            this.moods = pd.generateArray(
                             "event" , pd.random( 10, 15 ),
-                            this, "timeline", {timeline:this}
+                            this, "timeline", {timeline:this,type:"mood"}
                         );
 
             this.events.sort(function(a,b) {
+                return new Date(a.date).getTime() - new Date(b.date).getTime()
+            });
+
+            this.moods.sort(function(a,b) {
                 return new Date(a.date).getTime() - new Date(b.date).getTime()
             });
         }
@@ -59,9 +68,11 @@ module.exports = {
                 pd.random( 1, 30 )
             );
 
-            this.type = ( Math.random() > .3 ) ? "mood" : "event";
-
-            this.value = pd.random( 1 , 5 );
+            this.type = args.type;
+            this.value = pd.random( 0 , 4 );
+            if ( this.type == "event" ) {
+                this.intensity = pd.random( 1 , 3 );
+            }
         }
     }
 };

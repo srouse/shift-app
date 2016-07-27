@@ -1131,6 +1131,88 @@ p {
 .c-timelines__new:hover {
   color: #eee !important;
 }
+.c-timeline {
+  position: absolute !important;
+  top: 0px !important;
+  right: 0px !important;
+  bottom: 0px !important;
+  left: 0px !important;
+  display: -ms-flexbox;
+  -ms-flex-direction: column ;
+  -ms-flex-pack: start ;
+  -ms-flex-align: stretch ;
+  display: flex !important;
+  flex-flow: column nowrap !important;
+  justify-content: flex-start !important;
+  align-items: stretch !important;
+}
+.c-timeline__xaxis {
+  height: 30px !important;
+  overflow: hidden  !important;
+}
+.c-timeline__graph {
+  -ms-flex: 1 ;
+  flex: 1 !important;
+  min-height: 0 !important;
+  /* firefox hack for scrolling children */
+  display: flex !important;
+  /* webkit hack for height issues */
+}
+.c-timeline__label {
+  font-size: 13px !important;
+  line-height: 15px !important;
+  color: #808080 !important;
+  position: absolute  !important;
+  line-height: 20px !important;
+  top: calc(50% - 10px);
+}
+.c-timeline__circle {
+  border-radius: 50%;
+  position: absolute  !important;
+}
+.c-timeline__circle:after {
+  content: '';
+  position: absolute  !important;
+  top: -3px;
+  bottom: -3px;
+  left: -3px;
+  right: -3px;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.5);
+}
+.c-timeline__circle--intensity_3 {
+  width: 4vw;
+  height: 4vw;
+  top: calc(50% - 2vw);
+  margin-left: -2vw;
+}
+.c-timeline__circle--intensity_2 {
+  width: 2.5vw;
+  height: 2.5vw;
+  top: calc(50% - 1.25vw);
+  margin-left: -1.25vw;
+}
+.c-timeline__circle--intensity_1 {
+  width: 1vw;
+  height: 1vw;
+  top: calc(50% - 0.5vw);
+  margin-left: -0.5vw;
+}
+.c-timeline--value_1 {
+  background-color: #FE4040;
+}
+.c-timeline--value_2 {
+  background-color: #FF9425;
+}
+.c-timeline--value_3 {
+  background-color: #FAFF69;
+}
+.c-timeline--value_4 {
+  background-color: #52DFFF;
+}
+.c-timeline--value_5 {
+  background-color: #EF45FF;
+}
 .c-timelineEditor {
   position: absolute !important;
   top: 0px !important;
@@ -1283,9 +1365,8 @@ p {
 .c-timelineEditor__shift__circles {
   width: 66.66664vw !important;
   height: 61.8%;
-  overflow: visible  !important;
+  overflow: hidden  !important;
 }
 .c-timelineEditor__timeline {
   height: 120px !important;
-  background-color: #fafafa !important;
 }
