@@ -13,7 +13,27 @@
     }
     .c-timeline__graph {
         .a-fill;
+        .a-flex-v-stretch;
     }
+
+        .c-timeline__moodEdit {
+            background-color: rgba( 255,255,255,0);
+            .a-fill;
+            .a-transition-all;
+
+            .c-timeline--editing & {
+                background-color: rgba( 255,255,255,.4);
+            }
+        }
+        .c-timeline__eventEdit {
+            background-color: rgba( 255,255,255,0);
+            .a-fill;
+            .a-transition-all;
+
+            .c-timeline--editing & {
+                background-color: rgba( 255,255,255,.7);
+            }
+        }
 
     //=========X AXIS LABELS==========
     .c-timeline__label {
@@ -24,11 +44,29 @@
         top: calc( 50% ~'-' @v-row-half );
     }
 
+    //==========MOOD EDIT ITEM======
+    .c-timeline__mood {
+        width: 10px;
+        .a-height-100;
+        .a-position-absolute;
+        .a-top;
+        opacity: 0;
+        .a-transition-all;
+        .a-interactive;
+
+        .c-timeline--editing & {
+            opacity: 1;
+        }
+    }
+
+
 
     //=========EVENT CIRCLES==========
     .c-timeline__circle {
         border-radius: 50%;
         .a-position-absolute;
+        .a-transition-top;
+        .a-interactive;
     }
 
     .c-timeline__circle:after {
@@ -38,20 +76,32 @@
         left: -3px; right: -3px;
         border-radius: 50%;
         border: 3px solid rgba( 255,255,255,.5);
+
+        .c-timeline--editing & {
+            border: 0px;
+        }
     }
 
         .c-timeline__circle--intensity_3 {
-            width: 4vw;
-            height: 4vw;
-            top: calc( 50% ~'-' 2vw );
-            margin-left: -2vw;
+            width: 3vw;
+            height: 3vw;
+            top: calc( 50% ~'-' 1.5vw );
+            margin-left: -1.5vw;
+
+            .c-timeline--editing & {
+                top: calc( 75% ~'-' 1.5vw );
+            }
         }
 
         .c-timeline__circle--intensity_2 {
-            width: 2.5vw;
-            height: 2.5vw;
-            top: calc( 50% ~'-' 1.25vw );
-            margin-left: -1.25vw;
+            width: 2vw;
+            height: 2vw;
+            top: calc( 50% ~'-' 1vw );
+            margin-left: -1vw;
+
+            .c-timeline--editing & {
+                top: calc( 75% ~'-' 1vw );
+            }
         }
 
         .c-timeline__circle--intensity_1 {
@@ -59,6 +109,10 @@
             height: 1vw;
             top: calc( 50% ~'-' .5vw );
             margin-left: -.5vw;
+
+            .c-timeline--editing & {
+                top: calc( 75% ~'-' .5vw );
+            }
         }
 
         .c-timeline--value_1 {

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="96px" height="96px" viewBox="0 0 96 96" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 39.1 (31720) - http://www.bohemiancoding.com/sketch -->
+    <title>checkbox-checked-24,48,96</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="318" y="456" width="64" height="64"></rect>
+        <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="64" height="64" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-302.000000, -440.000000)">
+            <use id="Combined-Shape" stroke="#D6D6D6" mask="url(#mask-2)" stroke-width="4" fill="#FFFFFF" xlink:href="#path-1"></use>
+            <polyline id="Path-105" stroke="#393939" stroke-width="9" points="333 486.5 344.25 499 368.5 477"></polyline>
+        </g>
+    </g>
+</svg>

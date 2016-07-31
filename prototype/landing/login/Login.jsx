@@ -33,21 +33,31 @@ var Login = React.createClass({
                         c-landing__content__title">
                         LOGIN
                     </div>
+
                     <div className="
-                        c-landing__content__label">
-                        username
+                        o-form__v-layout
+                        a-width-col-2
+                        a-height-row-3">
+                        <div className="
+                            o-form__label">
+                            username
+                        </div>
+                        <input className="
+                            o-form__input" />
                     </div>
-                    <input className="
-                        o-form__input
-                        a-width-col-2" />
+
                     <div className="
-                        c-landing__content__label
-                        a-margin-top-row-three-quarters">
-                        password
+                        o-form__v-layout
+                        a-margin-top-row-half
+                        a-width-col-2
+                        a-height-row-3">
+                        <div className="
+                            o-form__label">
+                            password
+                        </div>
+                        <input className="
+                            o-form__input" />
                     </div>
-                    <input className="
-                        o-form__input
-                        a-width-col-2" />
                     <div className="
                         c-landing__content__submit"
                         onClick={function(){

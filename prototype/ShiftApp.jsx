@@ -10,7 +10,6 @@ var ShiftApp = React.createClass({
                 "page"
             ],
     		function ( route , prev_route ) {
-                // update
                 me.forceUpdate();
     		},
             "ShiftApp"

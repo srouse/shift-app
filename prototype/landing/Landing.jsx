@@ -27,6 +27,7 @@ var Landing = React.createClass({
     render: function() {
 
         var landing_content = <Login />;
+
         if ( RS.route.landing_page == "timelines" ) {
             landing_content = <Timelines />;
         }

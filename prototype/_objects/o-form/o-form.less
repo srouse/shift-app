@@ -1,5 +1,122 @@
 
 
+
+
+
+
+select::-ms-expand {
+    display: none;
+}
+
+.o-form {
+}
+
+    .o-form__inputContainer {
+        .a-text-size;
+        .a-text-color-grey-3;
+        .a-text-weight-light;
+        border-radius: 0px;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        outline: 0px;
+
+        /*&::-webkit-input-placeholder,
+        &::-moz-placeholder,
+        &:-ms-input-placeholder,
+        &:-moz-placeholder,
+        &::placeholder {
+            .a-text-size-smaller;
+            .a-text-color-grey-6;
+            .a-brand-font-light-italic;
+        }*/
+
+        &.o-form--invalid {
+            border-color: #faa !important;
+        }
+    }
+
+    .o-form__input, .o-form__select,
+    .o-form__textarea, .o-form__button {
+        &:extend( .o-form__inputContainer all );
+        .a-border-weakest;
+        .a-padding-left-col-eighth;
+    }
+
+    .o-form__button {
+        border-radius: 3px;
+        .a-background-white;
+    }
+
+    .o-form__textarea {
+        //.a-height-row-5;
+    }
+
+    .o-form__select {
+        &:extend( .o-icon-select-arrow-24 );
+        background-position: right center;
+        .a-background-white;
+    }
+
+    .o-form__readonly {
+        .a-border-bottom-weakest;
+        .a-text-color-grey-6;
+    }
+
+    .o-form__label {
+        .a-text-size-smaller;
+        .a-text-color-grey-6;
+        .a-brand-font-light-italic;
+        .a-single-line;
+        .a-flex-h;
+    }
+
+    .o-form__hint {
+        .a-text-size-smaller;
+        .a-text-color-grey-8;
+        .a-brand-font-light-italic;
+        .a-single-line;
+    }
+
+    .o-form__checkbox {
+        .a-display-none;
+    }
+    .o-form__checkbox + .o-form__label {
+        .a-display-block;
+        width:36px !important;
+        height:36px !important;
+        .a-border-none;
+        &:extend( .o-icon-checkbox-32 );
+        background-position: -4px center;
+        .a-interactive;
+    }
+        .o-form__checkbox:checked + .o-form__label {
+            &:extend( .o-icon-checkbox-checked-32 );
+        }
+
+        .o-form__label + .o-form__label {
+            .a-brand-font-light-italic;
+            .a-text-color-grey-3;
+            .a-text-size;
+        }
+
+
+    .o-form__submit {
+        .a-text-color-white;
+        .a-background-brand-primary-light;
+        .a-hover-background-brand-primary-light;
+
+        .a-border-none;
+        .a-text-size-large;
+        .a-transition-all;
+
+        &.o-form__submit--blurred {
+            .a-background-white;
+            .a-text-color-grey-6;
+            .a-uninteractive;
+        }
+    }
+/*
+
 select::-ms-expand {
     display: none;
 }
@@ -228,3 +345,4 @@ select.o-form__select:invalid {
     .o-form__multiselect {
         .a-height-row-5;
     }
+*/

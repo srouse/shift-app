@@ -5,7 +5,8 @@ var Circles = React.createClass({
 
     getDefaultProps: function() {
         return {
-            timeline:false
+            timeline:false,
+            is_editing:false
         };
     },
 
@@ -76,12 +77,8 @@ var Circles = React.createClass({
 
             prev_mood_time_span = (( mood_date.getTime() - prev_mood_date.getTime() ) / time_span  ) / 2;
             next_mood_time_span = (( next_mood_date.getTime() - mood_date.getTime() ) / time_span  ) / 2;
-            //console.log( prev_mood_time_span );
-            //console.log( next_mood_time_span  );
-            //console.log( mood_date + " | " + mood.value + " | " + next_mood_date + " | " + prev_mood_date );
 
             values[mood.value] += ( prev_mood_time_span + next_mood_time_span );
-
             totes_values += ( prev_mood_time_span + next_mood_time_span );
         }
 
@@ -91,28 +88,40 @@ var Circles = React.createClass({
         var positive_distortion,totes_positive=0;
         var pessimism_values = [];
         var optimism_values = [];
-        var optimism_intensity = .8;
-        var pessimism_intensity = .8;
+
+        // 4 - 5  ( -. * intensity );
+        // 4 - 5  ( -.1 * intensity );
+        //var optimism_intensity = timeline.intensity/100;//.8;
+        //var pessimism_intensity = timeline.intensity/100;
+
+
+        var optimism_intensity = timeline.intensity/100 * ( timeline.outlook / 100 );
+        var pessimism_intensity = timeline.intensity/100 * ( ( 100 - timeline.outlook ) / 100 );
+
         for ( var v=0; v<values.length; v++ ) {
             values[v] += extra_percents / 5;
 
-            negative_distortion = -pessimism_intensity + ( (v/4) * (pessimism_intensity*1.5) );
-            positive_distortion = optimism_intensity - ( (v/4) * (optimism_intensity*1.5) );
-            pessimism_values[v] = values[v] - (values[v]*negative_distortion);
-            optimism_values[v] = values[v] - (values[v]*positive_distortion);
+            //negative_distortion = -pessimism_intensity + ( (v/4) * (pessimism_intensity*1.5) );
+            //positive_distortion = optimism_intensity - ( (v/4) * (optimism_intensity*1.5) );
+
+            negative_distortion = -pessimism_intensity + ( (v/4) * (pessimism_intensity*4) );
+            positive_distortion = optimism_intensity - ( (v/4) * (optimism_intensity*4) );
+
+            pessimism_values[v] = Math.max( 0 , values[v] - (values[v]*negative_distortion) );
+            optimism_values[v] = Math.max( 0 , values[v] - (values[v]*positive_distortion) );
 
             totes_negative += pessimism_values[v];
             totes_positive += optimism_values[v];
-            //console.log( Math.round( positive_distortion * 100 ) );
-            //console.log("");
         }
 
+        //var post_totes_negative = 0,post_totes_positive = 0;
         for ( var v=0; v<values.length; v++ ) {
             pessimism_values[v] = pessimism_values[v] / totes_negative;
             optimism_values[v] = optimism_values[v] / totes_positive;
-        }
 
-        console.log( values , optimism_values, pessimism_values );
+            //post_totes_negative += pessimism_values[v];
+            //post_totes_positive += optimism_values[v];
+        }
 
         return {
             pessimism:pessimism_values,//[.20,.10,.30,.35,.05],
@@ -125,26 +134,37 @@ var Circles = React.createClass({
         var left_layers = layer_values.pessimism;
         var right_layers = layer_values.optimism;
 
+        var canvas_padding = 4;
         var strokeWidth = 0;
+        var strokeColor = "#ccc";
         //var fills = ["#EF45FF","#52DFFF","#FAFF69","#FF9425","#FE4040"];
         //var fills_faded = ["#F58EFF","#92E6FA","#F8FBA0","#FFBE7A","#FD8A8A"];
-
         var fills = ["#FE4040","#FF9425","#FAFF69","#52DFFF","#EF45FF"];
         var fills_faded = ["#FD8A8A","#FFBE7A","#F8FBA0","#92E6FA","#F58EFF"];
 
-        //var strokeWidth = 1;
-        //var fills = ["#fff","#fff","#fff","#fff","#fff"];
+        if ( this.props.is_editing ) {
+            strokeWidth = 1;
+            strokeColor = "#aaa";
+            //fills = fills_faded = ["#fff","#fff","#fff","#fff","#fff"];
+            fills = fills_faded;
+            //fills_faded = ["#fff","#fff","#fff","#fff","#fff"];
+            //fills = fills_faded = ["rgba(255,255,255,.3)","rgba(255,255,255,.3)","rgba(255,255,255,.3)","rgba(255,255,255,.3)","rgba(255,255,255,.3)"];
+        }
 
         var target = $(".c-timelineEditor__shift__circles");
         var height = target.height();
         var width = target.width();
         var circle_width = height;
         var circle_radius = circle_width/2;
-        var right_circle_offset = width - circle_width;
+        var right_circle_offset = width - circle_width;// - (canvas_padding/2);
 
-        this.paper = this.paper || Raphael( target[0] , width, height );
+        this.paper = this.paper
+                ||  Raphael( target[0] ,
+                        width+canvas_padding,
+                        height+canvas_padding
+                    );
         this.paper.clear();
-        this.paper.setSize( width, height );
+        this.paper.setSize( width+canvas_padding, height+canvas_padding );
 
         /*var me = this;
         function sector(cx, cy, r, startAngle, endAngle, params) {
@@ -164,42 +184,72 @@ var Circles = React.createClass({
             rightStartAngle, rightEndAngle,
             params
         ) {
+            cx += canvas_padding/2;
+            cy += canvas_padding/2;
             var rad = Math.PI / 180;
-            var left_x1 = cx + r * Math.cos(-leftStartAngle * rad),
-                left_x2 = cx + r * Math.cos(-leftEndAngle * rad),
-                left_y1 = cy + r * Math.sin(-leftStartAngle * rad),
-                left_y2 = cy + r * Math.sin(-leftEndAngle * rad);
-            var right_x1 = cx + r * Math.cos(-rightStartAngle * rad),
-                right_x2 = cx + r * Math.cos(-rightEndAngle * rad),
-                right_y1 = cy + r * Math.sin(-rightStartAngle * rad),
-                right_y2 = cy + r * Math.sin(-rightEndAngle * rad);
-            if ( leftStartAngle == 90 ) {
-                return me.paper.path([
-                    //"M", cx, cy,
-                    "M", left_x1, left_y1,
-                    "A", r, r, 0, +(leftEndAngle - leftStartAngle > 180), 0, left_x2, left_y2,
-                    "L", right_x1, right_y1,
-                    "A", r, r, 0, +(rightEndAngle - rightStartAngle > 180), 0, left_x2, left_y2,
-                    //"z"
-                ]).attr(params);
-            }else{
-                return me.paper.path([
-                    //"M", cx, cy,
-                    "M", left_x1, left_y1,
-                    "A", r, r, 0, +(leftEndAngle - leftStartAngle > 180), 0, left_x2, left_y2,
-                    "L", right_x1, right_y1,
-                    "A", r, r, 0, +(rightEndAngle - rightStartAngle > 180), 0, right_x2, right_y2,
-                    "z"
-                ]).attr(params);
-            }
+            var left_x1 = ( cx + r * Math.cos(-leftStartAngle * rad) ).toFixed(0),
+                left_x2 = ( cx + r * Math.cos(-leftEndAngle * rad) ).toFixed(0),
+                left_y1 = ( cy + r * Math.sin(-leftStartAngle * rad) ).toFixed(0),
+                left_y2 = ( cy + r * Math.sin(-leftEndAngle * rad) ).toFixed(0);
+            var right_x1 = ( cx + r * Math.cos(-rightStartAngle * rad) ).toFixed(0),
+                right_x2 = ( cx + r * Math.cos(-rightEndAngle * rad) ).toFixed(0),
+                right_y1 = ( cy + r * Math.sin(-rightStartAngle * rad) ).toFixed(0),
+                right_y2 = ( cy + r * Math.sin(-rightEndAngle * rad) ).toFixed(0);
+
+            return me.paper.path([
+                "M", left_x1, left_y1,
+                "A", r, r, 0, 0, 0, left_x2, left_y2,
+                "L", right_x1, right_y1,
+                "A", r, r, 0, 0, 0, right_x2, right_y2,
+                "z"
+            ]).attr(params);
+        }
+
+        function renderConnection(
+            circle_radius,
+            prev_left_layer_y, prev_left_layer_width,
+            right_circle_offset,
+            prev_right_layer_y, prev_right_layer_width,
+            right_layer_y, right_layer_width,
+            left_layer_y, left_layer_width,
+            params
+        ) {
+
+            var p_half = canvas_padding/2;
+
+            var left_layer_x = circle_radius + p_half;
+            var right_layer_x = right_circle_offset + circle_radius + p_half;
+
+            left_layer_y += p_half;
+            prev_left_layer_y += p_half;
+            right_layer_y += p_half;
+            prev_right_layer_y += p_half;
+
+            var connector_str = [
+                "M" , left_layer_x, prev_left_layer_y,
+                "L" , (left_layer_x + prev_left_layer_width/2), prev_left_layer_y,
+                "L",( right_circle_offset + (circle_radius-(prev_right_layer_width/2))), prev_right_layer_y,
+                "L", right_layer_x, prev_right_layer_y,
+                "L", right_layer_x, right_layer_y,
+                "L",( right_circle_offset + (circle_radius-(right_layer_width/2))), right_layer_y,
+                "L" , (left_layer_x + left_layer_width/2), left_layer_y,
+                "L" , left_layer_x, left_layer_y,
+                "z"
+            ];
+
+            me.paper.path( connector_str )
+                .attr(params);
         }
 
         var line_1_y = height * left_layers[0];
         var left_layer,prev_left_layer_y,prev_left_layer_width;
-        var left_layer_y=0,left_layer_path,left_layer_width=0,left_layer_from_center;
+        var left_layer_y=0;
+        var left_layer_path,left_layer_width=0;
+        var left_layer_from_center;
 
         var right_layer,prev_right_layer_y,prev_right_layer_width;
-        var right_layer_y=0,right_layer_path,right_layer_width=0,right_layer_from_center;
+        var right_layer_y=0;
+        var right_layer_path,right_layer_width=0,right_layer_from_center;
 
         var left_prev_deg = 0;
         var left_deg = 0;
@@ -207,7 +257,7 @@ var Circles = React.createClass({
         var right_prev_deg = 0;
         var right_deg = 0;
 
-        //for ( var i=0; i<left_layers.length; i++ ) {
+        // things are coming in reverse
         for ( var i=4; i>=0; i-- ) {
             left_layer = left_layers[i];
             right_layer = right_layers[i];
@@ -229,24 +279,20 @@ var Circles = React.createClass({
             right_layer_width = Math.sqrt( Math.pow( circle_radius ,2) - Math.pow( right_layer_from_center ,2 ) ) * 2;
 
             // connect layers from each circle to each other...
-            var connector_str = [
-                "M" , circle_radius, prev_left_layer_y,
-                "L" , (circle_radius + prev_left_layer_width/2), prev_left_layer_y,
-                "L",( right_circle_offset + (circle_radius-(prev_right_layer_width/2))), prev_right_layer_y,
-                "L", right_circle_offset + circle_radius, prev_right_layer_y,
-                "L", right_circle_offset + circle_radius, right_layer_y,
-                "L",( right_circle_offset + (circle_radius-(right_layer_width/2))), right_layer_y,
-                "L" , (circle_radius + left_layer_width/2), left_layer_y,
-                "L" , circle_radius, left_layer_y,
-                "z"
-            ];
-            this.paper.path( connector_str )
-                .attr({
-                    stroke: "#ccc",
-                    "stroke-width": strokeWidth ,
-                    fill: fills[i],
+            renderConnection(
+                circle_radius,
+                prev_left_layer_y, prev_left_layer_width,
+                right_circle_offset,
+                prev_right_layer_y, prev_right_layer_width,
+                right_layer_y, right_layer_width,
+                left_layer_y, left_layer_width,
+                {
+                    stroke: strokeColor,
+                    "stroke-width": strokeWidth,
+                    fill: fills_faded[i],
                     'fill-opacity': .61
-                });
+                }
+            );
 
             left_prev_deg = left_deg;
             if ( left_layer_y < circle_radius ) {
@@ -268,13 +314,13 @@ var Circles = React.createClass({
                 circle_radius, circle_radius, circle_radius,
                 90 + left_prev_deg, 90 + left_deg,
                 90 - left_deg, 90 - left_prev_deg,
-                { stroke: "#ccc", "stroke-width": strokeWidth , fill: fills[i] }
+                { stroke: strokeColor, "stroke-width": strokeWidth , fill: fills[i] }
             );
             horzSector(
                 right_circle_offset + circle_radius, circle_radius, circle_radius,
                 90 + right_prev_deg, 90 + right_deg,
                 90 - right_deg, 90 - right_prev_deg,
-                { stroke: "#ccc", "stroke-width": strokeWidth , fill: fills[i] }
+                { stroke: strokeColor, "stroke-width": strokeWidth , fill: fills[i] }
             );
         }
     },

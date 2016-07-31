@@ -25,6 +25,9 @@ module.exports = {
                 pd.random( 1, 30 )
             );
 
+            this.outlook = pd.random( 0 ,100 );
+            this.intensity = pd.random( 0 , 100 );
+
             this.is_open_ended = ( Math.random() > .5 ) ? true : false;
 
             if ( !this.is_open_ended ) {

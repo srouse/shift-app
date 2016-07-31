@@ -50,9 +50,11 @@ module.exports = function(grunt) {
                 'dist/cssmodeling/core.css',
                 'node_modules/cssmodeling-styles/dist/cols/cssmodeling_col_12_quartered_viewport/core.css',
                 'node_modules/cssmodeling-styles/dist/rows/cssmodeling_rows_quartered/core.css',
+                'node_modules/cssmodeling-styles/dist/rows/cssmodeling_rows_vh_quartered/core.css',
                 'node_modules/cssmodeling-styles/dist/simple/cssmodeling_simple/core.css',
-                'node_modules/cssmodeling-styles/dist/flexcssmodeling_flex/core.css',
-                'node_modules/perfect-scrollbar/dist/css/perfect-scrollbar.min.css'
+                'node_modules/cssmodeling-styles/dist/flex/cssmodeling_flex/core.css',
+                'node_modules/perfect-scrollbar/dist/css/perfect-scrollbar.min.css',
+                'node_modules_local/jquery-ui/jquery-ui.css',
             ];
 
     configObj.concat["cssmodeling_mixins"] = {files:{}};
@@ -62,6 +64,7 @@ module.exports = function(grunt) {
                 'dist/cssmodeling/less/core_mixins.less',
                 'node_modules/cssmodeling-styles/dist/cols/cssmodeling_col_12_quartered_viewport/less/core_mixins.less',
                 'node_modules/cssmodeling-styles/dist/rows/cssmodeling_rows_quartered/less/core_mixins.less',
+                'node_modules/cssmodeling-styles/dist/rows/cssmodeling_rows_vh_quartered/less/core_mixins.less',
                 'node_modules/cssmodeling-styles/dist/simple/cssmodeling_simple/less/core_mixins.less',
                 'node_modules/cssmodeling-styles/dist/flex/cssmodeling_flex/less/core_mixins.less',
                 'dist/icons/icons.css'
@@ -72,6 +75,8 @@ module.exports = function(grunt) {
         .files['dist/prototype/prototype.js']
             = [
                 'node_modules/jquery/dist/jquery.min.js',
+                'node_modules_local/jquery-ui/jquery-ui.js',
+
                 'node_modules/react/dist/react.js',
                 'node_modules/react-dom/dist/react-dom.js',
         		'node_modules/routestate/RouteState.js',
