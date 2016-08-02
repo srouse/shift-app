@@ -28304,6 +28304,270 @@ var ShiftApp = React.createClass({displayName: "ShiftApp",
 
 
 
+
+var Fill = React.createClass({displayName: "Fill",
+
+    getDefaultProps: function() {
+        return {
+            className:""
+        };
+    },
+
+    componentWillMount: function() {
+    },
+
+    componentWillUnmount: function(){
+    },
+
+    componentDidMount: function(){
+    },
+
+    componentDidUpdate: function(){
+    },
+
+    render: function() {
+
+        return  React.createElement("div", {className: classNames([
+                        "a-fill",
+                        this.props.className
+                    ])}
+                );
+    }
+
+});
+
+
+
+
+var Button = React.createClass({displayName: "Button",
+
+    getDefaultProps: function() {
+        return {
+            title:"",
+            onClick:function(){},
+            className:""
+        };
+    },
+
+    componentWillMount: function() {
+    },
+
+    componentWillUnmount: function(){
+    },
+
+    componentDidMount: function(){
+    },
+
+    componentDidUpdate: function(){
+    },
+
+    render: function() {
+
+        return  React.createElement("div", {className: classNames([
+                        "o-button",
+                        this.props.className
+                    ]), 
+                    onClick: this.props.onClick}, 
+                     this.props.title
+                );
+    }
+
+});
+
+
+
+
+var RoundedButton = React.createClass({displayName: "RoundedButton",
+
+    getDefaultProps: function() {
+        return {
+            title:"",
+            onClick:function(){},
+            className:""
+        };
+    },
+
+    componentWillMount: function() {
+    },
+
+    componentWillUnmount: function(){
+    },
+
+    componentDidMount: function(){
+    },
+
+    componentDidUpdate: function(){
+    },
+
+    render: function() {
+
+        return  React.createElement("div", {className: classNames([
+                        "o-roundedButton",
+                        this.props.className
+                    ]), 
+                    onClick: this.props.onClick}, 
+                     this.props.title
+                );
+    }
+
+});
+
+
+
+
+var EventDetail = React.createClass({displayName: "EventDetail",
+
+    getDefaultProps: function() {
+        return {
+        };
+    },
+
+    getInitialState: function () {
+        return {
+            event:Model.get( RS.route.event )
+        };
+    },
+
+    componentWillMount: function() {
+        var me = this;
+        RouteState.addDiffListeners(
+    		[
+                "event"
+            ],
+    		function ( route , prev_route ) {
+                me.setState({
+                    event:Model.get( RS.route.event )
+                });
+                console.log(Model.get( RS.route.event ));
+                //me.forceUpdate();
+    		},
+            "EventDetail"
+    	);
+    },
+
+    componentWillUnmount: function(){
+        RouteState.removeDiffListenersViaClusterId( "EventDetail" );
+    },
+
+    componentDidMount: function(){
+    },
+
+    componentDidUpdate: function(){
+    },
+
+    render: function() {
+
+        var event = this.state.event;
+        var me = this;
+
+        return  React.createElement("div", {className: "c-eventDetail"
+                    }, 
+                    React.createElement("div", {className: 
+                        "c-eventDetail__intro"}, 
+                        React.createElement("div", {className: 
+                            "c-eventDetail__title"}, 
+                             ( event.type == "mood" )
+                                ? "Mood" : "Experience"
+                        ), 
+                        React.createElement("div", {className: 
+                            "c-eventDetail__subtitle"}, 
+                             ( event.type == "mood" )
+                                ? "Overall Background Feeling"
+                                : "Significant Event"
+                        ), 
+                        React.createElement("div", {className: 
+                            "c-eventDetail__desc"}, 
+                            "This is the edit mode of visualization of the." + ' ' +
+                            "The goal is to completely fill the colors in" + ' ' +
+                            "the timeline below with what you remember" + ' ' +
+                            "about how you felt during that time in your" + ' ' +
+                            "life."
+                        )
+                    ), 
+                    React.createElement("div", {className: 
+                        "c-eventDetail__content" + ' ' +
+                        "a-brand-font-light"}, 
+                        React.createElement("div", {className: "a-fill"}), 
+                        React.createElement("input", {className: 
+                            "o-form__input" + ' ' +
+                            "a-height-row-2" + ' ' +
+                            "a-margin-bottom-row-1", 
+                            value:  event.title, 
+                            onChange: function(evt){
+                                me.state.event.title = evt.target.value;
+                                me.forceUpdate();
+                            }}), 
+                        React.createElement("div", {className: 
+                            "a-flex-h-stretch" + ' ' +
+                            "a-height-row-2" + ' ' +
+                            "a-margin-bottom-row-1"}, 
+                            React.createElement("input", {className: 
+                                "o-form__input" + ' ' +
+                                "a-fill"}), 
+                            React.createElement("input", {className: 
+                                "o-form__input" + ' ' +
+                                "a-border-left-none" + ' ' +
+                                "a-fill"})
+                        ), 
+                        React.createElement("div", {className: 
+                            "a-flex-h-stretch" + ' ' +
+                            "a-height-row-2" + ' ' +
+                            "a-margin-bottom-row-1"}
+                        ), 
+                        React.createElement("textarea", {className: 
+                            "o-form__textarea" + ' ' +
+                            "a-height-row-vh-4" + ' ' +
+                            "a-margin-bottom-row-1"}), 
+                        React.createElement("div", {className: 
+                            "a-flex-h-stretch" + ' ' +
+                            "a-height-row-2" + ' ' +
+                            "a-margin-bottom-row-1"}, 
+                            React.createElement(Button, {className: "", 
+                                title: "delete"}), 
+                            React.createElement(Fill, null), 
+                            React.createElement(Button, {className: 
+                                "a-width-col-1", 
+                                title: "cancel"}), 
+                            React.createElement("div", {className: 
+                                "c-eventDetail__saveButtons"}, 
+                                React.createElement(Button, {className: 
+                                    "c-eventDetail__saveButtons__button" + ' ' +
+                                    "a-width-col-1", 
+                                    title: "Save"}), 
+                                React.createElement("div", {className: 
+                                    "c-eventDetail__saveButtons__seperator"}), 
+                                React.createElement(Button, {className: 
+                                    "c-eventDetail__saveButtons__button" + ' ' +
+                                    "a-width-col-1-half", 
+                                    onClick: function(){
+                                        RS.merge({event:false});
+                                    }, 
+                                    title: "Save & Close"})
+                            )
+
+                        )
+                    ), 
+                    React.createElement("div", {className: 
+                        "c-eventDetail__close"}, 
+                        React.createElement("div", {className: 
+                            "c-eventDetail__closeButton", 
+                            onClick: function(){
+                                RS.merge({event:false});
+                            }}
+                        )
+                    ), 
+
+                    React.createElement("div", {className: classNames([
+                            "c-eventDetail__bottomBorder",
+                            "c-timeline--value_" + (event.value+1)
+                        ])})
+                );
+    }
+
+});
+
+
+
 var Landing = React.createClass({displayName: "Landing",
 
     componentWillMount: function() {
@@ -28646,7 +28910,7 @@ var Circles = React.createClass({displayName: "Circles",
             values[mood.value] += ( prev_mood_time_span + next_mood_time_span );
             totes_values += ( prev_mood_time_span + next_mood_time_span );
         }
-
+        
         // it may not add up to 100% b/c of end values being blank
         var extra_percents = 1 - totes_values;
         var negative_distortion,totes_negative=0;
@@ -29022,6 +29286,14 @@ var Timeline = React.createClass({displayName: "Timeline",
         }
         var time_span = end.getTime() - start.getTime();
 
+        function getEventOnClick (event){
+            return function(){
+                RS.merge({
+                    "event":event.guid
+                });
+            };
+        }
+
         var mood,mood_time,mood_percent;
         var grads=["#e9e9e9"];
         var mood_items = [];
@@ -29044,12 +29316,7 @@ var Timeline = React.createClass({displayName: "Timeline",
                             "c-timeline__mood",
                             "c-timeline--value_" + (mood.value+1)
                         ]), style: {left:Math.round( mood_percent * 100 ) + "%"}, 
-                        onClick: function(){
-                            RS.merge({
-                                "editing:mood":mood.guid,
-                                "event":false
-                            });
-                        }}
+                        onClick: getEventOnClick(mood)}
                     )
                 );
             }
@@ -29067,6 +29334,8 @@ var Timeline = React.createClass({displayName: "Timeline",
             if (
                 event_percent <= 1 && event_percent >=0
             ) {
+                var event_guid = event.guid;
+
                 event_items.push(
                     React.createElement("div", {key: "timeline_"+event.guid, 
                         className: classNames([
@@ -29074,12 +29343,7 @@ var Timeline = React.createClass({displayName: "Timeline",
                             "c-timeline__circle--intensity_" + event.intensity,
                             "c-timeline--value_" + (event.value+1)
                         ]), style: {left:Math.round( event_percent * 100 ) + "%"}, 
-                        onClick: function(){
-                            RS.merge({
-                                "editing:event":event.guid,
-                                "mood":false
-                            });
-                        }}
+                        onClick: getEventOnClick(event)}
                     )
                 );
             }
@@ -29127,10 +29391,15 @@ var TimelineEditor = React.createClass({displayName: "TimelineEditor",
     		},
             "TimelineEditor"
     	);
+
+        Event.on( "timeline_updated", function(){
+            me.forceUpdate();
+        },"TimelineEditor");
     },
 
     componentWillUnmount: function(){
         RouteState.removeDiffListenersViaClusterId( "TimelineEditor" );
+        Event.remove("TimelineEditor");
     },
 
     componentDidMount: function(){
@@ -29237,9 +29506,6 @@ var TimelineEditor = React.createClass({displayName: "TimelineEditor",
                             is_editing:  is_editing })
                     ), 
 
-
-
-
                     React.createElement("div", {className: "c-timelineEditor__editSubmit"}, 
                         React.createElement("div", {className: 
                             "c-timelineEditor__editSubmit__header", 
@@ -29286,6 +29552,10 @@ var TimelineEditor = React.createClass({displayName: "TimelineEditor",
                                 "Save & Done"
                             )
                         )
+                    ), 
+
+                    React.createElement("div", {className: "c-timelineEditor__eventDetail"}, 
+                        React.createElement(EventDetail, null)
                     )
                 );
     }
@@ -29336,6 +29606,38 @@ var TimelineHeader = React.createClass({displayName: "TimelineHeader",
     },
 
     componentDidUpdate: function(){
+    },
+
+    updateTitleFromInput: function () {
+        if ( this.state.title.length > 0 ) {
+            this.state.timeline.title = this.state.title;
+            Event.fire("timeline_updated");
+            this.forceUpdate();
+        }
+    },
+
+    updateStartDateInput: function() {
+        if ( this.state.start_date_valid ) {
+            this.state.timeline.start_date
+                = moment( this.state.start_date ,'MM/DD/YYYY', true ).format();
+            Event.fire("timeline_updated");
+            this.forceUpdate();
+        }
+    },
+
+    updateEndDateInput: function () {
+        if ( this.state.end_date_valid ) {
+            if ( this.state.end_date == "" ) {
+                this.state.is_open_ended = true;
+                this.state.timeline.end_date
+                    = moment().format();
+            }else{
+                this.state.timeline.end_date
+                    = moment( this.state.end_date ,'MM/DD/YYYY', true ).format();
+            }
+            Event.fire("timeline_updated");
+            this.forceUpdate();
+        }
     },
 
     render: function() {
@@ -29389,7 +29691,13 @@ var TimelineHeader = React.createClass({displayName: "TimelineHeader",
                                 onChange: function(evt){
                                     me.state.title = evt.target.value;
                                     me.forceUpdate();
-                                }})
+                                }, 
+                                onKeyUp: function(evt){
+                                    if (evt.key === 'Enter') {
+                                        me.updateTitleFromInput();
+                                    }
+                                }, 
+                                onBlur: this.updateTitleFromInput})
                         ), 
                         React.createElement("div", {className: 
                             "o-form__v-layout" + ' ' +
@@ -29417,7 +29725,13 @@ var TimelineHeader = React.createClass({displayName: "TimelineHeader",
                                     me.state.start_date_valid
                                         = moment( evt.target.value ,'MM/DD/YYYY', true ).isValid();
                                     me.forceUpdate();
-                                }})
+                                }, 
+                                onKeyUp: function(evt){
+                                    if (evt.key === 'Enter') {
+                                        me.updateStartDateInput();
+                                    }
+                                }, 
+                                onBlur: this.updateStartDateInput})
                         ), 
                         React.createElement("div", {className: 
                             "o-form__v-layout" + ' ' +
@@ -29449,7 +29763,13 @@ var TimelineHeader = React.createClass({displayName: "TimelineHeader",
                                             = moment( evt.target.value ,'MM/DD/YYYY', true ).isValid();
                                     }
                                     me.forceUpdate();
-                                }})
+                                }, 
+                                onKeyUp: function(evt){
+                                    if (evt.key === 'Enter') {
+                                        me.updateEndDateInput();
+                                    }
+                                }, 
+                                onBlur: this.updateEndDateInput})
                         )
                     ), 
                     React.createElement("div", {className: 
@@ -29466,3 +29786,77 @@ var TimelineHeader = React.createClass({displayName: "TimelineHeader",
     }
 
 });
+
+
+
+var _Event = function () {
+    this.listeners = {};
+    this.listenerClusters = {};
+};
+
+_Event.prototype = {
+
+    on: function (
+    	prop,
+    	callback,
+    	cluster_id
+    )
+    {
+    	if ( !this.listeners[ prop ] ) {
+    		this.listeners[ prop ] = [];
+    	}
+    	this.listeners[ prop ].push( callback );
+
+    	if ( cluster_id ) {
+    		if ( !this.listenerClusters[ cluster_id ] ) {
+    			this.listenerClusters[ cluster_id ] = [];
+    		}
+    		this.listenerClusters[ cluster_id ].push( callback );
+    	}
+
+    	return callback;
+    },
+
+    remove: function ( difflistener_id )
+    {
+        // try clusters first...
+        var cluster_id = difflistener_id;
+        if ( this.listenerClusters[cluster_id] ) {
+    		var callbacks = this.listenerClusters[cluster_id];
+    		for ( var c=0; c<callbacks.length; c++ ) {
+    			callback = callbacks[c]; 
+    			this.remove( callback );
+    		}
+    		this.listenerClusters[cluster_id] = false;
+    		delete this.listenerClusters[cluster_id];
+    	}else{
+            for ( var prop in this.listeners ) {
+        		callbacks = this.listeners[prop];
+        		for ( var c=0; c<callbacks.length; c++ ) {
+        			callback = callbacks[c];
+
+        			if ( callback === difflistener_id ) {
+        				callbacks.splice( c , 1 );
+        				break;
+        			}
+        		}
+        	}
+        }
+    },
+
+    fire: function ( event )
+    {
+        console.log( event );
+        var callbacks = this.listeners[ event ];
+        if ( callbacks ) {
+            var callback;
+            for ( var c=0; c<callbacks.length; c++ ) {
+				callback = callbacks[c];
+				callback();
+        	}
+        }
+    }
+
+};
+
+var Event = new _Event();

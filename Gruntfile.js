@@ -103,7 +103,8 @@ module.exports = function(grunt) {
     configObj.watch = configObj.watch || {};
     configObj.watch["react_prototype"] = {
         files:[
-            'prototype/**/*.jsx'
+            'prototype/**/*.jsx',
+            'prototype/**/*.js'
         ],
         tasks: ["react","concat:prototype_js"]
     };

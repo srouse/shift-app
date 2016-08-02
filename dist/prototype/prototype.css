@@ -98,6 +98,7 @@
 .o-icon-close-16,
 .o-icon-close-32,
 .o-icon-close-64,
+.c-eventDetail__closeButton,
 .c-timelineEditor__editSubmit__header__icon {
   background-image: url('data:image/svg+xml;charset=US-ASCII,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%20standalone%3D%22no%22%3F%3E%0A%3Csvg%20width%3D%2264px%22%20height%3D%2264px%22%20viewBox%3D%220%200%2064%2064%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0A%20%20%20%20%3C!--%20Generator%3A%20Sketch%2039.1%20(31720)%20-%20http%3A%2F%2Fwww.bohemiancoding.com%2Fsketch%20--%3E%0A%20%20%20%20%3Ctitle%3Eclose-16%2C32%2C64%3C%2Ftitle%3E%0A%20%20%20%20%3Cdesc%3ECreated%20with%20Sketch.%3C%2Fdesc%3E%0A%20%20%20%20%3Cdefs%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Cg%20id%3D%22Page-1%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Cg%20id%3D%22Artboard%22%20transform%3D%22translate(-204.000000%2C%20-225.000000)%22%20fill%3D%22%23555555%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M239.941125%2C252.941125%20L239.941125%2C232.941125%20L231.941125%2C232.941125%20L231.941125%2C252.941125%20L211.941125%2C252.941125%20L211.941125%2C260.941125%20L231.941125%2C260.941125%20L231.941125%2C280.941125%20L239.941125%2C280.941125%20L239.941125%2C260.941125%20L259.941125%2C260.941125%20L259.941125%2C252.941125%20L239.941125%2C252.941125%20Z%22%20id%3D%22Combined-Shape%22%20transform%3D%22translate(235.941125%2C%20256.941125)%20rotate(-315.000000)%20translate(-235.941125%2C%20-256.941125)%20%22%3E%3C%2Fpath%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E');
   background-repeat: no-repeat;
@@ -106,6 +107,7 @@
   background-size: 16px 16px;
 }
 .o-icon-close-32,
+.c-eventDetail__closeButton,
 .c-timelineEditor__editSubmit__header__icon {
   background-size: 32px 32px;
 }
@@ -431,6 +433,10 @@ select::-ms-expand {
   border-radius: 3px;
   background-color: #fff !important;
 }
+.o-form__textarea {
+  padding-top: 10px !important;
+  resize: none;
+}
 .o-form__select {
   background-position: right center;
   background-color: #fff !important;
@@ -754,6 +760,116 @@ select.o-form__select:invalid {
 .c-shiftApp {
   width: 100% !important;
   height: 100% !important;
+}
+.c-eventDetail {
+  display: -ms-flexbox;
+  -ms-flex-direction: row ;
+  -ms-flex-pack: start ;
+  -ms-flex-align: stretch ;
+  display: flex !important;
+  flex-flow: row nowrap !important;
+  justify-content: flex-start !important;
+  align-items: stretch !important;
+  position: absolute !important;
+  top: 0px !important;
+  right: 0px !important;
+  bottom: 0px !important;
+  left: 0px !important;
+  overflow: hidden  !important;
+  padding-bottom: 6px;
+}
+.c-eventDetail__bottomBorder {
+  position: absolute  !important;
+  width: 100% !important;
+  height: 6px;
+  bottom: 0px  !important;
+  left: 0px  !important;
+}
+.c-eventDetail__intro {
+  width: 29.166655vw !important;
+  padding-left: 4.166665vw !important;
+  padding-right: 4.166665vw !important;
+  padding-top: 4.16665vh !important;
+  padding-bottom: 4.16665vh !important;
+}
+.c-eventDetail__title {
+  font-size: 27px !important;
+  line-height: 40px !important;
+  color: #4D4D4D !important;
+  font-family: "Teko Bold";
+}
+.c-eventDetail__subtitle {
+  font-size: 13px !important;
+  line-height: 15px !important;
+}
+.c-eventDetail__desc {
+  margin-top: 10px !important;
+  font-size: 13px !important;
+  line-height: 15px !important;
+  font-family: 'Avenir LT W01 35 Light', sans-serif;
+  color: #999999 !important;
+}
+.c-eventDetail__content {
+  -ms-flex: 1 ;
+  flex: 1 !important;
+  min-height: 0 !important;
+  /* firefox hack for scrolling children */
+  /* webkit hack for height issues */
+  display: -ms-flexbox;
+  -ms-flex-direction: column ;
+  -ms-flex-pack: start ;
+  -ms-flex-align: stretch ;
+  display: flex !important;
+  flex-flow: column nowrap !important;
+  justify-content: flex-start !important;
+  align-items: stretch !important;
+}
+.c-eventDetail__saveButtons {
+  width: 20.833325vw !important;
+  display: -ms-flexbox;
+  -ms-flex-direction: row ;
+  -ms-flex-pack: start ;
+  -ms-flex-align: stretch ;
+  display: flex !important;
+  flex-flow: row nowrap !important;
+  justify-content: flex-start !important;
+  align-items: stretch !important;
+  background-color: #4D4D4D !important;
+  border-radius: 4px;
+}
+.c-eventDetail__saveButtons__seperator {
+  height: 20px !important;
+  width: 1px;
+  -ms-flex-item-align: center ;
+  align-self: center !important;
+  background-color: #808080 !important;
+}
+.c-eventDetail__saveButtons__button {
+  color: #fff !important;
+}
+.c-eventDetail__saveButtons__button:hover {
+  color: #999999 !important;
+}
+.c-eventDetail__close {
+  width: 29.166655vw !important;
+  display: -ms-flexbox;
+  -ms-flex-direction: column ;
+  -ms-flex-pack: start ;
+  -ms-flex-align: end ;
+  display: flex !important;
+  flex-flow: column nowrap !important;
+  justify-content: flex-start !important;
+  align-items: flex-end !important;
+  padding-left: 4.166665vw !important;
+  padding-right: 4.166665vw !important;
+  padding-top: 4.16665vh !important;
+  padding-bottom: 4.16665vh !important;
+}
+.c-eventDetail__closeButton {
+  width: 8.33333vw !important;
+  height: 8.3333vh !important;
+  cursor: hand  !important;
+  cursor: pointer  !important;
 }
 @font-face {
   font-family: "Teko";
@@ -1368,7 +1484,7 @@ p {
 .c-timeline__circle {
   border-radius: 50%;
   position: absolute  !important;
-  transition: top 0.3s !important;
+  transition: all 0.3s !important;
   cursor: hand  !important;
   cursor: pointer  !important;
 }
@@ -1604,6 +1720,19 @@ p {
 }
 .c-timelineEditor__timeline {
   height: 16.6666vh !important;
+}
+.c-timelineEditor__eventDetail {
+  position: absolute  !important;
+  top: 0px  !important;
+  left: 0px  !important;
+  width: 100% !important;
+  height: 0 !important;
+  background-color: #fff !important;
+  box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.1) !important;
+  transition: height 0.3s !important;
+}
+.s_event .c-timelineEditor__eventDetail {
+  height: 83.333vh !important;
 }
 .c-timelineEditor__editSubmit {
   width: 16.66666vw !important;

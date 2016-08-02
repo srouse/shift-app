@@ -81,7 +81,7 @@ var Circles = React.createClass({
             values[mood.value] += ( prev_mood_time_span + next_mood_time_span );
             totes_values += ( prev_mood_time_span + next_mood_time_span );
         }
-
+        
         // it may not add up to 100% b/c of end values being blank
         var extra_percents = 1 - totes_values;
         var negative_distortion,totes_negative=0;

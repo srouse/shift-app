@@ -20,10 +20,15 @@ var TimelineEditor = React.createClass({
     		},
             "TimelineEditor"
     	);
+
+        Event.on( "timeline_updated", function(){
+            me.forceUpdate();
+        },"TimelineEditor");
     },
 
     componentWillUnmount: function(){
         RouteState.removeDiffListenersViaClusterId( "TimelineEditor" );
+        Event.remove("TimelineEditor");
     },
 
     componentDidMount: function(){
@@ -130,9 +135,6 @@ var TimelineEditor = React.createClass({
                             is_editing={ is_editing } />
                     </div>
 
-
-
-
                     <div className="c-timelineEditor__editSubmit">
                         <div className="
                             c-timelineEditor__editSubmit__header"
@@ -179,6 +181,10 @@ var TimelineEditor = React.createClass({
                                 Save & Done
                             </div>
                         </div>
+                    </div>
+
+                    <div className="c-timelineEditor__eventDetail">
+                        <EventDetail />
                     </div>
                 </div>;
     }

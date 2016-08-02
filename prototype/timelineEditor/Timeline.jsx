@@ -121,6 +121,14 @@ var Timeline = React.createClass({
         }
         var time_span = end.getTime() - start.getTime();
 
+        function getEventOnClick (event){
+            return function(){
+                RS.merge({
+                    "event":event.guid
+                });
+            };
+        }
+
         var mood,mood_time,mood_percent;
         var grads=["#e9e9e9"];
         var mood_items = [];
@@ -143,12 +151,7 @@ var Timeline = React.createClass({
                             "c-timeline__mood",
                             "c-timeline--value_" + (mood.value+1)
                         ])} style={{left:Math.round( mood_percent * 100 ) + "%"}}
-                        onClick={function(){
-                            RS.merge({
-                                "editing:mood":mood.guid,
-                                "event":false
-                            });
-                        }}>
+                        onClick={getEventOnClick(mood)}>
                     </div>
                 );
             }
@@ -166,6 +169,8 @@ var Timeline = React.createClass({
             if (
                 event_percent <= 1 && event_percent >=0
             ) {
+                var event_guid = event.guid;
+
                 event_items.push(
                     <div key={"timeline_"+event.guid}
                         className={classNames([
@@ -173,12 +178,7 @@ var Timeline = React.createClass({
                             "c-timeline__circle--intensity_" + event.intensity,
                             "c-timeline--value_" + (event.value+1)
                         ])} style={{left:Math.round( event_percent * 100 ) + "%"}}
-                        onClick={function(){
-                            RS.merge({
-                                "editing:event":event.guid,
-                                "mood":false
-                            });
-                        }}>
+                        onClick={getEventOnClick(event)}>
                     </div>
                 );
             }
