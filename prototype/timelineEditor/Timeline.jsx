@@ -6,6 +6,7 @@ var Timeline = React.createClass({
     getDefaultProps: function() {
         return {
             timeline:false,
+            event:false,
             is_editing:false
         };
     },
@@ -22,7 +23,6 @@ var Timeline = React.createClass({
     		},
             "TimelineEditor"
     	);*/
-
     },
 
     componentWillUnmount: function(){
@@ -132,6 +132,12 @@ var Timeline = React.createClass({
         var mood,mood_time,mood_percent;
         var grads=["#e9e9e9"];
         var mood_items = [];
+
+        //sort by date
+        timeline.moods.sort(function(a,b) {
+            return new Date(a.date).getTime() - new Date(b.date).getTime()
+        });
+
         for ( var i=0; i<timeline.moods.length; i++ ) {
             mood = timeline.moods[i];
             mood_time = new Date( mood.date ).getTime() - start.getTime();
@@ -149,7 +155,8 @@ var Timeline = React.createClass({
                     <div key={"timeline_"+mood.guid}
                         className={classNames([
                             "c-timeline__mood",
-                            "c-timeline--value_" + (mood.value+1)
+                            "c-timeline--value_" + (mood.value+1),
+                            {"c-timeline__mood--selected":this.props.event === mood}
                         ])} style={{left:Math.round( mood_percent * 100 ) + "%"}}
                         onClick={getEventOnClick(mood)}>
                     </div>
@@ -161,6 +168,10 @@ var Timeline = React.createClass({
 
         var event,event_time,event_percent;
         var event_items = [];
+        //sort by date
+        timeline.events.sort(function(a,b) {
+            return new Date(a.date).getTime() - new Date(b.date).getTime()
+        });
         for ( var i=0; i<timeline.events.length; i++ ) {
             event = timeline.events[i];
             event_time = new Date( event.date ).getTime() - start.getTime();
@@ -176,18 +187,35 @@ var Timeline = React.createClass({
                         className={classNames([
                             "c-timeline__circle",
                             "c-timeline__circle--intensity_" + event.intensity,
-                            "c-timeline--value_" + (event.value+1)
-                        ])} style={{left:Math.round( event_percent * 100 ) + "%"}}
+                            "c-timeline--value_" + (event.value+1),
+                            {"c-timeline__circle--selected":this.props.event === event}
+                        ])}
+                        style={{left:Math.round( event_percent * 100 ) + "%"}}
                         onClick={getEventOnClick(event)}>
                     </div>
                 );
             }
         }
 
+        var selected_event_time = new Date( this.props.event.date ).getTime() - start.getTime();
+        var selected_event_percent = selected_event_time/time_span;
+        var selected_item = "";
+        if ( this.props.event ) {
+            selected_item =  <div className={classNames([
+                                    "c-timeline__selected",
+                                    "c-timeline--value_" + (this.props.event.value+1)
+                                ])}
+                                style={{
+                                    left:Math.round( selected_event_percent * 100 ) + "%"}
+                                }>
+                            </div>;
+        }
+
         return  <div className={classNames([
                         "c-timeline",
                         {"c-timeline--editing":this.props.is_editing}
                     ])}>
+
                     <div className="c-timeline__xaxis"></div>
                     <div className="c-timeline__graph"
                         style={{
@@ -199,6 +227,7 @@ var Timeline = React.createClass({
                         <div className="c-timeline__eventEdit"></div>
                         { event_items }
                     </div>
+                    { selected_item }
                 </div>;
     }
 

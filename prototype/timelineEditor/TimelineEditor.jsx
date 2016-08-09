@@ -5,7 +5,8 @@ var TimelineEditor = React.createClass({
 
     getInitialState: function () {
         return {
-            timeline:Model.get( RS.route.timeline )
+            timeline:Model.get( RS.route.timeline ),
+            event:Model.get( RS.route.event )
         };
     },
 
@@ -17,6 +18,17 @@ var TimelineEditor = React.createClass({
             ],
     		function ( route , prev_route ) {
                 me.forceUpdate();
+    		},
+            "TimelineEditor"
+    	);
+        RouteState.addDiffListeners(
+    		[
+                "event"
+            ],
+    		function ( route , prev_route ) {
+                me.setState({
+                    event:Model.get( RS.route.event )
+                })
     		},
             "TimelineEditor"
     	);
@@ -64,7 +76,7 @@ var TimelineEditor = React.createClass({
 
         var timeline = this.state.timeline;//Model.get( RS.route.timeline );
 
-        console.log( timeline );
+        //console.log( timeline );
         var is_editing = typeof RS.route.editing !== 'undefined';
 
         return  <div className={classNames([
@@ -132,6 +144,7 @@ var TimelineEditor = React.createClass({
                     <div className="c-timelineEditor__timeline">
                         <Timeline
                             timeline={ timeline }
+                            event={ this.state.event }
                             is_editing={ is_editing } />
                     </div>
 

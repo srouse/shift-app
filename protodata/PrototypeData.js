@@ -73,8 +73,9 @@ module.exports = {
 
             this.type = args.type;
             this.value = pd.random( 0 , 4 );
+            this.intensity = 1;
             if ( this.type == "event" ) {
-                this.intensity = pd.random( 1 , 3 );
+                this.intensity = pd.random( 0 , 2 );
             }
         }
     }

@@ -10,7 +10,9 @@ var EventDetail = React.createClass({
 
     getInitialState: function () {
         return {
-            event:Model.get( RS.route.event )
+            event:Model.get( RS.route.event ),
+            date:moment( Model.get( RS.route.event ).date ).format('MM/DD/YYYY'),
+            date_valid:true
         };
     },
 
@@ -39,6 +41,41 @@ var EventDetail = React.createClass({
     },
 
     componentDidUpdate: function(){
+    },
+
+    updateDateInput: function() {
+        if ( this.state.date_valid ) {
+            this.state.event.date
+                = moment( this.state.date ,'MM/DD/YYYY', true ).format();
+            Event.fire("timeline_updated");
+            this.forceUpdate();
+        }
+    },
+
+    updateEventType: function( event, type ) {
+        event.type = type;
+
+        if ( type == "event" ) {
+            if ( event.timeline.moods.indexOf( event ) != -1 ) {
+                event.timeline.moods.splice(
+                    event.timeline.moods.indexOf( event ), 1
+                );
+            }
+            if ( event.timeline.events.indexOf( event ) == -1 ) {
+                event.timeline.events.push( event );
+            }
+        }else{
+            if ( event.timeline.events.indexOf( event ) != -1 ) {
+                event.timeline.events.splice(
+                    event.timeline.events.indexOf( event ), 1
+                );
+            }
+            if ( event.timeline.moods.indexOf( event ) == -1 ) {
+                event.timeline.moods.push( event );
+            }
+        }
+        Event.fire("timeline_updated");
+        this.forceUpdate();
     },
 
     render: function() {
@@ -73,7 +110,7 @@ var EventDetail = React.createClass({
                     <div className="
                         c-eventDetail__content
                         a-brand-font-light">
-                        <div className="a-fill"></div>
+                        <div className="a-height-row-vh-1-half"></div>
                         <input className="
                             o-form__input
                             a-height-row-2
@@ -87,22 +124,72 @@ var EventDetail = React.createClass({
                             a-flex-h-stretch
                             a-height-row-2
                             a-margin-bottom-row-1">
-                            <input className="
-                                o-form__input
-                                a-fill" />
-                            <input className="
-                                o-form__input
-                                a-border-left-none
-                                a-fill" />
+                            <select className="
+                                o-form__select
+                                a-fill"
+                                value={ event.type }
+                                onChange={function( evt ) {
+                                    me.updateEventType( event , evt.target.value );
+                                }}>
+                                <option value="mood">Mood</option>
+                                <option value="event">Experience</option>
+                            </select>
+                            <input className={classNames([
+                                    "o-form__input",
+                                    "a-fill a-border-left-none",
+                                    {"o-form--invalid":!this.state.date_valid}
+                                ])}
+                                value={ this.state.date }
+                                onChange={function(evt){
+                                    me.state.date = evt.target.value;
+                                    me.state.date_valid
+                                        = moment( evt.target.value ,'MM/DD/YYYY', true ).isValid();
+                                    me.forceUpdate();
+                                }}
+                                onKeyUp={function(evt){
+                                    if (evt.key === 'Enter') {
+                                        me.updateDateInput();
+                                    }
+                                }}
+                                onBlur={this.updateDateInput} />
                         </div>
                         <div className="
                             a-flex-h-stretch
                             a-height-row-2
                             a-margin-bottom-row-1">
+                            <select className="
+                                o-form__select
+                                a-fill"
+                                value={ event.value }
+                                onChange={function( evt ) {
+                                    event.value = parseInt( evt.target.value );
+                                    Event.fire("timeline_updated");
+                                    me.forceUpdate();
+                                }}>
+                                <option value="4">Great</option>
+                                <option value="3">Good</option>
+                                <option value="2">Meh</option>
+                                <option value="1">Bad</option>
+                                <option value="0">Awful</option>
+                            </select>
+                            <select className="
+                                o-form__select
+                                a-border-left-none
+                                a-fill"
+                                value={ event.intensity }
+                                onChange={function( evt ) {
+                                    event.intensity = parseInt( evt.target.value );
+                                    Event.fire("timeline_updated");
+                                    me.forceUpdate();
+                                }}>
+                                <option value="2">High Intensity</option>
+                                <option value="1">Medium Intensity</option>
+                                <option value="0">Low Intensity</option>
+                            </select>
                         </div>
                         <textarea className="
                             o-form__textarea
-                            a-height-row-vh-4
+                            a-fill
                             a-margin-bottom-row-1" />
                         <div className="
                             a-flex-h-stretch

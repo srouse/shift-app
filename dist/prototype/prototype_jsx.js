@@ -164,6 +164,338 @@ var RoundedButton = React.createClass({displayName: "RoundedButton",
 
 
 
+
+
+var ValuePicker = React.createClass({displayName: "ValuePicker",
+
+    getDefaultProps: function() {
+        return {
+            classes:[],
+            value:false,
+            floor:false,
+            ceiling:false,
+            hover_value:false,
+            multiplier:1,
+            allow_false_extents:true,
+            reactKey:"ValuePicker",
+            labels:["Awful","Bad","Eh","OK","Good","Great"],
+            type:"quality",//or quantity
+            onChange:function(){}
+        };
+    },
+
+    getInitialState: function() {
+        return {
+            value:this._processIncomingValue( this.props.value ),// will be moment() obj
+            floor:this._processIncomingValue( this.props.floor ),
+            ceiling:this._processIncomingValue( this.props.ceiling ),
+            classes:this.props.classes,
+            hover_value:this.props.hover_value,
+            onChange:this.props.onChange
+        };
+    },
+
+    componentWillReceiveProps: function ( nextProps ) {
+        this.setState({
+            value:this._processIncomingValue( nextProps.value ),// will be moment() obj
+            floor:this._processIncomingValue( nextProps.floor ),
+            ceiling:this._processIncomingValue( nextProps.ceiling ),
+        });
+    },
+
+    _processIncomingValue: function ( value ) {
+        if ( !value && value !== 0 ) {
+            return false;
+        }else{
+            return Math.round( parseInt( value ) / this.props.multiplier );
+        }
+    },
+
+    componentWillMount: function() {
+    },
+
+    componentWillUnmount: function(){
+    },
+
+    componentDidMount: function () {
+    },
+
+    componentWillUpdate: function () {
+    },
+
+    changeHover : function ( new_hover_value ) {
+        this.setState({
+            hover_value:new_hover_value
+        });
+    },
+
+    callOnChange: function ( new_value, new_ceiling, new_floor ) {
+
+        if ( new_value !== false ) {
+            new_value = new_value * this.props.multiplier;
+        }
+
+        if ( new_ceiling !== false ) {
+            new_ceiling = new_ceiling * this.props.multiplier;
+        }
+
+        if ( new_floor !== false ) {
+            new_floor = new_floor * this.props.multiplier;
+        }
+
+        if ( this.props.allow_false_extents === false ) {
+            if ( new_ceiling === false ) {
+                new_ceiling = new_value;
+            }
+            if ( new_floor === false ) {
+                new_floor = new_value;
+            }
+        }
+
+        this.state.onChange(
+            new_value,
+            new_ceiling,
+            new_floor
+        );
+    },
+
+    changeValue : function ( new_value ) {
+
+        if ( this.props.type == "quality" ) {
+            if ( this.state.value !== false && this.state.value !== new_value ) {
+                if ( new_value < this.state.value ) {
+                    if ( new_value === this.state.floor ) {
+                        new_value = false;
+                    }
+
+                    this.callOnChange(
+                        this.state.value ,
+                        this.state.ceiling,
+                        new_value
+                    );
+                }else{
+                    if ( new_value === this.state.ceiling ) {
+                        new_value = false;
+                    }
+
+                    this.callOnChange(
+                        this.state.value,
+                        new_value,
+                        this.state.floor
+                    );
+                }
+            }else{
+                if ( this.state.value === new_value ) {
+                    new_value = false;
+                }
+
+                this.callOnChange(
+                    new_value,
+                    false,
+                    false
+                );
+            }
+        }else{
+            if ( this.state.value === new_value ) {
+                new_value = false;
+            }
+
+            this.callOnChange(
+                new_value,
+                false,
+                false
+            );
+        }
+
+    },
+
+    render: function() {
+        var me = this;
+
+        return  React.createElement("div", {className: classNames([
+                        "o-valuePicker",
+                        {"o-valuePicker--valueSet":this.state.value !== false},
+                        this.state.classes
+                    ])}, 
+                    React.createElement("div", {className: "o-valuePickerFeedback"}, 
+                    this.props.labels.map(function(label,index) {
+                        if ( label === false )
+                            return "";
+
+                        return React.createElement(ValueTile, {index:  index, 
+                                    value:  me.state.value, 
+                                    ceiling:  me.state.ceiling, 
+                                    floor:  me.state.floor, 
+                                    hover_value:  me.state.hover_value, 
+                                    onChange:  me.changeValue, 
+                                    onHover:  me.changeHover, 
+                                    label:  me.props.labels[index], 
+                                    type:  me.props.type, 
+                                    key:    "value_picker_" +
+                                            me.props.reactKey
+                                            + "_" + index})
+                    })
+                    )
+                );
+    }
+
+});
+
+
+
+
+
+
+var ValueTile = React.createClass({displayName: "ValueTile",
+
+    getDefaultProps: function() {
+        return {
+            classes:[],
+            value:false,
+            floor:false,
+            ceiling:false,
+            hover_value:false,
+            index:false,
+            labels:["Awful","Bad","Eh","OK","Good","Great"],
+            onChange:function(){},
+            onHover:function(){}
+        };
+    },
+
+    componentWillMount: function() {
+    },
+
+    componentWillUnmount: function(){
+    },
+
+    componentDidMount: function () {
+    },
+
+    componentWillUpdate: function () {
+    },
+
+    componentWillReceiveProps: function ( nextProps ) {
+
+    },
+
+    changeHover : function () {
+        /*this.setState({
+            hover_value:new_hover_value
+        });*/
+        this.props.onHover( this.props.index );
+    },
+
+    changeHoverOut : function () {
+        /*this.setState({
+            hover_value:new_hover_value
+        });*/
+        this.props.onHover( false );
+    },
+
+    changeValue : function () {
+        this.props.onChange( this.props.index );
+    },
+
+
+    renderClassNames: function () {
+        if ( this.props.type == "quality" ) {
+            return classNames([
+                        "o-valuePickerFeedback__item",
+                        {"o-valuePickerFeedback__item--selected":
+                            this.props.value === this.props.index
+                        },
+                        {"o-valuePickerFeedback__item--notselected":
+                            this.props.value !== this.props.index
+                        },
+
+                        {"o-valuePickerFeedback__item--above":
+                            this.props.value !== false && this.props.value < this.props.index
+                        },
+                        {"o-valuePickerFeedback__item--below":
+                            this.props.value !== false && this.props.value > this.props.index
+                        },
+
+                        {"o-valuePickerFeedback__item--fullBar":
+                            (      this.props.ceiling !== false
+                                && this.props.ceiling > this.props.index
+                                && this.props.value < this.props.index )
+                            ||
+                            (      this.props.floor !== false
+                                && this.props.floor < this.props.index
+                                && this.props.value > this.props.index )
+                        },
+
+                        {"o-valuePickerFeedback__item--prevBar":
+                            ( this.props.floor !== false &&
+                                this.props.floor < this.props.index &&
+                                this.props.value == this.props.index )
+                        },
+                        {"o-valuePickerFeedback__item--afterBar":
+                            ( this.props.ceiling !== false &&
+                                this.props.ceiling > this.props.index &&
+                                this.props.value == this.props.index )
+                        },
+
+                        {"o-valuePickerFeedback__item--hoverExtent":
+                            this.props.hover_value !== false &&
+                            ( this.props.hover_value == this.props.index &&
+                                this.props.value != this.props.index )
+                        },
+
+
+                        {"o-valuePickerFeedback__item--floor":
+                            this.props.floor === this.props.index &&
+                            this.props.value !== this.props.index
+                        },
+                        {"o-valuePickerFeedback__item--ceiling":
+                            this.props.ceiling === this.props.index &&
+                            this.props.value !== this.props.index
+                        }
+
+                    ]);
+        }else{
+            return classNames([
+                        "o-valuePickerFeedback__itemQuantity",
+                        {"o-valuePickerFeedback__itemQuantity--selected":
+                            this.props.value === this.props.index
+                        },
+                        {"o-valuePickerFeedback__itemQuantity--notselected":
+                            this.props.value !== this.props.index
+                        }
+
+                    ]);
+        }
+    },
+
+    render: function() {
+        var me = this;
+
+        return  React.createElement("div", {className: this.renderClassNames(), 
+                    onClick: this.changeValue, 
+                    onMouseOver:  this.changeHover, 
+                    onMouseOut:  this.changeHoverOut}, 
+                    React.createElement("div", {className: "o-valuePickerFeedback__label", 
+                        onClick: this.changeValue}, 
+                         this.props.label
+                    ), 
+                    React.createElement("div", {className: "o-valuePickerFeedback__line", 
+                        onClick: this.changeValue}), 
+                    React.createElement("div", {className: "o-valuePickerFeedback__dot", 
+                        onClick: this.changeValue}), 
+                    React.createElement("div", {className: "o-valuePickerFeedback__bar", 
+                        onClick: this.changeValue}, 
+                        React.createElement("div", {className: "o-valuePickerFeedback__barCenter"})
+                    ), 
+                    React.createElement("div", {className: "o-valuePickerFeedback__extentHover", 
+                        onClick: this.changeValue})
+                );
+    }
+
+});
+
+
+
+
 var EventDetail = React.createClass({displayName: "EventDetail",
 
     getDefaultProps: function() {
@@ -173,7 +505,9 @@ var EventDetail = React.createClass({displayName: "EventDetail",
 
     getInitialState: function () {
         return {
-            event:Model.get( RS.route.event )
+            event:Model.get( RS.route.event ),
+            date:moment( Model.get( RS.route.event ).date ).format('MM/DD/YYYY'),
+            date_valid:true
         };
     },
 
@@ -202,6 +536,41 @@ var EventDetail = React.createClass({displayName: "EventDetail",
     },
 
     componentDidUpdate: function(){
+    },
+
+    updateDateInput: function() {
+        if ( this.state.date_valid ) {
+            this.state.event.date
+                = moment( this.state.date ,'MM/DD/YYYY', true ).format();
+            Event.fire("timeline_updated");
+            this.forceUpdate();
+        }
+    },
+
+    updateEventType: function( event, type ) {
+        event.type = type;
+
+        if ( type == "event" ) {
+            if ( event.timeline.moods.indexOf( event ) != -1 ) {
+                event.timeline.moods.splice(
+                    event.timeline.moods.indexOf( event ), 1
+                );
+            }
+            if ( event.timeline.events.indexOf( event ) == -1 ) {
+                event.timeline.events.push( event );
+            }
+        }else{
+            if ( event.timeline.events.indexOf( event ) != -1 ) {
+                event.timeline.events.splice(
+                    event.timeline.events.indexOf( event ), 1
+                );
+            }
+            if ( event.timeline.moods.indexOf( event ) == -1 ) {
+                event.timeline.moods.push( event );
+            }
+        }
+        Event.fire("timeline_updated");
+        this.forceUpdate();
     },
 
     render: function() {
@@ -236,7 +605,7 @@ var EventDetail = React.createClass({displayName: "EventDetail",
                     React.createElement("div", {className: 
                         "c-eventDetail__content" + ' ' +
                         "a-brand-font-light"}, 
-                        React.createElement("div", {className: "a-fill"}), 
+                        React.createElement("div", {className: "a-height-row-vh-1-half"}), 
                         React.createElement("input", {className: 
                             "o-form__input" + ' ' +
                             "a-height-row-2" + ' ' +
@@ -250,22 +619,72 @@ var EventDetail = React.createClass({displayName: "EventDetail",
                             "a-flex-h-stretch" + ' ' +
                             "a-height-row-2" + ' ' +
                             "a-margin-bottom-row-1"}, 
-                            React.createElement("input", {className: 
-                                "o-form__input" + ' ' +
-                                "a-fill"}), 
-                            React.createElement("input", {className: 
-                                "o-form__input" + ' ' +
-                                "a-border-left-none" + ' ' +
-                                "a-fill"})
+                            React.createElement("select", {className: 
+                                "o-form__select" + ' ' +
+                                "a-fill", 
+                                value:  event.type, 
+                                onChange: function( evt ) {
+                                    me.updateEventType( event , evt.target.value );
+                                }}, 
+                                React.createElement("option", {value: "mood"}, "Mood"), 
+                                React.createElement("option", {value: "event"}, "Experience")
+                            ), 
+                            React.createElement("input", {className: classNames([
+                                    "o-form__input",
+                                    "a-fill a-border-left-none",
+                                    {"o-form--invalid":!this.state.date_valid}
+                                ]), 
+                                value:  this.state.date, 
+                                onChange: function(evt){
+                                    me.state.date = evt.target.value;
+                                    me.state.date_valid
+                                        = moment( evt.target.value ,'MM/DD/YYYY', true ).isValid();
+                                    me.forceUpdate();
+                                }, 
+                                onKeyUp: function(evt){
+                                    if (evt.key === 'Enter') {
+                                        me.updateDateInput();
+                                    }
+                                }, 
+                                onBlur: this.updateDateInput})
                         ), 
                         React.createElement("div", {className: 
                             "a-flex-h-stretch" + ' ' +
                             "a-height-row-2" + ' ' +
-                            "a-margin-bottom-row-1"}
+                            "a-margin-bottom-row-1"}, 
+                            React.createElement("select", {className: 
+                                "o-form__select" + ' ' +
+                                "a-fill", 
+                                value:  event.value, 
+                                onChange: function( evt ) {
+                                    event.value = parseInt( evt.target.value );
+                                    Event.fire("timeline_updated");
+                                    me.forceUpdate();
+                                }}, 
+                                React.createElement("option", {value: "4"}, "Great"), 
+                                React.createElement("option", {value: "3"}, "Good"), 
+                                React.createElement("option", {value: "2"}, "Meh"), 
+                                React.createElement("option", {value: "1"}, "Bad"), 
+                                React.createElement("option", {value: "0"}, "Awful")
+                            ), 
+                            React.createElement("select", {className: 
+                                "o-form__select" + ' ' +
+                                "a-border-left-none" + ' ' +
+                                "a-fill", 
+                                value:  event.intensity, 
+                                onChange: function( evt ) {
+                                    event.intensity = parseInt( evt.target.value );
+                                    Event.fire("timeline_updated");
+                                    me.forceUpdate();
+                                }}, 
+                                React.createElement("option", {value: "2"}, "High Intensity"), 
+                                React.createElement("option", {value: "1"}, "Medium Intensity"), 
+                                React.createElement("option", {value: "0"}, "Low Intensity")
+                            )
                         ), 
                         React.createElement("textarea", {className: 
                             "o-form__textarea" + ' ' +
-                            "a-height-row-vh-4" + ' ' +
+                            "a-fill" + ' ' +
                             "a-margin-bottom-row-1"}), 
                         React.createElement("div", {className: 
                             "a-flex-h-stretch" + ' ' +
@@ -920,6 +1339,7 @@ var Timeline = React.createClass({displayName: "Timeline",
     getDefaultProps: function() {
         return {
             timeline:false,
+            event:false,
             is_editing:false
         };
     },
@@ -936,7 +1356,6 @@ var Timeline = React.createClass({displayName: "Timeline",
     		},
             "TimelineEditor"
     	);*/
-
     },
 
     componentWillUnmount: function(){
@@ -1046,6 +1465,12 @@ var Timeline = React.createClass({displayName: "Timeline",
         var mood,mood_time,mood_percent;
         var grads=["#e9e9e9"];
         var mood_items = [];
+
+        //sort by date
+        timeline.moods.sort(function(a,b) {
+            return new Date(a.date).getTime() - new Date(b.date).getTime()
+        });
+
         for ( var i=0; i<timeline.moods.length; i++ ) {
             mood = timeline.moods[i];
             mood_time = new Date( mood.date ).getTime() - start.getTime();
@@ -1063,7 +1488,8 @@ var Timeline = React.createClass({displayName: "Timeline",
                     React.createElement("div", {key: "timeline_"+mood.guid, 
                         className: classNames([
                             "c-timeline__mood",
-                            "c-timeline--value_" + (mood.value+1)
+                            "c-timeline--value_" + (mood.value+1),
+                            {"c-timeline__mood--selected":this.props.event === mood}
                         ]), style: {left:Math.round( mood_percent * 100 ) + "%"}, 
                         onClick: getEventOnClick(mood)}
                     )
@@ -1075,6 +1501,10 @@ var Timeline = React.createClass({displayName: "Timeline",
 
         var event,event_time,event_percent;
         var event_items = [];
+        //sort by date
+        timeline.events.sort(function(a,b) {
+            return new Date(a.date).getTime() - new Date(b.date).getTime()
+        });
         for ( var i=0; i<timeline.events.length; i++ ) {
             event = timeline.events[i];
             event_time = new Date( event.date ).getTime() - start.getTime();
@@ -1090,18 +1520,35 @@ var Timeline = React.createClass({displayName: "Timeline",
                         className: classNames([
                             "c-timeline__circle",
                             "c-timeline__circle--intensity_" + event.intensity,
-                            "c-timeline--value_" + (event.value+1)
-                        ]), style: {left:Math.round( event_percent * 100 ) + "%"}, 
+                            "c-timeline--value_" + (event.value+1),
+                            {"c-timeline__circle--selected":this.props.event === event}
+                        ]), 
+                        style: {left:Math.round( event_percent * 100 ) + "%"}, 
                         onClick: getEventOnClick(event)}
                     )
                 );
             }
         }
 
+        var selected_event_time = new Date( this.props.event.date ).getTime() - start.getTime();
+        var selected_event_percent = selected_event_time/time_span;
+        var selected_item = "";
+        if ( this.props.event ) {
+            selected_item =  React.createElement("div", {className: classNames([
+                                    "c-timeline__selected",
+                                    "c-timeline--value_" + (this.props.event.value+1)
+                                ]), 
+                                style: {
+                                    left:Math.round( selected_event_percent * 100 ) + "%"}
+                                }
+                            );
+        }
+
         return  React.createElement("div", {className: classNames([
                         "c-timeline",
                         {"c-timeline--editing":this.props.is_editing}
                     ])}, 
+
                     React.createElement("div", {className: "c-timeline__xaxis"}), 
                     React.createElement("div", {className: "c-timeline__graph", 
                         style: {
@@ -1112,7 +1559,8 @@ var Timeline = React.createClass({displayName: "Timeline",
                         ), 
                         React.createElement("div", {className: "c-timeline__eventEdit"}), 
                          event_items 
-                    )
+                    ), 
+                     selected_item 
                 );
     }
 
@@ -1125,7 +1573,8 @@ var TimelineEditor = React.createClass({displayName: "TimelineEditor",
 
     getInitialState: function () {
         return {
-            timeline:Model.get( RS.route.timeline )
+            timeline:Model.get( RS.route.timeline ),
+            event:Model.get( RS.route.event )
         };
     },
 
@@ -1137,6 +1586,17 @@ var TimelineEditor = React.createClass({displayName: "TimelineEditor",
             ],
     		function ( route , prev_route ) {
                 me.forceUpdate();
+    		},
+            "TimelineEditor"
+    	);
+        RouteState.addDiffListeners(
+    		[
+                "event"
+            ],
+    		function ( route , prev_route ) {
+                me.setState({
+                    event:Model.get( RS.route.event )
+                })
     		},
             "TimelineEditor"
     	);
@@ -1184,7 +1644,7 @@ var TimelineEditor = React.createClass({displayName: "TimelineEditor",
 
         var timeline = this.state.timeline;//Model.get( RS.route.timeline );
 
-        console.log( timeline );
+        //console.log( timeline );
         var is_editing = typeof RS.route.editing !== 'undefined';
 
         return  React.createElement("div", {className: classNames([
@@ -1252,6 +1712,7 @@ var TimelineEditor = React.createClass({displayName: "TimelineEditor",
                     React.createElement("div", {className: "c-timelineEditor__timeline"}, 
                         React.createElement(Timeline, {
                             timeline:  timeline, 
+                            event:  this.state.event, 
                             is_editing:  is_editing })
                     ), 
 
