@@ -28770,10 +28770,10 @@ var EventDetail = React.createClass({displayName: "EventDetail",
             ],
     		function ( route , prev_route ) {
                 me.setState({
-                    event:Model.get( RS.route.event )
+                    event:Model.get( RS.route.event ),
+                    date:moment( Model.get( RS.route.event ).date ).format('MM/DD/YYYY'),
+                    date_valid:true
                 });
-                console.log(Model.get( RS.route.event ));
-                //me.forceUpdate();
     		},
             "EventDetail"
     	);
@@ -28800,7 +28800,7 @@ var EventDetail = React.createClass({displayName: "EventDetail",
 
     updateEventType: function( event, type ) {
         event.type = type;
-
+console.log( event );
         if ( type == "event" ) {
             if ( event.timeline.moods.indexOf( event ) != -1 ) {
                 event.timeline.moods.splice(
@@ -28829,57 +28829,79 @@ var EventDetail = React.createClass({displayName: "EventDetail",
         var event = this.state.event;
         var me = this;
 
-        return  React.createElement("div", {className: "c-eventDetail"
-                    }, 
+        if ( !RS.route.editing ) {
+            return React.createElement(EventDetailReadOnly, {event: event});
+        }
+
+        var type_str = "Experience";
+        if ( event.type == "mood" )
+            type_str = "Mood";
+
+        return  React.createElement("div", {className: 
+                    "c-eventDetail"}, 
                     React.createElement("div", {className: 
-                        "c-eventDetail__intro"}, 
-                        React.createElement("div", {className: 
-                            "c-eventDetail__title"}, 
-                             ( event.type == "mood" )
-                                ? "Mood" : "Experience"
-                        ), 
-                        React.createElement("div", {className: 
-                            "c-eventDetail__subtitle"}, 
-                             ( event.type == "mood" )
+                        "c-eventDetail__intro"}
+                        /*<div className="
+                            c-eventDetail__title">
+                            { ( event.type == "mood" )
+                                ? "Mood" : "Experience" }
+                        </div>
+                        <div className="
+                            c-eventDetail__subtitle">
+                            { ( event.type == "mood" )
                                 ? "Overall Background Feeling"
-                                : "Significant Event"
-                        ), 
-                        React.createElement("div", {className: 
-                            "c-eventDetail__desc"}, 
-                            "This is the edit mode of visualization of the." + ' ' +
-                            "The goal is to completely fill the colors in" + ' ' +
-                            "the timeline below with what you remember" + ' ' +
-                            "about how you felt during that time in your" + ' ' +
-                            "life."
-                        )
+                                : "Significant Event" }
+                        </div>
+                        <div className="
+                            c-eventDetail__desc">
+                            This is the edit mode of visualization of the.
+                            The goal is to completely fill the colors in
+                            the timeline below with what you remember
+                            about how you felt during that time in your
+                            life.
+                        </div>*/
                     ), 
                     React.createElement("div", {className: 
                         "c-eventDetail__content" + ' ' +
                         "a-brand-font-light"}, 
-                        React.createElement("div", {className: "a-height-row-vh-1-half"}), 
-                        React.createElement("input", {className: 
-                            "o-form__input" + ' ' +
-                            "a-height-row-2" + ' ' +
-                            "a-margin-bottom-row-1", 
-                            value:  event.title, 
-                            onChange: function(evt){
-                                me.state.event.title = evt.target.value;
-                                me.forceUpdate();
-                            }}), 
+                        React.createElement(Fill, null), 
+                        /*<div className="a-height-row-vh-1-half"></div>*/
+                        React.createElement("div", {className: 
+                            "a-flex-h-stretch" + ' ' +
+                            "a-height-row-1"}, 
+                            React.createElement("label", {className: 
+                                "o-form__label" + ' ' +
+                                "a-fill"}, 
+                                "title"
+                            ), 
+                            React.createElement("div", {className: 
+                                "a-fill a-flex-h"}, 
+                                React.createElement("label", {className: 
+                                    "o-form__label" + ' ' +
+                                    "a-fill"}, 
+                                    "date"
+                                ), 
+                                React.createElement("label", {className: 
+                                    "o-form__hint"}, 
+                                    "MM/DD/YYY"
+                                )
+                            )
+
+                        ), 
                         React.createElement("div", {className: 
                             "a-flex-h-stretch" + ' ' +
                             "a-height-row-2" + ' ' +
                             "a-margin-bottom-row-1"}, 
-                            React.createElement("select", {className: 
-                                "o-form__select" + ' ' +
-                                "a-fill", 
-                                value:  event.type, 
-                                onChange: function( evt ) {
-                                    me.updateEventType( event , evt.target.value );
-                                }}, 
-                                React.createElement("option", {value: "mood"}, "Mood"), 
-                                React.createElement("option", {value: "event"}, "Experience")
-                            ), 
+                            React.createElement("input", {className: 
+                                "o-form__input" + ' ' +
+                                "a-height-row-2" + ' ' +
+                                "a-fill" + ' ' +
+                                "a-margin-bottom-row-1", 
+                                value:  event.title, 
+                                onChange: function(evt){
+                                    me.state.event.title = evt.target.value;
+                                    me.forceUpdate();
+                                }}), 
                             React.createElement("input", {className: classNames([
                                     "o-form__input",
                                     "a-fill a-border-left-none",
@@ -28899,12 +28921,58 @@ var EventDetail = React.createClass({displayName: "EventDetail",
                                 }, 
                                 onBlur: this.updateDateInput})
                         ), 
+                        /*<div className="
+                            a-flex-h-stretch
+                            a-height-row-2
+                            a-margin-bottom-row-1">
+                            <select className="
+                                o-form__select
+                                a-fill"
+                                value={ event.type }
+                                onChange={function( evt ) {
+                                    me.updateEventType( event , evt.target.value );
+                                }}>
+                                <option value="mood">Mood - Overall feeling that persists over time</option>
+                                <option value="event">Experience - An important experience with a shorter time span</option>
+                            </select>
+                        </div>*/
+                        React.createElement("div", {className: 
+                            "a-flex-h-stretch" + ' ' +
+                            "a-height-row-1"}, 
+
+                            React.createElement("label", {className: 
+                                "o-form__label" + ' ' +
+                                "a-fill"}, 
+                                "type"
+                            ), 
+                            React.createElement("label", {className: 
+                                "o-form__label" + ' ' +
+                                "a-fill"}, 
+                                "value"
+                            ), 
+                            React.createElement("label", {className: 
+                                "o-form__label" + ' ' +
+                                "a-fill"}, 
+                                "intensity"
+                            )
+                        ), 
                         React.createElement("div", {className: 
                             "a-flex-h-stretch" + ' ' +
                             "a-height-row-2" + ' ' +
                             "a-margin-bottom-row-1"}, 
                             React.createElement("select", {className: 
                                 "o-form__select" + ' ' +
+                                "a-fill", 
+                                value:  event.type, 
+                                onChange: function( evt ) {
+                                    me.updateEventType( event , evt.target.value );
+                                }}, 
+                                React.createElement("option", {value: "mood"}, "Mood"), 
+                                React.createElement("option", {value: "event"}, "Experience")
+                            ), 
+                            React.createElement("select", {className: 
+                                "o-form__select" + ' ' +
+                                "a-border-left-none" + ' ' +
                                 "a-fill", 
                                 value:  event.value, 
                                 onChange: function( evt ) {
@@ -28933,10 +29001,24 @@ var EventDetail = React.createClass({displayName: "EventDetail",
                                 React.createElement("option", {value: "0"}, "Low Intensity")
                             )
                         ), 
+                        React.createElement("div", {className: 
+                            "a-flex-h-stretch" + ' ' +
+                            "a-height-row-1"}, 
+                            React.createElement("label", {className: 
+                                "o-form__label" + ' ' +
+                                "a-fill"}, 
+                                "note"
+                            )
+                        ), 
                         React.createElement("textarea", {className: 
                             "o-form__textarea" + ' ' +
-                            "a-fill" + ' ' +
-                            "a-margin-bottom-row-1"}), 
+                            "a-height-row-vh-2-half" + ' ' +
+                            "a-margin-bottom-row-1", 
+                            value:  event.note, 
+                            onChange: function(evt){
+                                event.note = evt.target.value;
+                                me.forceUpdate();
+                            }}), 
                         React.createElement("div", {className: 
                             "a-flex-h-stretch" + ' ' +
                             "a-height-row-2" + ' ' +
@@ -28964,7 +29046,8 @@ var EventDetail = React.createClass({displayName: "EventDetail",
                                     title: "Save & Close"})
                             )
 
-                        )
+                        ), 
+                        React.createElement(Fill, null)
                     ), 
                     React.createElement("div", {className: 
                         "c-eventDetail__close"}, 
@@ -28978,7 +29061,105 @@ var EventDetail = React.createClass({displayName: "EventDetail",
 
                     React.createElement("div", {className: classNames([
                             "c-eventDetail__bottomBorder",
-                            "c-timeline--value_" + (event.value+1)
+                            /*"c-timeline--value_" + (event.value+1)*/
+                        ])})
+                );
+    }
+
+});
+
+
+
+
+var EventDetailReadOnly = React.createClass({displayName: "EventDetailReadOnly",
+
+    getDefaultProps: function() {
+        return {
+            event:false
+        };
+    },
+
+    componentWillMount: function() {
+        /*var me = this;
+        RouteState.addDiffListeners(
+    		[
+                "event"
+            ],
+    		function ( route , prev_route ) {
+                me.setState({
+                    event:Model.get( RS.route.event )
+                });
+                console.log(Model.get( RS.route.event ));
+                //me.forceUpdate();
+    		},
+            "EventDetailReadOnly"
+    	);*/
+    },
+
+    componentWillUnmount: function(){
+        //RouteState.removeDiffListenersViaClusterId( "EventDetailReadOnly" );
+    },
+
+    componentDidMount: function(){
+    },
+
+    componentDidUpdate: function(){
+    },
+
+    render: function() {
+
+        var event = this.props.event;
+        var me = this;
+
+        return  React.createElement("div", {className: 
+                    "c-eventDetail"}, 
+                    React.createElement("div", {className: 
+                        "c-eventDetail__intro"}
+                        /*<div className="
+                            c-eventDetail__title">
+                            { ( event.type == "mood" )
+                                ? "Mood" : "Experience" }
+                        </div>*/
+                    ), 
+                    React.createElement("div", {className: 
+                        "c-eventDetail__content" + ' ' +
+                        "a-brand-font-light"}, 
+                        React.createElement(Fill, null), 
+                        React.createElement("div", {className: 
+                            "a-text-only-size-largest" + ' ' +
+                            "a-line-height-row-1-eighth"}, 
+                             event.title
+                        ), 
+                        React.createElement("div", {className: 
+                            "a-text-size-large"}, 
+                             moment( Model.get( RS.route.event ).date ).format('MMMM D, YYYY') 
+                        ), 
+                        /*<div className="
+                            c-eventDetail__title">
+                            { ( event.type == "mood" )
+                                ? "Mood" : "Experience" }
+                        </div>*/
+                        React.createElement("div", {className: 
+                            "a-text-size" + ' ' +
+                            "a-text-color-grey-4" + ' ' +
+                            "a-margin-bottom-row-1"}, 
+                             event.note
+                        ), 
+                        React.createElement(Fill, null)
+                    ), 
+                    React.createElement("div", {className: 
+                        "c-eventDetail__close"}, 
+                        React.createElement("div", {className: 
+                            "c-eventDetail__closeButton", 
+                            onClick: function(){
+                                RS.merge({event:false});
+                            }}
+                        )
+                    ), 
+
+                    React.createElement("div", {className: classNames([
+                            "c-eventDetail__bottomBorder",
+                            /*"c-timeline--value_" + (event.value+1)*/
                         ])})
                 );
     }
@@ -29620,6 +29801,45 @@ var Timeline = React.createClass({displayName: "Timeline",
     componentDidUpdate: function(){
     },
 
+    createMood: function ( evt ) {
+
+        if ( !RS.route.editing ) {
+            return false;
+        }
+
+        var loc = evt.clientX;
+        var loc_percent = loc/$(evt.target).width();
+
+        var timeline = this.props.timeline;//Model.get( RS.route.timeline );
+        var start = new Date( timeline.start_date );
+        var end = new Date();
+        if ( !timeline.is_open_ended ) {
+            end = new Date( timeline.end_date );
+        }
+        var time_span = end.getTime() - start.getTime();
+
+        var new_mood = Mod.get("event_new");
+        new_mood.timeline = timeline;
+        new_mood.title = "New Mood";
+        new_mood.note = "Describe your experience...";
+        new_mood.type = "mood";
+        new_mood.value = 3;
+        new_mood.intensity = 1;
+        new_mood.date = moment(
+                    new Date(
+                        Math.round( start.getTime() + ( loc_percent * time_span ) )
+                    )
+                ).format();
+
+        console.log( new_mood );
+
+        timeline.moods.push( new_mood );
+        Event.fire("timeline_updated");
+        RS.merge({
+            event:new_mood.guid
+        });
+    },
+
     renderTimeline : function() {
 
         var graph_dom = $(".c-timeline__graph");
@@ -29706,10 +29926,11 @@ var Timeline = React.createClass({displayName: "Timeline",
         var time_span = end.getTime() - start.getTime();
 
         function getEventOnClick (event){
-            return function(){
+            return function( evt ){
                 RS.merge({
                     "event":event.guid
                 });
+                evt.stopPropagation();
             };
         }
 
@@ -29787,7 +30008,7 @@ var Timeline = React.createClass({displayName: "Timeline",
         if ( this.props.event ) {
             selected_item =  React.createElement("div", {className: classNames([
                                     "c-timeline__selected",
-                                    "c-timeline--value_" + (this.props.event.value+1)
+                                    /*"c-timeline--value_" + (this.props.event.value+1)*/
                                 ]), 
                                 style: {
                                     left:Math.round( selected_event_percent * 100 ) + "%"}
@@ -29801,17 +30022,19 @@ var Timeline = React.createClass({displayName: "Timeline",
                     ])}, 
 
                     React.createElement("div", {className: "c-timeline__xaxis"}), 
+                     selected_item, 
                     React.createElement("div", {className: "c-timeline__graph", 
                         style: {
                             background:"linear-gradient( 90deg, " + grads.join(",") + " )"
                         }}, 
-                        React.createElement("div", {className: "c-timeline__moodEdit"}, 
+                        React.createElement("div", {className: "c-timeline__moodEdit", 
+                            onClick: this.createMood}, 
                              mood_items 
                         ), 
                         React.createElement("div", {className: "c-timeline__eventEdit"}), 
                          event_items 
-                    ), 
-                     selected_item 
+                    )
+
                 );
     }
 

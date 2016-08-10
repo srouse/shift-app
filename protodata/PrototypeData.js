@@ -71,6 +71,10 @@ module.exports = {
                 pd.random( 1, 30 )
             );
 
+            var note_content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet tellus tristique, lobortis nisl sed, aliquet sem. Quisque in urna pharetra leo suscipit lobortis. Donec ut malesuada eros. Fusce egestas vitae velit a dapibus. Aliquam sit amet condimentum odio, id pretium enim. Quisque nec sollicitudin eros, eget tempus lorem. Mauris ullamcorper est ac ipsum ornare, et efficitur orci luctus. Nam sed ex bibendum, scelerisque lacus nec, finibus magna.";
+            //note_content = note_content.split(" ");
+            this.note = note_content.substring( 0, pd.random( 10 , note_content.length ) );
+
             this.type = args.type;
             this.value = pd.random( 0 , 4 );
             this.intensity = 1;

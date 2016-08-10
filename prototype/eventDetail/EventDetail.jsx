@@ -24,10 +24,10 @@ var EventDetail = React.createClass({
             ],
     		function ( route , prev_route ) {
                 me.setState({
-                    event:Model.get( RS.route.event )
+                    event:Model.get( RS.route.event ),
+                    date:moment( Model.get( RS.route.event ).date ).format('MM/DD/YYYY'),
+                    date_valid:true
                 });
-                console.log(Model.get( RS.route.event ));
-                //me.forceUpdate();
     		},
             "EventDetail"
     	);
@@ -54,7 +54,7 @@ var EventDetail = React.createClass({
 
     updateEventType: function( event, type ) {
         event.type = type;
-
+console.log( event );
         if ( type == "event" ) {
             if ( event.timeline.moods.indexOf( event ) != -1 ) {
                 event.timeline.moods.splice(
@@ -83,11 +83,19 @@ var EventDetail = React.createClass({
         var event = this.state.event;
         var me = this;
 
-        return  <div className="c-eventDetail"
-                    >
+        if ( !RS.route.editing ) {
+            return <EventDetailReadOnly event={event} />;
+        }
+
+        var type_str = "Experience";
+        if ( event.type == "mood" )
+            type_str = "Mood";
+
+        return  <div className="
+                    c-eventDetail">
                     <div className="
                         c-eventDetail__intro">
-                        <div className="
+                        {/*<div className="
                             c-eventDetail__title">
                             { ( event.type == "mood" )
                                 ? "Mood" : "Experience" }
@@ -105,35 +113,49 @@ var EventDetail = React.createClass({
                             the timeline below with what you remember
                             about how you felt during that time in your
                             life.
-                        </div>
+                        </div>*/}
                     </div>
                     <div className="
                         c-eventDetail__content
                         a-brand-font-light">
-                        <div className="a-height-row-vh-1-half"></div>
-                        <input className="
-                            o-form__input
-                            a-height-row-2
-                            a-margin-bottom-row-1"
-                            value={ event.title }
-                            onChange={function(evt){
-                                me.state.event.title = evt.target.value;
-                                me.forceUpdate();
-                            }} />
+                        <Fill />
+                        {/*<div className="a-height-row-vh-1-half"></div>*/}
+                        <div className="
+                            a-flex-h-stretch
+                            a-height-row-1">
+                            <label className="
+                                o-form__label
+                                a-fill">
+                                title
+                            </label>
+                            <div className="
+                                a-fill a-flex-h">
+                                <label className="
+                                    o-form__label
+                                    a-fill">
+                                    date
+                                </label>
+                                <label className="
+                                    o-form__hint">
+                                    MM/DD/YYY
+                                </label>
+                            </div>
+
+                        </div>
                         <div className="
                             a-flex-h-stretch
                             a-height-row-2
                             a-margin-bottom-row-1">
-                            <select className="
-                                o-form__select
-                                a-fill"
-                                value={ event.type }
-                                onChange={function( evt ) {
-                                    me.updateEventType( event , evt.target.value );
-                                }}>
-                                <option value="mood">Mood</option>
-                                <option value="event">Experience</option>
-                            </select>
+                            <input className="
+                                o-form__input
+                                a-height-row-2
+                                a-fill
+                                a-margin-bottom-row-1"
+                                value={ event.title }
+                                onChange={function(evt){
+                                    me.state.event.title = evt.target.value;
+                                    me.forceUpdate();
+                                }} />
                             <input className={classNames([
                                     "o-form__input",
                                     "a-fill a-border-left-none",
@@ -153,12 +175,58 @@ var EventDetail = React.createClass({
                                 }}
                                 onBlur={this.updateDateInput} />
                         </div>
+                        {/*<div className="
+                            a-flex-h-stretch
+                            a-height-row-2
+                            a-margin-bottom-row-1">
+                            <select className="
+                                o-form__select
+                                a-fill"
+                                value={ event.type }
+                                onChange={function( evt ) {
+                                    me.updateEventType( event , evt.target.value );
+                                }}>
+                                <option value="mood">Mood - Overall feeling that persists over time</option>
+                                <option value="event">Experience - An important experience with a shorter time span</option>
+                            </select>
+                        </div>*/}
+                        <div className="
+                            a-flex-h-stretch
+                            a-height-row-1">
+
+                            <label className="
+                                o-form__label
+                                a-fill">
+                                type
+                            </label>
+                            <label className="
+                                o-form__label
+                                a-fill">
+                                value
+                            </label>
+                            <label className="
+                                o-form__label
+                                a-fill">
+                                intensity
+                            </label>
+                        </div>
                         <div className="
                             a-flex-h-stretch
                             a-height-row-2
                             a-margin-bottom-row-1">
                             <select className="
                                 o-form__select
+                                a-fill"
+                                value={ event.type }
+                                onChange={function( evt ) {
+                                    me.updateEventType( event , evt.target.value );
+                                }}>
+                                <option value="mood">Mood</option>
+                                <option value="event">Experience</option>
+                            </select>
+                            <select className="
+                                o-form__select
+                                a-border-left-none
                                 a-fill"
                                 value={ event.value }
                                 onChange={function( evt ) {
@@ -187,10 +255,24 @@ var EventDetail = React.createClass({
                                 <option value="0">Low Intensity</option>
                             </select>
                         </div>
+                        <div className="
+                            a-flex-h-stretch
+                            a-height-row-1">
+                            <label className="
+                                o-form__label
+                                a-fill">
+                                note
+                            </label>
+                        </div>
                         <textarea className="
                             o-form__textarea
-                            a-fill
-                            a-margin-bottom-row-1" />
+                            a-height-row-vh-2-half
+                            a-margin-bottom-row-1"
+                            value={ event.note }
+                            onChange={function(evt){
+                                event.note = evt.target.value;
+                                me.forceUpdate();
+                            }} />
                         <div className="
                             a-flex-h-stretch
                             a-height-row-2
@@ -219,6 +301,7 @@ var EventDetail = React.createClass({
                             </div>
 
                         </div>
+                        <Fill />
                     </div>
                     <div className="
                         c-eventDetail__close">
@@ -232,7 +315,7 @@ var EventDetail = React.createClass({
 
                     <div className={classNames([
                             "c-eventDetail__bottomBorder",
-                            "c-timeline--value_" + (event.value+1)
+                            /*"c-timeline--value_" + (event.value+1)*/
                         ])}></div>
                 </div>;
     }

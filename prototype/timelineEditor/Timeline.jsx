@@ -36,6 +36,45 @@ var Timeline = React.createClass({
     componentDidUpdate: function(){
     },
 
+    createMood: function ( evt ) {
+
+        if ( !RS.route.editing ) {
+            return false;
+        }
+
+        var loc = evt.clientX;
+        var loc_percent = loc/$(evt.target).width();
+
+        var timeline = this.props.timeline;//Model.get( RS.route.timeline );
+        var start = new Date( timeline.start_date );
+        var end = new Date();
+        if ( !timeline.is_open_ended ) {
+            end = new Date( timeline.end_date );
+        }
+        var time_span = end.getTime() - start.getTime();
+
+        var new_mood = Mod.get("event_new");
+        new_mood.timeline = timeline;
+        new_mood.title = "New Mood";
+        new_mood.note = "Describe your experience...";
+        new_mood.type = "mood";
+        new_mood.value = 3;
+        new_mood.intensity = 1;
+        new_mood.date = moment(
+                    new Date(
+                        Math.round( start.getTime() + ( loc_percent * time_span ) )
+                    )
+                ).format();
+
+        console.log( new_mood );
+
+        timeline.moods.push( new_mood );
+        Event.fire("timeline_updated");
+        RS.merge({
+            event:new_mood.guid
+        });
+    },
+
     renderTimeline : function() {
 
         var graph_dom = $(".c-timeline__graph");
@@ -122,10 +161,11 @@ var Timeline = React.createClass({
         var time_span = end.getTime() - start.getTime();
 
         function getEventOnClick (event){
-            return function(){
+            return function( evt ){
                 RS.merge({
                     "event":event.guid
                 });
+                evt.stopPropagation();
             };
         }
 
@@ -203,7 +243,7 @@ var Timeline = React.createClass({
         if ( this.props.event ) {
             selected_item =  <div className={classNames([
                                     "c-timeline__selected",
-                                    "c-timeline--value_" + (this.props.event.value+1)
+                                    /*"c-timeline--value_" + (this.props.event.value+1)*/
                                 ])}
                                 style={{
                                     left:Math.round( selected_event_percent * 100 ) + "%"}
@@ -217,17 +257,19 @@ var Timeline = React.createClass({
                     ])}>
 
                     <div className="c-timeline__xaxis"></div>
+                    { selected_item }
                     <div className="c-timeline__graph"
                         style={{
                             background:"linear-gradient( 90deg, " + grads.join(",") + " )"
                         }}>
-                        <div className="c-timeline__moodEdit">
+                        <div className="c-timeline__moodEdit"
+                            onClick={this.createMood}>
                             { mood_items }
                         </div>
                         <div className="c-timeline__eventEdit"></div>
                         { event_items }
                     </div>
-                    { selected_item }
+
                 </div>;
     }
 
