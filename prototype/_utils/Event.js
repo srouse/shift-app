@@ -35,7 +35,7 @@ _Event.prototype = {
         if ( this.listenerClusters[cluster_id] ) {
     		var callbacks = this.listenerClusters[cluster_id];
     		for ( var c=0; c<callbacks.length; c++ ) {
-    			callback = callbacks[c]; 
+    			callback = callbacks[c];
     			this.remove( callback );
     		}
     		this.listenerClusters[cluster_id] = false;
@@ -57,7 +57,6 @@ _Event.prototype = {
 
     fire: function ( event )
     {
-        console.log( event );
         var callbacks = this.listeners[ event ];
         if ( callbacks ) {
             var callback;

@@ -79,19 +79,78 @@ var TimelineEditor = React.createClass({
         //console.log( timeline );
         var is_editing = typeof RS.route.editing !== 'undefined';
 
+        var eventsInfo = TimelineMetrics.eventsInfo( timeline );
+
         return  <div className={classNames([
                         "c-timelineEditor",
                         {"c-timelineEditor--editing"
                             :typeof RS.route.editing !== 'undefined'}
                     ])}>
+
                     <TimelineHeader
                         timeline={ timeline }
                         is_editing={ is_editing }/>
 
                     <div className="c-timelineEditor__shift">
+
                         <Circles
                             timeline={ timeline }
-                            is_editing={ is_editing } />
+                            is_editing={ is_editing }
+                            onMouseMove={function(evt){
+                                $(".c-timelineEditor__baseline").css(
+                                    "left",
+                                    (( (evt.clientX-25) / $(window).width() ) * 100 ) + "vw"
+                                );
+                                $(".c-timelineEditor__baseline").css(
+                                    "transition",
+                                    "none"
+                                );
+                            }}
+                            onMouseOut={function(evt){
+                                $(".c-timelineEditor__baseline").css(
+                                    "transition",
+                                    "left .2s"
+                                );
+                                $(".c-timelineEditor__baseline").css(
+                                    "left",
+                                    "calc( 100vw - 10px )"
+                                );
+                            }} />
+
+                        <div className="
+                            c-timelineEditor__baseline"
+                            onMouseMove={function(evt){
+                                $(".c-timelineEditor__baseline").css(
+                                    "left",
+                                    (( (evt.clientX-25) / $(window).width() ) * 100 ) + "vw"
+                                );
+                                $(".c-timelineEditor__baseline").css(
+                                    "transition",
+                                    "none"
+                                );
+                            }}
+                            onMouseOut={function(evt){
+                                $(".c-timelineEditor__baseline").css(
+                                    "transition",
+                                    "left .2s"
+                                );
+                                $(".c-timelineEditor__baseline").css(
+                                    "left",
+                                    "a""calc( 100vw - 10px )"
+                                );
+
+                            }}>
+                            {eventsInfo.values.map(function( value, index ){
+                                return  <div className={classNames([
+                                                "c-timeline--value_" + (index+1)
+                                            ])}
+                                            key={"timelineeditor_value_"+index}
+                                            style={{
+                                                height:(value*100) + "%"
+                                            }}>
+                                        </div>;
+                            })}
+                        </div>
 
                         <div className="c-timelineEditor__editIntensity">
                             <div className="
@@ -116,6 +175,7 @@ var TimelineEditor = React.createClass({
                                 low intensity
                             </div>
                         </div>
+
                         <div className="c-timelineEditor__editOutlook">
                             <div className="
                                 c-timelineEditor__editOutlook__label">
@@ -199,6 +259,7 @@ var TimelineEditor = React.createClass({
                     <div className="c-timelineEditor__eventDetail">
                         <EventDetail />
                     </div>
+
                 </div>;
     }
 

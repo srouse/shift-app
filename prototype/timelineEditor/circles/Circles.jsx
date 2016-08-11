@@ -6,7 +6,9 @@ var Circles = React.createClass({
     getDefaultProps: function() {
         return {
             timeline:false,
-            is_editing:false
+            is_editing:false,
+            onMouseMove:false,
+            onMouseOut:false
         };
     },
 
@@ -47,43 +49,18 @@ var Circles = React.createClass({
     findLayerValues : function () {
         var timeline = this.props.timeline;
 
-        var start = new Date( timeline.start_date );
+        /*var start = new Date( timeline.start_date );
         var end = new Date();
         if ( !timeline.is_open_ended ) {
             end = new Date( timeline.end_date );
         }
-        var time_span = end.getTime() - start.getTime();
+        var time_span = end.getTime() - start.getTime();*/
 
-        var values = [0,0,0,0,0];
-        var mood,mood_date,next_mood_date,prev_mood_date;
-        var prev_mood_time_span,next_mood_time_span;
-        var totes_moods = timeline.moods.length;
-        var totes_values = 0;
-        for ( var i=0; i<totes_moods; i++ ) {
-            mood = timeline.moods[i];
-            mood_date = new Date( mood.date );
+        var eventsInfo = TimelineMetrics.eventsInfo( timeline );
+        var values = eventsInfo.values;
 
-            if ( i < totes_moods-1 ) {
-                next_mood_date = new Date( timeline.moods[i+1].date );
-            }else{
-                next_mood_date = end;
-            }
-
-            if ( i == 0 ) {
-                prev_mood_date = start;
-            }else{
-                prev_mood_date = new Date( timeline.moods[i-1].date );
-            }
-
-            prev_mood_time_span = (( mood_date.getTime() - prev_mood_date.getTime() ) / time_span  ) / 2;
-            next_mood_time_span = (( next_mood_date.getTime() - mood_date.getTime() ) / time_span  ) / 2;
-
-            values[mood.value] += ( prev_mood_time_span + next_mood_time_span );
-            totes_values += ( prev_mood_time_span + next_mood_time_span );
-        }
-        
         // it may not add up to 100% b/c of end values being blank
-        var extra_percents = 1 - totes_values;
+        //var extra_percents = 1 - totes_values;
         var negative_distortion,totes_negative=0;
         var positive_distortion,totes_positive=0;
         var pessimism_values = [];
@@ -94,12 +71,11 @@ var Circles = React.createClass({
         //var optimism_intensity = timeline.intensity/100;//.8;
         //var pessimism_intensity = timeline.intensity/100;
 
-
         var optimism_intensity = timeline.intensity/100 * ( timeline.outlook / 100 );
         var pessimism_intensity = timeline.intensity/100 * ( ( 100 - timeline.outlook ) / 100 );
 
         for ( var v=0; v<values.length; v++ ) {
-            values[v] += extra_percents / 5;
+            //values[v] += extra_percents / 5;
 
             //negative_distortion = -pessimism_intensity + ( (v/4) * (pessimism_intensity*1.5) );
             //positive_distortion = optimism_intensity - ( (v/4) * (optimism_intensity*1.5) );
@@ -329,7 +305,15 @@ var Circles = React.createClass({
 
         var timeline = Model.get( RS.route.timeline );
 
-        return  <div className="c-timelineEditor__shift__circles"></div>;
+        if ( this.props.onMouseMove ) {
+            return  <div className="c-timelineEditor__shift__circles"
+                        onMouseMove={ this.props.onMouseMove }
+                        onMouseOut={ this.props.onMouseOut }></div>;
+        }else{
+            return  <div className="c-timelineEditor__shift__circles"></div>;
+        }
+
+
     }
 
 });

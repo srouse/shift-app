@@ -104,6 +104,18 @@
         {
             opacity: 1;
         }
+
+        &:hover {
+            &:after {
+                content: '';
+                .a-position-absolute;
+                top: 0px; bottom: 0;
+                left: -3px; right: -3px;
+
+                border-left: 3px solid #4d4d4d;
+                border-right: 3px solid #4d4d4d;
+            }
+        }
     }
         .c-timeline__mood--selected {
             z-index: 1000000;
@@ -127,6 +139,12 @@
         .a-position-absolute;
         .a-transition-all;
         .a-interactive;
+
+        &:hover {
+            &:after {
+                border: 3px solid #4d4d4d;
+            }
+        }
     }
 
     .c-timeline__circle:after {

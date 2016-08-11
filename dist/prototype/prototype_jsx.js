@@ -1144,6 +1144,34 @@ var Timelines = React.createClass({displayName: "Timelines",
                             "a-width-100" + ' ' +
                             "a-flex-v-stretch"}, 
                          Model.user.timelines.map(function(timeline){
+
+                            var start = new Date( timeline.start_date );
+                            var end = new Date();
+                            if ( !timeline.is_open_ended ) {
+                                end = new Date( timeline.end_date );
+                            }
+                            var time_span = end.getTime() - start.getTime();
+                            var hours = time_span / 60 / 60 / 1000;
+                            var days = hours / 24;
+                            var weeks = days / 7;
+                            var months = weeks / 4;
+                            var years = days / 365;
+
+                            var time_span_str = "";
+                            if ( years < 2 ) {
+                                if ( months < 2 ) {
+                                    if ( weeks < 2 ) {
+                                        time_span_str = days.toFixed(0) + " days";
+                                    }else{
+                                        time_span_str = weeks.toFixed(0) + " weeks";
+                                    }
+                                }else{
+                                    time_span_str = months.toFixed(0) + " months";
+                                }
+                            }else{
+                                time_span_str = years.toFixed(0) + " years";
+                            }
+
                             return  React.createElement("div", {className: "c-timelines__list__item", 
                                         key:  "timelines_" + timeline.guid, 
                                         onClick: function(){
@@ -1156,21 +1184,322 @@ var Timelines = React.createClass({displayName: "Timelines",
                                              timeline.title
                                         ), 
                                         React.createElement("div", {className: "c-timelines__list__item__subtitle"}, 
-                                             timeline.events.length, " events | last updated"
+                                             timeline.events.length, " events | ",  time_span_str, " | last updated"
                                         )
                                     );
                         })
                         )
                     ), 
                     React.createElement("div", {className: 
-                        "c-timelines__new", 
-                        onClick: function(){
-                            RS.merge({
-                                "page.landing_page":false
-                            });
-                        }}, 
-                        "New Timeline"
+                        "a-flex-v-stretch" + ' ' +
+
+                        "a-margin-bottom-row" + ' ' +
+                        "a-margin-width-col-half"}, 
+                        React.createElement("div", {className: 
+                            "c-timeline__title"}, 
+                             Mod.user.name
+                        ), 
+                        React.createElement("div", {className: 
+                            "c-timeline__subtitle"}, 
+                             Mod.user.timelines.length, " timelines | last updated"
+                        ), 
+                        React.createElement("div", {className: 
+                            "a-flex-h-stretch" + ' ' +
+                            "a-height-row-2"}, 
+                            React.createElement("div", {className: 
+                                "c-timelines__button" + ' ' +
+                                "a-fill", 
+                                onClick: function(){
+                                    RS.merge({
+                                        "page.landing_page":false
+                                    });
+                                }}, 
+                                "New Timeline"
+                            ), 
+                            React.createElement("div", {className: 
+                                "a-width-col-eighth"}
+                            ), 
+                            React.createElement("div", {className: 
+                                "a-fill" + ' ' +
+                                "c-timelines__button", 
+                                onClick: function(){
+                                    RS.merge({
+                                        "page.landing_page":false
+                                    });
+                                }}, 
+                                "Logout"
+                            )
+                        )
                     )
+
+
+                );
+    }
+
+});
+
+
+
+
+var TimelineEditor = React.createClass({displayName: "TimelineEditor",
+
+    getInitialState: function () {
+        return {
+            timeline:Model.get( RS.route.timeline ),
+            event:Model.get( RS.route.event )
+        };
+    },
+
+    componentWillMount: function() {
+        var me = this;
+        RouteState.addDiffListeners(
+    		[
+                "editing"
+            ],
+    		function ( route , prev_route ) {
+                me.forceUpdate();
+    		},
+            "TimelineEditor"
+    	);
+        RouteState.addDiffListeners(
+    		[
+                "event"
+            ],
+    		function ( route , prev_route ) {
+                me.setState({
+                    event:Model.get( RS.route.event )
+                })
+    		},
+            "TimelineEditor"
+    	);
+
+        Event.on( "timeline_updated", function(){
+            me.forceUpdate();
+        },"TimelineEditor");
+    },
+
+    componentWillUnmount: function(){
+        RouteState.removeDiffListenersViaClusterId( "TimelineEditor" );
+        Event.remove("TimelineEditor");
+    },
+
+    componentDidMount: function(){
+        var me = this;
+        $( ".c-timelineEditor__editOutlook__sliderPeg" )
+            .draggable({
+                containment:".c-timelineEditor__editOutlook__sliderBg",
+                stop: function( event, ui ) {
+                    var percent = ui.position.left /
+                        ( $( ".c-timelineEditor__editOutlook__sliderBg" ).width()-30 );
+
+                        console.log( me.state.timeline.outlook );
+                    me.state.timeline.outlook =  Math.round( percent * 100 );
+                    me.forceUpdate();
+                }
+            });
+        $( ".c-timelineEditor__editIntensity__sliderPeg" )
+            .draggable({
+                containment:".c-timelineEditor__editIntensity__sliderBg",
+                stop: function( event, ui ) {
+                    var percent = ui.position.top /
+                        ( $( ".c-timelineEditor__editIntensity__sliderBg" ).height()-30 );
+                    me.state.timeline.intensity = 100 - Math.round( percent * 100 );
+                    me.forceUpdate();
+                }
+            });
+    },
+
+    componentDidUpdate: function(){
+    },
+
+    render: function() {
+
+        var timeline = this.state.timeline;//Model.get( RS.route.timeline );
+
+        //console.log( timeline );
+        var is_editing = typeof RS.route.editing !== 'undefined';
+
+        var eventsInfo = TimelineMetrics.eventsInfo( timeline );
+
+        return  React.createElement("div", {className: classNames([
+                        "c-timelineEditor",
+                        {"c-timelineEditor--editing"
+                            :typeof RS.route.editing !== 'undefined'}
+                    ])}, 
+
+                    React.createElement(TimelineHeader, {
+                        timeline:  timeline, 
+                        is_editing:  is_editing }), 
+
+                    React.createElement("div", {className: "c-timelineEditor__shift"}, 
+
+                        React.createElement(Circles, {
+                            timeline:  timeline, 
+                            is_editing:  is_editing, 
+                            onMouseMove: function(evt){
+                                $(".c-timelineEditor__baseline").css(
+                                    "left",
+                                    (( (evt.clientX-25) / $(window).width() ) * 100 ) + "vw"
+                                );
+                                $(".c-timelineEditor__baseline").css(
+                                    "transition",
+                                    "none"
+                                );
+                            }, 
+                            onMouseOut: function(evt){
+                                $(".c-timelineEditor__baseline").css(
+                                    "transition",
+                                    "left .2s"
+                                );
+                                $(".c-timelineEditor__baseline").css(
+                                    "left",
+                                    "calc( 100vw - 10px )"
+                                );
+                            }}), 
+
+                        React.createElement("div", {className: 
+                            "c-timelineEditor__baseline", 
+                            onMouseMove: function(evt){
+                                $(".c-timelineEditor__baseline").css(
+                                    "left",
+                                    (( (evt.clientX-25) / $(window).width() ) * 100 ) + "vw"
+                                );
+                                $(".c-timelineEditor__baseline").css(
+                                    "transition",
+                                    "none"
+                                );
+                            }, 
+                            onMouseOut: function(evt){
+                                $(".c-timelineEditor__baseline").css(
+                                    "transition",
+                                    "left .2s"
+                                );
+                                $(".c-timelineEditor__baseline").css(
+                                    "left",
+                                    "calc( 100vw - 10px )"
+                                );
+
+                            }}, 
+                            eventsInfo.values.map(function( value, index ){
+                                return  React.createElement("div", {className: classNames([
+                                                "c-timeline--value_" + (index+1)
+                                            ]), 
+                                            key: "timelineeditor_value_"+index, 
+                                            style: {
+                                                height:(value*100) + "%"
+                                            }}
+                                        );
+                            })
+                        ), 
+
+                        React.createElement("div", {className: "c-timelineEditor__editIntensity"}, 
+                            React.createElement("div", {className: 
+                                "c-timelineEditor__editIntensity__label"}, 
+                                "high intensity"
+                            ), 
+                            React.createElement("div", {className: 
+                                "c-timelineEditor__editIntensity__sliderBg"}, 
+                                React.createElement("div", {className: 
+                                    "c-timelineEditor__editIntensity__sliderLine"}
+                                ), 
+                                React.createElement("div", {className: 
+                                    "c-timelineEditor__editIntensity__sliderTrack"}, 
+                                    React.createElement("div", {className: 
+                                        "c-timelineEditor__editIntensity__sliderPeg", 
+                                        style: {top: 100 - timeline.intensity + "%"}}
+                                    )
+                                )
+                            ), 
+                            React.createElement("div", {className: 
+                                "c-timelineEditor__editIntensity__label"}, 
+                                "low intensity"
+                            )
+                        ), 
+
+                        React.createElement("div", {className: "c-timelineEditor__editOutlook"}, 
+                            React.createElement("div", {className: 
+                                "c-timelineEditor__editOutlook__label"}, 
+                                "pessimistic"
+                            ), 
+                            React.createElement("div", {className: 
+                                "c-timelineEditor__editOutlook__sliderBg"}, 
+                                React.createElement("div", {className: 
+                                    "c-timelineEditor__editOutlook__sliderLine"}
+                                ), 
+                                React.createElement("div", {className: 
+                                    "c-timelineEditor__editOutlook__sliderTrack"}, 
+                                    React.createElement("div", {className: 
+                                        "c-timelineEditor__editOutlook__sliderPeg", 
+                                        style: {left:timeline.outlook + "%"}}
+                                    )
+                                )
+                            ), 
+                            React.createElement("div", {className: 
+                                "c-timelineEditor__editIntensity__label"}, 
+                                "optimistic"
+                            )
+                        )
+                    ), 
+
+                    React.createElement("div", {className: "c-timelineEditor__timeline"}, 
+                        React.createElement(Timeline, {
+                            timeline:  timeline, 
+                            event:  this.state.event, 
+                            is_editing:  is_editing })
+                    ), 
+
+                    React.createElement("div", {className: "c-timelineEditor__editSubmit"}, 
+                        React.createElement("div", {className: 
+                            "c-timelineEditor__editSubmit__header", 
+                            onClick: function(){
+                                RS.merge(
+                                    {"editing":false}
+                                );
+                            }}, 
+                            React.createElement("div", {className: "a-fill"}), 
+                            React.createElement("div", {className: 
+                                "c-timelineEditor__editSubmit__header__icon"}), 
+                            React.createElement("div", {className: 
+                                "c-timelineEditor__editSubmit__header__close"}, 
+                                "cancel"
+                            ), 
+                            React.createElement("div", {className: 
+                                "c-timelineEditor__editSubmit__header__border"}
+                            )
+                        ), 
+                        React.createElement("div", {className: 
+                            "c-timelineEditor__editSubmit__middler"}, 
+                            "This is the edit mode of visualization" + ' ' +
+                            "of the. The goal is to completely fill" + ' ' +
+                            "the colors in the timeline below with" + ' ' +
+                            "what you remember about how you felt" + ' ' +
+                            "during that time in your life."
+                        ), 
+                        React.createElement("div", {className: 
+                            "c-timelineEditor__editSubmit__footer"}, 
+                            React.createElement("div", {className: 
+                                "c-timelineEditor__editSubmit__footer__button"}, 
+                                "Save"
+                            ), 
+                            React.createElement("div", {className: 
+                                "c-timelineEditor__editSubmit__footer__seperator"}
+                            ), 
+                            React.createElement("div", {className: 
+                                "c-timelineEditor__editSubmit__footer__button", 
+                                onClick: function(){
+                                    RS.merge(
+                                        {"editing":false}
+                                    );
+                                }}, 
+                                "Save & Done"
+                            )
+                        )
+                    ), 
+
+                    React.createElement("div", {className: "c-timelineEditor__eventDetail"}, 
+                        React.createElement(EventDetail, null)
+                    )
+
                 );
     }
 
@@ -1184,7 +1513,9 @@ var Circles = React.createClass({displayName: "Circles",
     getDefaultProps: function() {
         return {
             timeline:false,
-            is_editing:false
+            is_editing:false,
+            onMouseMove:false,
+            onMouseOut:false
         };
     },
 
@@ -1225,43 +1556,18 @@ var Circles = React.createClass({displayName: "Circles",
     findLayerValues : function () {
         var timeline = this.props.timeline;
 
-        var start = new Date( timeline.start_date );
+        /*var start = new Date( timeline.start_date );
         var end = new Date();
         if ( !timeline.is_open_ended ) {
             end = new Date( timeline.end_date );
         }
-        var time_span = end.getTime() - start.getTime();
+        var time_span = end.getTime() - start.getTime();*/
 
-        var values = [0,0,0,0,0];
-        var mood,mood_date,next_mood_date,prev_mood_date;
-        var prev_mood_time_span,next_mood_time_span;
-        var totes_moods = timeline.moods.length;
-        var totes_values = 0;
-        for ( var i=0; i<totes_moods; i++ ) {
-            mood = timeline.moods[i];
-            mood_date = new Date( mood.date );
+        var eventsInfo = TimelineMetrics.eventsInfo( timeline );
+        var values = eventsInfo.values;
 
-            if ( i < totes_moods-1 ) {
-                next_mood_date = new Date( timeline.moods[i+1].date );
-            }else{
-                next_mood_date = end;
-            }
-
-            if ( i == 0 ) {
-                prev_mood_date = start;
-            }else{
-                prev_mood_date = new Date( timeline.moods[i-1].date );
-            }
-
-            prev_mood_time_span = (( mood_date.getTime() - prev_mood_date.getTime() ) / time_span  ) / 2;
-            next_mood_time_span = (( next_mood_date.getTime() - mood_date.getTime() ) / time_span  ) / 2;
-
-            values[mood.value] += ( prev_mood_time_span + next_mood_time_span );
-            totes_values += ( prev_mood_time_span + next_mood_time_span );
-        }
-        
         // it may not add up to 100% b/c of end values being blank
-        var extra_percents = 1 - totes_values;
+        //var extra_percents = 1 - totes_values;
         var negative_distortion,totes_negative=0;
         var positive_distortion,totes_positive=0;
         var pessimism_values = [];
@@ -1272,12 +1578,11 @@ var Circles = React.createClass({displayName: "Circles",
         //var optimism_intensity = timeline.intensity/100;//.8;
         //var pessimism_intensity = timeline.intensity/100;
 
-
         var optimism_intensity = timeline.intensity/100 * ( timeline.outlook / 100 );
         var pessimism_intensity = timeline.intensity/100 * ( ( 100 - timeline.outlook ) / 100 );
 
         for ( var v=0; v<values.length; v++ ) {
-            values[v] += extra_percents / 5;
+            //values[v] += extra_percents / 5;
 
             //negative_distortion = -pessimism_intensity + ( (v/4) * (pessimism_intensity*1.5) );
             //positive_distortion = optimism_intensity - ( (v/4) * (optimism_intensity*1.5) );
@@ -1507,7 +1812,240 @@ var Circles = React.createClass({displayName: "Circles",
 
         var timeline = Model.get( RS.route.timeline );
 
-        return  React.createElement("div", {className: "c-timelineEditor__shift__circles"});
+        if ( this.props.onMouseMove ) {
+            return  React.createElement("div", {className: "c-timelineEditor__shift__circles", 
+                        onMouseMove:  this.props.onMouseMove, 
+                        onMouseOut:  this.props.onMouseOut});
+        }else{
+            return  React.createElement("div", {className: "c-timelineEditor__shift__circles"});
+        }
+
+
+    }
+
+});
+
+
+
+
+var TimelineHeader = React.createClass({displayName: "TimelineHeader",
+
+    getDefaultProps: function() {
+        return {
+            timeline:false,
+            is_editing:false
+        };
+    },
+
+    getInitialState: function () {
+        return {
+            title:this.props.timeline.title,
+            start_date:moment( this.props.timeline.start_date ).format('MM/DD/YYYY'),
+            start_date_valid:true,
+            end_date:moment( this.props.timeline.end_date ).format('MM/DD/YYYY'),
+            end_date_valid:true,
+            timeline:this.props.timeline
+        };
+    },
+
+    componentWillMount: function() {
+        var me = this;
+        RouteState.addDiffListeners(
+    		[
+                "editing"
+            ],
+    		function ( route , prev_route ) {
+                me.forceUpdate();
+    		},
+            "TimelineHeader"
+    	);
+    },
+
+    componentWillUnmount: function(){
+        RouteState.removeDiffListenersViaClusterId( "TimelineHeader" );
+    },
+
+    componentDidMount: function(){
+    },
+
+    componentDidUpdate: function(){
+    },
+
+    updateTitleFromInput: function () {
+        if ( this.state.title.length > 0 ) {
+            this.state.timeline.title = this.state.title;
+            Event.fire("timeline_updated");
+            this.forceUpdate();
+        }
+    },
+
+    updateStartDateInput: function() {
+        if ( this.state.start_date_valid ) {
+            this.state.timeline.start_date
+                = moment( this.state.start_date ,'MM/DD/YYYY', true ).format();
+            Event.fire("timeline_updated");
+            this.forceUpdate();
+        }
+    },
+
+    updateEndDateInput: function () {
+        if ( this.state.end_date_valid ) {
+            if ( this.state.end_date == "" ) {
+                this.state.is_open_ended = true;
+                this.state.timeline.end_date
+                    = moment().format();
+            }else{
+                this.state.timeline.end_date
+                    = moment( this.state.end_date ,'MM/DD/YYYY', true ).format();
+            }
+            Event.fire("timeline_updated");
+            this.forceUpdate();
+        }
+    },
+
+    render: function() {
+
+        var timeline = this.state.timeline;
+        var me = this;
+
+        return  React.createElement("div", {className: classNames([
+                        "c-timelineEditor__header"
+                    ])}, 
+                    React.createElement("div", {className: 
+                        "c-timelineEditor__header__back", 
+                        onClick: function(){
+                            RS.merge({
+                                page:"home",
+                                landing_page:"timelines"
+                            });
+                        }}
+                    ), 
+                    React.createElement("div", {className: 
+                        "c-timelineEditor__header__titleBox"}, 
+                        React.createElement("div", {className: 
+                            "c-timelineEditor__header__title"}, 
+                             this.state.timeline.title
+                        ), 
+                        React.createElement("div", {className: 
+                            "c-timelineEditor__header__subtitle"}, 
+                            
+                                moment( this.state.timeline.start_date ).format('MMMM, YYYY')
+                                + " to " +
+                                moment( this.state.timeline.end_date ).format('MMMM, YYYY')
+                            
+                        )
+                    ), 
+                    React.createElement("div", {className: classNames([
+                            "c-timelineEditor__header__editForm"
+                        ])}, 
+                        React.createElement("div", {className: 
+                            "o-form__v-layout" + ' ' +
+                            "a-width-col-2" + ' ' +
+                            "a-height-row-3"}, 
+                            React.createElement("div", {className: 
+                                "o-form__label"}, 
+                                "title"
+                            ), 
+                            React.createElement("input", {className: classNames([
+                                    "o-form__input",
+                                    {"o-form--invalid":this.state.title.length == 0}
+                                ]), 
+                                value:  this.state.title, 
+                                onChange: function(evt){
+                                    me.state.title = evt.target.value;
+                                    me.forceUpdate();
+                                }, 
+                                onKeyUp: function(evt){
+                                    if (evt.key === 'Enter') {
+                                        me.updateTitleFromInput();
+                                    }
+                                }, 
+                                onBlur: this.updateTitleFromInput})
+                        ), 
+                        React.createElement("div", {className: 
+                            "o-form__v-layout" + ' ' +
+                            "a-margin-left-col-eighth" + ' ' +
+                            "a-width-col-1-half" + ' ' +
+                            "a-height-row-3"}, 
+                            React.createElement("div", {className: 
+                                "o-form__label"}, 
+                                React.createElement("div", {className: 
+                                    "a-fill"}, 
+                                    "start"
+                                ), 
+                                React.createElement("div", {className: 
+                                    "o-form__hint"}, 
+                                    "(mm/dd/yyyy)"
+                                )
+                            ), 
+                            React.createElement("input", {className: classNames([
+                                    "o-form__input",
+                                    {"o-form--invalid":!this.state.start_date_valid}
+                                ]), 
+                                value:  me.state.start_date, 
+                                onChange: function(evt){
+                                    me.state.start_date = evt.target.value;
+                                    me.state.start_date_valid
+                                        = moment( evt.target.value ,'MM/DD/YYYY', true ).isValid();
+                                    me.forceUpdate();
+                                }, 
+                                onKeyUp: function(evt){
+                                    if (evt.key === 'Enter') {
+                                        me.updateStartDateInput();
+                                    }
+                                }, 
+                                onBlur: this.updateStartDateInput})
+                        ), 
+                        React.createElement("div", {className: 
+                            "o-form__v-layout" + ' ' +
+                            "a-margin-width-col-eighth" + ' ' +
+                            "a-width-col-1-half" + ' ' +
+                            "a-height-row-3"}, 
+                            React.createElement("div", {className: 
+                                "o-form__label"}, 
+                                React.createElement("div", {className: 
+                                    "a-fill"}, 
+                                    "end"
+                                ), 
+                                React.createElement("div", {className: 
+                                    "o-form__hint"}, 
+                                    "(date or blank)"
+                                )
+                            ), 
+                            React.createElement("input", {className: classNames([
+                                    "o-form__input",
+                                    {"o-form--invalid":!this.state.end_date_valid}
+                                ]), 
+                                value:  me.state.end_date, 
+                                onChange: function(evt){
+                                    me.state.end_date = evt.target.value;
+                                    if ( me.state.end_date == "" ) {
+                                        me.state.end_date_valid = true;
+                                    }else{
+                                        me.state.end_date_valid
+                                            = moment( evt.target.value ,'MM/DD/YYYY', true ).isValid();
+                                    }
+                                    me.forceUpdate();
+                                }, 
+                                onKeyUp: function(evt){
+                                    if (evt.key === 'Enter') {
+                                        me.updateEndDateInput();
+                                    }
+                                }, 
+                                onBlur: this.updateEndDateInput})
+                        )
+                    ), 
+                    React.createElement("div", {className: 
+                        "c-timelineEditor__header__edit", 
+                        onClick: function(){
+                            RS.toggle(
+                                {"page:editing":"edit"},
+                                {"page:editing":false}
+                            );
+                        }}, 
+                        "edit"
+                    )
+                );
     }
 
 });
@@ -1784,437 +2322,6 @@ var Timeline = React.createClass({displayName: "Timeline",
                          event_items 
                     )
 
-                );
-    }
-
-});
-
-
-
-
-var TimelineEditor = React.createClass({displayName: "TimelineEditor",
-
-    getInitialState: function () {
-        return {
-            timeline:Model.get( RS.route.timeline ),
-            event:Model.get( RS.route.event )
-        };
-    },
-
-    componentWillMount: function() {
-        var me = this;
-        RouteState.addDiffListeners(
-    		[
-                "editing"
-            ],
-    		function ( route , prev_route ) {
-                me.forceUpdate();
-    		},
-            "TimelineEditor"
-    	);
-        RouteState.addDiffListeners(
-    		[
-                "event"
-            ],
-    		function ( route , prev_route ) {
-                me.setState({
-                    event:Model.get( RS.route.event )
-                })
-    		},
-            "TimelineEditor"
-    	);
-
-        Event.on( "timeline_updated", function(){
-            me.forceUpdate();
-        },"TimelineEditor");
-    },
-
-    componentWillUnmount: function(){
-        RouteState.removeDiffListenersViaClusterId( "TimelineEditor" );
-        Event.remove("TimelineEditor");
-    },
-
-    componentDidMount: function(){
-        var me = this;
-        $( ".c-timelineEditor__editOutlook__sliderPeg" )
-            .draggable({
-                containment:".c-timelineEditor__editOutlook__sliderBg",
-                stop: function( event, ui ) {
-                    var percent = ui.position.left /
-                        ( $( ".c-timelineEditor__editOutlook__sliderBg" ).width()-30 );
-
-                        console.log( me.state.timeline.outlook );
-                    me.state.timeline.outlook =  Math.round( percent * 100 );
-                    me.forceUpdate();
-                }
-            });
-        $( ".c-timelineEditor__editIntensity__sliderPeg" )
-            .draggable({
-                containment:".c-timelineEditor__editIntensity__sliderBg",
-                stop: function( event, ui ) {
-                    var percent = ui.position.top /
-                        ( $( ".c-timelineEditor__editIntensity__sliderBg" ).height()-30 );
-                    me.state.timeline.intensity = 100 - Math.round( percent * 100 );
-                    me.forceUpdate();
-                }
-            });
-    },
-
-    componentDidUpdate: function(){
-    },
-
-    render: function() {
-
-        var timeline = this.state.timeline;//Model.get( RS.route.timeline );
-
-        //console.log( timeline );
-        var is_editing = typeof RS.route.editing !== 'undefined';
-
-        return  React.createElement("div", {className: classNames([
-                        "c-timelineEditor",
-                        {"c-timelineEditor--editing"
-                            :typeof RS.route.editing !== 'undefined'}
-                    ])}, 
-                    React.createElement(TimelineHeader, {
-                        timeline:  timeline, 
-                        is_editing:  is_editing }), 
-
-                    React.createElement("div", {className: "c-timelineEditor__shift"}, 
-                        React.createElement(Circles, {
-                            timeline:  timeline, 
-                            is_editing:  is_editing }), 
-
-                        React.createElement("div", {className: "c-timelineEditor__editIntensity"}, 
-                            React.createElement("div", {className: 
-                                "c-timelineEditor__editIntensity__label"}, 
-                                "high intensity"
-                            ), 
-                            React.createElement("div", {className: 
-                                "c-timelineEditor__editIntensity__sliderBg"}, 
-                                React.createElement("div", {className: 
-                                    "c-timelineEditor__editIntensity__sliderLine"}
-                                ), 
-                                React.createElement("div", {className: 
-                                    "c-timelineEditor__editIntensity__sliderTrack"}, 
-                                    React.createElement("div", {className: 
-                                        "c-timelineEditor__editIntensity__sliderPeg", 
-                                        style: {top: 100 - timeline.intensity + "%"}}
-                                    )
-                                )
-                            ), 
-                            React.createElement("div", {className: 
-                                "c-timelineEditor__editIntensity__label"}, 
-                                "low intensity"
-                            )
-                        ), 
-                        React.createElement("div", {className: "c-timelineEditor__editOutlook"}, 
-                            React.createElement("div", {className: 
-                                "c-timelineEditor__editOutlook__label"}, 
-                                "pessimistic"
-                            ), 
-                            React.createElement("div", {className: 
-                                "c-timelineEditor__editOutlook__sliderBg"}, 
-                                React.createElement("div", {className: 
-                                    "c-timelineEditor__editOutlook__sliderLine"}
-                                ), 
-                                React.createElement("div", {className: 
-                                    "c-timelineEditor__editOutlook__sliderTrack"}, 
-                                    React.createElement("div", {className: 
-                                        "c-timelineEditor__editOutlook__sliderPeg", 
-                                        style: {left:timeline.outlook + "%"}}
-                                    )
-                                )
-                            ), 
-                            React.createElement("div", {className: 
-                                "c-timelineEditor__editIntensity__label"}, 
-                                "optimistic"
-                            )
-                        )
-                    ), 
-
-                    React.createElement("div", {className: "c-timelineEditor__timeline"}, 
-                        React.createElement(Timeline, {
-                            timeline:  timeline, 
-                            event:  this.state.event, 
-                            is_editing:  is_editing })
-                    ), 
-
-                    React.createElement("div", {className: "c-timelineEditor__editSubmit"}, 
-                        React.createElement("div", {className: 
-                            "c-timelineEditor__editSubmit__header", 
-                            onClick: function(){
-                                RS.merge(
-                                    {"editing":false}
-                                );
-                            }}, 
-                            React.createElement("div", {className: "a-fill"}), 
-                            React.createElement("div", {className: 
-                                "c-timelineEditor__editSubmit__header__icon"}), 
-                            React.createElement("div", {className: 
-                                "c-timelineEditor__editSubmit__header__close"}, 
-                                "cancel"
-                            ), 
-                            React.createElement("div", {className: 
-                                "c-timelineEditor__editSubmit__header__border"}
-                            )
-                        ), 
-                        React.createElement("div", {className: 
-                            "c-timelineEditor__editSubmit__middler"}, 
-                            "This is the edit mode of visualization" + ' ' +
-                            "of the. The goal is to completely fill" + ' ' +
-                            "the colors in the timeline below with" + ' ' +
-                            "what you remember about how you felt" + ' ' +
-                            "during that time in your life."
-                        ), 
-                        React.createElement("div", {className: 
-                            "c-timelineEditor__editSubmit__footer"}, 
-                            React.createElement("div", {className: 
-                                "c-timelineEditor__editSubmit__footer__button"}, 
-                                "Save"
-                            ), 
-                            React.createElement("div", {className: 
-                                "c-timelineEditor__editSubmit__footer__seperator"}
-                            ), 
-                            React.createElement("div", {className: 
-                                "c-timelineEditor__editSubmit__footer__button", 
-                                onClick: function(){
-                                    RS.merge(
-                                        {"editing":false}
-                                    );
-                                }}, 
-                                "Save & Done"
-                            )
-                        )
-                    ), 
-
-                    React.createElement("div", {className: "c-timelineEditor__eventDetail"}, 
-                        React.createElement(EventDetail, null)
-                    )
-                );
-    }
-
-});
-
-
-
-
-var TimelineHeader = React.createClass({displayName: "TimelineHeader",
-
-    getDefaultProps: function() {
-        return {
-            timeline:false,
-            is_editing:false
-        };
-    },
-
-    getInitialState: function () {
-        return {
-            title:this.props.timeline.title,
-            start_date:moment( this.props.timeline.start_date ).format('MM/DD/YYYY'),
-            start_date_valid:true,
-            end_date:moment( this.props.timeline.end_date ).format('MM/DD/YYYY'),
-            end_date_valid:true,
-            timeline:this.props.timeline
-        };
-    },
-
-    componentWillMount: function() {
-        var me = this;
-        RouteState.addDiffListeners(
-    		[
-                "editing"
-            ],
-    		function ( route , prev_route ) {
-                me.forceUpdate();
-    		},
-            "TimelineHeader"
-    	);
-    },
-
-    componentWillUnmount: function(){
-        RouteState.removeDiffListenersViaClusterId( "TimelineHeader" );
-    },
-
-    componentDidMount: function(){
-    },
-
-    componentDidUpdate: function(){
-    },
-
-    updateTitleFromInput: function () {
-        if ( this.state.title.length > 0 ) {
-            this.state.timeline.title = this.state.title;
-            Event.fire("timeline_updated");
-            this.forceUpdate();
-        }
-    },
-
-    updateStartDateInput: function() {
-        if ( this.state.start_date_valid ) {
-            this.state.timeline.start_date
-                = moment( this.state.start_date ,'MM/DD/YYYY', true ).format();
-            Event.fire("timeline_updated");
-            this.forceUpdate();
-        }
-    },
-
-    updateEndDateInput: function () {
-        if ( this.state.end_date_valid ) {
-            if ( this.state.end_date == "" ) {
-                this.state.is_open_ended = true;
-                this.state.timeline.end_date
-                    = moment().format();
-            }else{
-                this.state.timeline.end_date
-                    = moment( this.state.end_date ,'MM/DD/YYYY', true ).format();
-            }
-            Event.fire("timeline_updated");
-            this.forceUpdate();
-        }
-    },
-
-    render: function() {
-
-        var timeline = this.state.timeline;
-        var me = this;
-
-        return  React.createElement("div", {className: classNames([
-                        "c-timelineEditor__header"
-                    ])}, 
-                    React.createElement("div", {className: 
-                        "c-timelineEditor__header__back", 
-                        onClick: function(){
-                            RS.merge({
-                                page:"home",
-                                landing_page:"timelines"
-                            });
-                        }}
-                    ), 
-                    React.createElement("div", {className: 
-                        "c-timelineEditor__header__titleBox"}, 
-                        React.createElement("div", {className: 
-                            "c-timelineEditor__header__title"}, 
-                             this.state.timeline.title
-                        ), 
-                        React.createElement("div", {className: 
-                            "c-timelineEditor__header__subtitle"}, 
-                            
-                                moment( this.state.timeline.start_date ).format('MMMM, YYYY')
-                                + " to " +
-                                moment( this.state.timeline.end_date ).format('MMMM, YYYY')
-                            
-                        )
-                    ), 
-                    React.createElement("div", {className: classNames([
-                            "c-timelineEditor__header__editForm"
-                        ])}, 
-                        React.createElement("div", {className: 
-                            "o-form__v-layout" + ' ' +
-                            "a-width-col-2" + ' ' +
-                            "a-height-row-3"}, 
-                            React.createElement("div", {className: 
-                                "o-form__label"}, 
-                                "title"
-                            ), 
-                            React.createElement("input", {className: classNames([
-                                    "o-form__input",
-                                    {"o-form--invalid":this.state.title.length == 0}
-                                ]), 
-                                value:  this.state.title, 
-                                onChange: function(evt){
-                                    me.state.title = evt.target.value;
-                                    me.forceUpdate();
-                                }, 
-                                onKeyUp: function(evt){
-                                    if (evt.key === 'Enter') {
-                                        me.updateTitleFromInput();
-                                    }
-                                }, 
-                                onBlur: this.updateTitleFromInput})
-                        ), 
-                        React.createElement("div", {className: 
-                            "o-form__v-layout" + ' ' +
-                            "a-margin-left-col-eighth" + ' ' +
-                            "a-width-col-1-half" + ' ' +
-                            "a-height-row-3"}, 
-                            React.createElement("div", {className: 
-                                "o-form__label"}, 
-                                React.createElement("div", {className: 
-                                    "a-fill"}, 
-                                    "start"
-                                ), 
-                                React.createElement("div", {className: 
-                                    "o-form__hint"}, 
-                                    "(mm/dd/yyyy)"
-                                )
-                            ), 
-                            React.createElement("input", {className: classNames([
-                                    "o-form__input",
-                                    {"o-form--invalid":!this.state.start_date_valid}
-                                ]), 
-                                value:  me.state.start_date, 
-                                onChange: function(evt){
-                                    me.state.start_date = evt.target.value;
-                                    me.state.start_date_valid
-                                        = moment( evt.target.value ,'MM/DD/YYYY', true ).isValid();
-                                    me.forceUpdate();
-                                }, 
-                                onKeyUp: function(evt){
-                                    if (evt.key === 'Enter') {
-                                        me.updateStartDateInput();
-                                    }
-                                }, 
-                                onBlur: this.updateStartDateInput})
-                        ), 
-                        React.createElement("div", {className: 
-                            "o-form__v-layout" + ' ' +
-                            "a-margin-width-col-eighth" + ' ' +
-                            "a-width-col-1-half" + ' ' +
-                            "a-height-row-3"}, 
-                            React.createElement("div", {className: 
-                                "o-form__label"}, 
-                                React.createElement("div", {className: 
-                                    "a-fill"}, 
-                                    "end"
-                                ), 
-                                React.createElement("div", {className: 
-                                    "o-form__hint"}, 
-                                    "(date or blank)"
-                                )
-                            ), 
-                            React.createElement("input", {className: classNames([
-                                    "o-form__input",
-                                    {"o-form--invalid":!this.state.end_date_valid}
-                                ]), 
-                                value:  me.state.end_date, 
-                                onChange: function(evt){
-                                    me.state.end_date = evt.target.value;
-                                    if ( me.state.end_date == "" ) {
-                                        me.state.end_date_valid = true;
-                                    }else{
-                                        me.state.end_date_valid
-                                            = moment( evt.target.value ,'MM/DD/YYYY', true ).isValid();
-                                    }
-                                    me.forceUpdate();
-                                }, 
-                                onKeyUp: function(evt){
-                                    if (evt.key === 'Enter') {
-                                        me.updateEndDateInput();
-                                    }
-                                }, 
-                                onBlur: this.updateEndDateInput})
-                        )
-                    ), 
-                    React.createElement("div", {className: 
-                        "c-timelineEditor__header__edit", 
-                        onClick: function(){
-                            RS.toggle(
-                                {"page:editing":"edit"},
-                                {"page:editing":false}
-                            );
-                        }}, 
-                        "edit"
-                    )
                 );
     }
 

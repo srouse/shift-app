@@ -21,8 +21,8 @@ module.exports = {
             var year_span = pd.random(20,40);
             this.start_date = new Date(
                 2016 -  year_span,
-                pd.random( 0 , 11 ) ,
-                pd.random( 1, 30 )
+                0 ,
+                1
             );
 
             this.outlook = pd.random( 0 ,100 );
@@ -33,8 +33,8 @@ module.exports = {
             if ( !this.is_open_ended ) {
                 this.end_date = new Date(
                     this.start_date.getFullYear() + pd.random(0,year_span),
-                    pd.random( 0 , 11 ),
-                    pd.random( 1, 30 )
+                    11,
+                    30 
                 );
             }else{
                 this.end_date = new Date();

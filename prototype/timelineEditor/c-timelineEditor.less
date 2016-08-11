@@ -10,9 +10,35 @@
     .c-timelineEditor__shift {
         .a-fill;
         .a-overflow-hidden;
+        .a-position-relative;
         // safari didn't like this...height % not working
         //.a-flex-center;
     }
+
+        .c-timelineEditor__baseline {
+            .a-position-absolute;
+            //.a-right;
+            right: -40px;
+            .a-height-row-vh-4-half;
+            width: 50px;
+            //opacity: .8;
+            .a-background-grey-9;
+            .a-flex-v-stretch;
+            .a-flex-direction-column-reverse;
+            //.a-transition-right;
+            .a-shadow;
+
+            top: calc( 50% ~'-' @v-row-vh-2-quarter ~'+' 2px );
+            //left: calc( 50% ~'-' 3px );
+            .a-layer-high;
+
+            .c-timelineEditor--editing & {
+                .a-right-col-2;
+            }
+        }
+
+
+
         .c-timelineEditor__shift__circles {
             .a-height-row-vh-4-half;//height: 61.8%;//phi-ify it
 
@@ -154,6 +180,7 @@
         .a-shadow-bottom;
         .a-transition-height;
         .a-overflow-hidden;
+        .a-layer-higher;
 
         .s_event & {
             .a-height-row-vh-10;
