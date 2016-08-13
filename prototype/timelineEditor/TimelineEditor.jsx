@@ -72,11 +72,50 @@ var TimelineEditor = React.createClass({
     componentDidUpdate: function(){
     },
 
+    moveBaseLine: function (evt) {
+        var window_height = $(window).height();
+        var y = ( (evt.clientY) / window_height ) * 100;
+        var baseline = $(".c-timelineEditor__baseline");
+
+        //if ( y > 30 && y < 70 ) {//y > 30 && y < 69 ) {
+            var window_width = $(window).width();
+            var x = ( (evt.clientX-30) / $(window).width() ) * 100;
+            var circle_offset = ( (window_height*.19 - 30) / window_width ) * 100;
+            var circle_offset_right = ( (window_height*.19 + 20) / window_width ) * 100;
+
+            x = Math.max( 17+circle_offset ,
+                    Math.min( 66+17-circle_offset_right , x )
+                );
+
+            baseline.css({
+                "left": x + "vw",
+                "transition":"none"
+            });
+            $(".c-timelineEditor__circleLabels, .c-timelineEditor__baselineLabel")
+                .css("opacity",1);
+                //.removeClass("a-display-none")
+                //.addClass("a-display-flex");
+        //}else{
+        //    me.revertBaseLine();
+        //}
+    },
+
+    revertBaseLine: function () {
+        var baseline = $(".c-timelineEditor__baseline");
+        baseline.css({
+            "left":"calc( 100vw - 10px )",
+            "transition":"left .2s"
+        });
+        $(".c-timelineEditor__circleLabels, .c-timelineEditor__baselineLabel")
+            .css("opacity",0);
+            //.removeClass("a-display-flex")
+            //.addClass("a-display-none");
+    },
+
     render: function() {
 
-        var timeline = this.state.timeline;//Model.get( RS.route.timeline );
-
-        //console.log( timeline );
+        var me = this;
+        var timeline = this.state.timeline;
         var is_editing = typeof RS.route.editing !== 'undefined';
 
         var eventsInfo = TimelineMetrics.eventsInfo( timeline );
@@ -91,55 +130,72 @@ var TimelineEditor = React.createClass({
                         timeline={ timeline }
                         is_editing={ is_editing }/>
 
-                    <div className="c-timelineEditor__shift">
+                    <div className="c-timelineEditor__shift"
+                        onMouseUp={function(evt){
+                            me.mouse_is_down = false;
+                            me.revertBaseLine();
+                        }}
+                        onMouseMove={function(evt){
+                            if ( !me.mouse_is_down )
+                                return;
+
+                            me.moveBaseLine( evt );
+                        }}
+                        onMouseOut={function(evt){
+                            //me.mouse_is_down = false;
+                            var baseline = $(".c-timelineEditor__baseline");
+                            baseline.css({
+                                "left":"calc( 100vw - 10px )",
+                                "transition":"left .2s"
+                            });
+                        }}>
+
+                        <div className="
+                            c-timelineEditor__circleLabels">
+                            <div className="
+                                c-timelineEditor__circleLabel">
+                                worst
+                            </div>
+                            <div className="
+                                a-fill">
+                            </div>
+                            <div className="
+                                a-text-size-small
+                                a-text-color-grey-5">
+                                perspectives
+                            </div>
+                            <div className="
+                                a-fill">
+                            </div>
+                            <div className="
+                                c-timelineEditor__circleLabel">
+                                best
+                            </div>
+                        </div>
 
                         <Circles
                             timeline={ timeline }
                             is_editing={ is_editing }
-                            onMouseMove={function(evt){
-                                $(".c-timelineEditor__baseline").css(
-                                    "left",
-                                    (( (evt.clientX-25) / $(window).width() ) * 100 ) + "vw"
-                                );
-                                $(".c-timelineEditor__baseline").css(
-                                    "transition",
-                                    "none"
-                                );
+                            onMouseDown={function(evt){
+                                me.mouse_is_down = true;
+                                me.moveBaseLine( evt );
                             }}
-                            onMouseOut={function(evt){
-                                $(".c-timelineEditor__baseline").css(
-                                    "transition",
-                                    "left .2s"
-                                );
-                                $(".c-timelineEditor__baseline").css(
-                                    "left",
-                                    "calc( 100vw - 10px )"
-                                );
+                            onMouseUp={function(evt){
+                                me.mouse_is_down = false;
+                                me.revertBaseLine();
                             }} />
 
                         <div className="
                             c-timelineEditor__baseline"
-                            onMouseMove={function(evt){
-                                $(".c-timelineEditor__baseline").css(
-                                    "left",
-                                    (( (evt.clientX-25) / $(window).width() ) * 100 ) + "vw"
-                                );
-                                $(".c-timelineEditor__baseline").css(
-                                    "transition",
-                                    "none"
-                                );
-                            }}
-                            onMouseOut={function(evt){
-                                $(".c-timelineEditor__baseline").css(
-                                    "transition",
-                                    "left .2s"
-                                );
-                                $(".c-timelineEditor__baseline").css(
-                                    "left",
-                                    "a""calc( 100vw - 10px )"
-                                );
-
+                            onMouseUp={function(evt){
+                                me.mouse_is_down = false;
+                                me.revertBaseLine();
                             }}>
+                            <div className="
+                                c-timelineEditor__baselineLabel"
+                                style={{"bottom":"-30px"}}>
+                                baseline
+                            </div>
                             {eventsInfo.values.map(function( value, index ){
                                 return  <div className={classNames([
                                                 "c-timeline--value_" + (index+1)
@@ -150,6 +206,7 @@ var TimelineEditor = React.createClass({
                                             }}>
                                         </div>;
                             })}
+
                         </div>
 
                         <div className="c-timelineEditor__editIntensity">
@@ -238,7 +295,10 @@ var TimelineEditor = React.createClass({
                         <div className="
                             c-timelineEditor__editSubmit__footer">
                             <div className="
-                                c-timelineEditor__editSubmit__footer__button">
+                                c-timelineEditor__editSubmit__footer__button"
+                                onClick={function(){
+                                    console.log( timeline );
+                                }}>
                                 Save
                             </div>
                             <div className="

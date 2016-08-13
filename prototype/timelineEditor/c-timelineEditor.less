@@ -13,10 +13,13 @@
         .a-position-relative;
         // safari didn't like this...height % not working
         //.a-flex-center;
+
+        .a-layer-high;
     }
 
         .c-timelineEditor__baseline {
             .a-position-absolute;
+            .a-interactive;
             //.a-right;
             right: -40px;
             .a-height-row-vh-4-half;
@@ -36,12 +39,46 @@
                 .a-right-col-2;
             }
         }
+            .c-timelineEditor__baselineLabel {
+                .a-text-size-smaller;
+                .a-text-color-grey-7;
+                .a-height-row-2;
+                .a-flex-center;
+                .a-position-absolute;
+                .a-width-100;
+                .a-text-align-center;
+                .a-left;
+                .a-no-select;
+                opacity: 0;
+                transition: opacity .5s;
+            }
 
+        .c-timelineEditor__circleLabels {
+            .a-width-col-8;
+            .a-position-absolute;
+            .a-top-row-vh-1-quarter;
+            .a-left-col-2;
+            .a-height-row-vh-half;
+            .a-background-white;
+            .a-flex-h;
+            opacity: 0;
+            transition: opacity .5s;
 
+            .c-timelineEditor--editing & {
+                .a-left-col-1-half;
+            }
+        }
+            .c-timelineEditor__circleLabel {
+                .a-text-size-small;
+                width: @v-row-vh-4-half;
+                .a-flex-center;
+                .a-text-color-grey-7;
+                .a-no-select;
+            }
 
         .c-timelineEditor__shift__circles {
             .a-height-row-vh-4-half;//height: 61.8%;//phi-ify it
-
+            .a-interactive;
             // safari fix...height % not working
             .a-position-absolute;
             //top: calc( 50% ~'-' 30.9% );
@@ -199,6 +236,7 @@
         right: -@v-col-2-quarter;
         .a-flex-v-stretch;
         .a-transition-right;
+        .a-layer-higher;
 
         .c-timelineEditor--editing & {
             .a-right;

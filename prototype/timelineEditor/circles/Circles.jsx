@@ -8,6 +8,8 @@ var Circles = React.createClass({
             timeline:false,
             is_editing:false,
             onMouseMove:false,
+            onMouseOut:false,
+            onMouseDown:false,
             onMouseOut:false
         };
     },
@@ -190,7 +192,6 @@ var Circles = React.createClass({
             left_layer_y, left_layer_width,
             params
         ) {
-
             var p_half = canvas_padding/2;
 
             var left_layer_x = circle_radius + p_half;
@@ -305,10 +306,10 @@ var Circles = React.createClass({
 
         var timeline = Model.get( RS.route.timeline );
 
-        if ( this.props.onMouseMove ) {
+        if ( this.props.onMouseDown ) {
             return  <div className="c-timelineEditor__shift__circles"
-                        onMouseMove={ this.props.onMouseMove }
-                        onMouseOut={ this.props.onMouseOut }></div>;
+                        onMouseDown={ this.props.onMouseDown }
+                        onMouseUp={ this.props.onMouseUp }></div>;
         }else{
             return  <div className="c-timelineEditor__shift__circles"></div>;
         }

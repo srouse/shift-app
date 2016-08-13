@@ -12,7 +12,8 @@
     .c-eventDetail__bottomBorder {
         .a-position-absolute;
         .a-width-100;
-        height: 12px;
+        //height: 12px;
+        .a-height-row-half;
         .a-bottom; .a-left;
         background-color: #4d4d4d;
     }
@@ -78,3 +79,26 @@
             .a-interactive;
             background-position: center right;
         }
+
+
+    .c-eventDetail_pagination {
+        .a-position-absolute;
+        .a-bottom-left;
+        .a-width-100;
+        .a-height-row-vh-1;
+        .a-flex-h-stretch;
+        .a-margin-bottom-row-half;
+        .a-padding-width-col-quarter;
+    }
+        .c-eventDetail__paginationButton {
+            .a-flex-h-stretch;
+            .a-width-col-2;
+            .a-interactive;
+        }
+            .c-eventDetail__paginationButton__label {
+                .a-fill;
+                .a-padding-width-col-eighth;
+                .a-text-size;
+                .a-no-select;
+                .a-text-color-grey-5;
+            }

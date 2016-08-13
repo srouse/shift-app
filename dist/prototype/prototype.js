@@ -28258,7 +28258,7 @@ var ShiftApp = React.createClass({displayName: "ShiftApp",
         var me = this;
         RouteState.addDiffListeners(
     		[
-                "page"
+                "page","modal"
             ],
     		function ( route , prev_route ) {
                 me.forceUpdate();
@@ -28293,10 +28293,16 @@ var ShiftApp = React.createClass({displayName: "ShiftApp",
             content = React.createElement(TimelineEditor, null);
         }
 
+        var modal = "";
+        if ( RS.route.modal == "newtimeline" ) {
+            modal = React.createElement(NewTimelineModal, null);
+        }
+
         return  React.createElement("div", {className: classNames([
                         "c-shiftApp"
                     ])}, 
-                     content 
+                     content, 
+                     modal 
                 );
     }
 
@@ -28800,7 +28806,7 @@ var EventDetail = React.createClass({displayName: "EventDetail",
 
     updateEventType: function( event, type ) {
         event.type = type;
-console.log( event );
+
         if ( type == "event" ) {
             if ( event.timeline.moods.indexOf( event ) != -1 ) {
                 event.timeline.moods.splice(
@@ -28824,13 +28830,30 @@ console.log( event );
         this.forceUpdate();
     },
 
+    delete: function (event) {
+        if ( event.timeline.moods.indexOf( event ) != -1 ) {
+            event.timeline.moods.splice(
+                event.timeline.moods.indexOf( event ), 1
+            );
+        }
+        if ( event.timeline.events.indexOf( event ) != -1 ) {
+            event.timeline.events.splice(
+                event.timeline.events.indexOf( event ), 1
+            );
+        }
+        Event.fire("timeline_updated");
+        //this.forceUpdate();
+        RS.merge({event:false});
+    },
+
     render: function() {
 
         var event = this.state.event;
         var me = this;
 
         if ( !RS.route.editing ) {
-            return React.createElement(EventDetailReadOnly, {event: event});
+            return React.createElement(EventDetailReadOnly, {
+                event: event});
         }
 
         var type_str = "Experience";
@@ -29024,11 +29047,17 @@ console.log( event );
                             "a-height-row-2" + ' ' +
                             "a-margin-bottom-row-1"}, 
                             React.createElement(Button, {className: "", 
-                                title: "delete"}), 
+                                title: "delete", 
+                                onClick: function(){
+                                    me.delete( event );
+                                }}), 
                             React.createElement(Fill, null), 
                             React.createElement(Button, {className: 
                                 "a-width-col-1", 
-                                title: "cancel"}), 
+                                title: "cancel", 
+                                onClick: function(){
+                                    RS.merge({event:false});
+                                }}), 
                             React.createElement("div", {className: 
                                 "c-eventDetail__saveButtons"}, 
                                 React.createElement(Button, {className: 
@@ -29058,6 +29087,8 @@ console.log( event );
                             }}
                         )
                     ), 
+
+                    React.createElement(EventPrevNextNav, {event:  event }), 
 
                     React.createElement("div", {className: classNames([
                             "c-eventDetail__bottomBorder",
@@ -29157,10 +29188,109 @@ var EventDetailReadOnly = React.createClass({displayName: "EventDetailReadOnly",
                         )
                     ), 
 
+                    React.createElement(EventPrevNextNav, {event:  event }), 
+
                     React.createElement("div", {className: classNames([
                             "c-eventDetail__bottomBorder",
                             /*"c-timeline--value_" + (event.value+1)*/
                         ])})
+                );
+    }
+
+});
+
+
+
+
+
+
+var EventPrevNextNav = React.createClass({displayName: "EventPrevNextNav",
+
+    getDefaultProps: function() {
+        return {
+            event:false
+        };
+    },
+
+    componentWillMount: function() {
+        /*var me = this;
+        RouteState.addDiffListeners(
+    		[
+                "event"
+            ],
+    		function ( route , prev_route ) {
+                me.setState({
+                    event:Model.get( RS.route.event )
+                });
+                console.log(Model.get( RS.route.event ));
+                //me.forceUpdate();
+    		},
+            "EventPrevNextNav"
+    	);*/
+    },
+
+    componentWillUnmount: function(){
+        //RouteState.removeDiffListenersViaClusterId( "EventPrevNextNav" );
+    },
+
+    componentDidMount: function(){
+    },
+
+    componentDidUpdate: function(){
+    },
+
+    render: function() {
+
+        var event = this.props.event;
+        if ( !event ) {
+            return React.createElement("div", null);
+        }
+        var me = this;
+        var prev_and_next = TimelineMetrics.nextAndPreviousEvent( event );
+
+        return  React.createElement("div", {className: 
+                    "c-eventDetail_pagination"}, 
+                    React.createElement("div", {className: classNames([
+                            "c-eventDetail__paginationButton",
+                            {"a-display-none":prev_and_next.prev === false}
+                        ]), 
+                        onClick: function(){
+                            RS.merge({
+                                event:prev_and_next.prev.guid
+                            })
+                        }}, 
+                        React.createElement("div", {className: 
+                            "a-width-col-quarter" + ' ' +
+                            "o-icon-arrow-left-24"}
+                        ), 
+                        React.createElement("div", {className: 
+                            "c-eventDetail__paginationButton__label" + ' ' +
+                            "a-flex-h"}, 
+                             prev_and_next.prev.title
+                        )
+                    ), 
+                    React.createElement("div", {className: 
+                        "a-fill"}
+                    ), 
+                    React.createElement("div", {className: classNames([
+                            "c-eventDetail__paginationButton",
+                            {"a-display-none":prev_and_next.next === false}
+                        ]), 
+                        onClick: function(){
+                            RS.merge({
+                                event:prev_and_next.next.guid
+                            })
+                        }}, 
+                        React.createElement("div", {className: 
+                            "c-eventDetail__paginationButton__label" + ' ' +
+                            "a-flex-right"}, 
+                             prev_and_next.next.title
+                        ), 
+                        React.createElement("div", {className: 
+                            "a-width-col-quarter" + ' ' +
+                            "o-icon-arrow-right-24"}
+                        )
+                    )
                 );
     }
 
@@ -29461,9 +29591,24 @@ var Timelines = React.createClass({displayName: "Timelines",
                                 "c-timelines__button" + ' ' +
                                 "a-fill", 
                                 onClick: function(){
+                                    var new_timeline = Mod.get("timeline_new");
+                                    new_timeline.title = "New Timeline";
+                                    new_timeline.end_date = new Date();
+                                    new_timeline.is_open_ended = true;
+                                    new_timeline.start_date = new Date().setFullYear( 2000 );
+                                    new_timeline.moods = [];
+                                    new_timeline.events = [];
+
                                     RS.merge({
-                                        "page.landing_page":false
+                                        modal:"newtimeline",
+                                        "timeline":new_timeline.guid
                                     });
+
+                                    /*RS.merge({
+                                        page:"timeline",
+                                        "page:timeline":new_timeline.guid,
+                                        "page:editing":"editing"
+                                    });*/
                                 }}, 
                                 "New Timeline"
                             ), 
@@ -29563,11 +29708,50 @@ var TimelineEditor = React.createClass({displayName: "TimelineEditor",
     componentDidUpdate: function(){
     },
 
+    moveBaseLine: function (evt) {
+        var window_height = $(window).height();
+        var y = ( (evt.clientY) / window_height ) * 100;
+        var baseline = $(".c-timelineEditor__baseline");
+
+        //if ( y > 30 && y < 70 ) {//y > 30 && y < 69 ) {
+            var window_width = $(window).width();
+            var x = ( (evt.clientX-30) / $(window).width() ) * 100;
+            var circle_offset = ( (window_height*.19 - 30) / window_width ) * 100;
+            var circle_offset_right = ( (window_height*.19 + 20) / window_width ) * 100;
+
+            x = Math.max( 17+circle_offset ,
+                    Math.min( 66+17-circle_offset_right , x )
+                );
+
+            baseline.css({
+                "left": x + "vw",
+                "transition":"none"
+            });
+            $(".c-timelineEditor__circleLabels, .c-timelineEditor__baselineLabel")
+                .css("opacity",1);
+                //.removeClass("a-display-none")
+                //.addClass("a-display-flex");
+        //}else{
+        //    me.revertBaseLine();
+        //}
+    },
+
+    revertBaseLine: function () {
+        var baseline = $(".c-timelineEditor__baseline");
+        baseline.css({
+            "left":"calc( 100vw - 10px )",
+            "transition":"left .2s"
+        });
+        $(".c-timelineEditor__circleLabels, .c-timelineEditor__baselineLabel")
+            .css("opacity",0);
+            //.removeClass("a-display-flex")
+            //.addClass("a-display-none");
+    },
+
     render: function() {
 
-        var timeline = this.state.timeline;//Model.get( RS.route.timeline );
-
-        //console.log( timeline );
+        var me = this;
+        var timeline = this.state.timeline;
         var is_editing = typeof RS.route.editing !== 'undefined';
 
         var eventsInfo = TimelineMetrics.eventsInfo( timeline );
@@ -29582,55 +29766,72 @@ var TimelineEditor = React.createClass({displayName: "TimelineEditor",
                         timeline:  timeline, 
                         is_editing:  is_editing }), 
 
-                    React.createElement("div", {className: "c-timelineEditor__shift"}, 
+                    React.createElement("div", {className: "c-timelineEditor__shift", 
+                        onMouseUp: function(evt){
+                            me.mouse_is_down = false;
+                            me.revertBaseLine();
+                        }, 
+                        onMouseMove: function(evt){
+                            if ( !me.mouse_is_down )
+                                return;
+
+                            me.moveBaseLine( evt );
+                        }, 
+                        onMouseOut: function(evt){
+                            //me.mouse_is_down = false;
+                            var baseline = $(".c-timelineEditor__baseline");
+                            baseline.css({
+                                "left":"calc( 100vw - 10px )",
+                                "transition":"left .2s"
+                            });
+                        }}, 
+
+                        React.createElement("div", {className: 
+                            "c-timelineEditor__circleLabels"}, 
+                            React.createElement("div", {className: 
+                                "c-timelineEditor__circleLabel"}, 
+                                "worst"
+                            ), 
+                            React.createElement("div", {className: 
+                                "a-fill"}
+                            ), 
+                            React.createElement("div", {className: 
+                                "a-text-size-small" + ' ' +
+                                "a-text-color-grey-5"}, 
+                                "perspectives"
+                            ), 
+                            React.createElement("div", {className: 
+                                "a-fill"}
+                            ), 
+                            React.createElement("div", {className: 
+                                "c-timelineEditor__circleLabel"}, 
+                                "best"
+                            )
+                        ), 
 
                         React.createElement(Circles, {
                             timeline:  timeline, 
                             is_editing:  is_editing, 
-                            onMouseMove: function(evt){
-                                $(".c-timelineEditor__baseline").css(
-                                    "left",
-                                    (( (evt.clientX-25) / $(window).width() ) * 100 ) + "vw"
-                                );
-                                $(".c-timelineEditor__baseline").css(
-                                    "transition",
-                                    "none"
-                                );
+                            onMouseDown: function(evt){
+                                me.mouse_is_down = true;
+                                me.moveBaseLine( evt );
                             }, 
-                            onMouseOut: function(evt){
-                                $(".c-timelineEditor__baseline").css(
-                                    "transition",
-                                    "left .2s"
-                                );
-                                $(".c-timelineEditor__baseline").css(
-                                    "left",
-                                    "calc( 100vw - 10px )"
-                                );
+                            onMouseUp: function(evt){
+                                me.mouse_is_down = false;
+                                me.revertBaseLine();
                             }}), 
 
                         React.createElement("div", {className: 
                             "c-timelineEditor__baseline", 
-                            onMouseMove: function(evt){
-                                $(".c-timelineEditor__baseline").css(
-                                    "left",
-                                    (( (evt.clientX-25) / $(window).width() ) * 100 ) + "vw"
-                                );
-                                $(".c-timelineEditor__baseline").css(
-                                    "transition",
-                                    "none"
-                                );
-                            }, 
-                            onMouseOut: function(evt){
-                                $(".c-timelineEditor__baseline").css(
-                                    "transition",
-                                    "left .2s"
-                                );
-                                $(".c-timelineEditor__baseline").css(
-                                    "left",
-                                    "calc( 100vw - 10px )"
-                                );
-
+                            onMouseUp: function(evt){
+                                me.mouse_is_down = false;
+                                me.revertBaseLine();
                             }}, 
+                            React.createElement("div", {className: 
+                                "c-timelineEditor__baselineLabel", 
+                                style: {"bottom":"-30px"}}, 
+                                "baseline"
+                            ), 
                             eventsInfo.values.map(function( value, index ){
                                 return  React.createElement("div", {className: classNames([
                                                 "c-timeline--value_" + (index+1)
@@ -29641,6 +29842,7 @@ var TimelineEditor = React.createClass({displayName: "TimelineEditor",
                                             }}
                                         );
                             })
+
                         ), 
 
                         React.createElement("div", {className: "c-timelineEditor__editIntensity"}, 
@@ -29729,7 +29931,10 @@ var TimelineEditor = React.createClass({displayName: "TimelineEditor",
                         React.createElement("div", {className: 
                             "c-timelineEditor__editSubmit__footer"}, 
                             React.createElement("div", {className: 
-                                "c-timelineEditor__editSubmit__footer__button"}, 
+                                "c-timelineEditor__editSubmit__footer__button", 
+                                onClick: function(){
+                                    console.log( timeline );
+                                }}, 
                                 "Save"
                             ), 
                             React.createElement("div", {className: 
@@ -29766,6 +29971,8 @@ var Circles = React.createClass({displayName: "Circles",
             timeline:false,
             is_editing:false,
             onMouseMove:false,
+            onMouseOut:false,
+            onMouseDown:false,
             onMouseOut:false
         };
     },
@@ -29948,7 +30155,6 @@ var Circles = React.createClass({displayName: "Circles",
             left_layer_y, left_layer_width,
             params
         ) {
-
             var p_half = canvas_padding/2;
 
             var left_layer_x = circle_radius + p_half;
@@ -30063,10 +30269,10 @@ var Circles = React.createClass({displayName: "Circles",
 
         var timeline = Model.get( RS.route.timeline );
 
-        if ( this.props.onMouseMove ) {
+        if ( this.props.onMouseDown ) {
             return  React.createElement("div", {className: "c-timelineEditor__shift__circles", 
-                        onMouseMove:  this.props.onMouseMove, 
-                        onMouseOut:  this.props.onMouseOut});
+                        onMouseDown:  this.props.onMouseDown, 
+                        onMouseUp:  this.props.onMouseUp});
         }else{
             return  React.createElement("div", {className: "c-timelineEditor__shift__circles"});
         }
@@ -30162,15 +30368,15 @@ var TimelineHeader = React.createClass({displayName: "TimelineHeader",
         return  React.createElement("div", {className: classNames([
                         "c-timelineEditor__header"
                     ])}, 
-                    React.createElement("div", {className: 
-                        "c-timelineEditor__header__back", 
-                        onClick: function(){
+                    /*<div className="
+                        c-timelineEditor__header__back"
+                        onClick={function(){
                             RS.merge({
                                 page:"home",
                                 landing_page:"timelines"
                             });
-                        }}
-                    ), 
+                        }}>
+                    </div>*/
                     React.createElement("div", {className: 
                         "c-timelineEditor__header__titleBox"}, 
                         React.createElement("div", {className: 
@@ -30295,6 +30501,244 @@ var TimelineHeader = React.createClass({displayName: "TimelineHeader",
                             );
                         }}, 
                         "edit"
+                    ), 
+                    React.createElement("div", {className: 
+                        "c-timelineEditor__header__close", 
+                        onClick: function(){
+                            RS.merge({
+                                page:"home",
+                                landing_page:"timelines"
+                            });
+                        }}
+                    )
+                );
+    }
+
+});
+
+
+
+
+var NewTimelineModal = React.createClass({displayName: "NewTimelineModal",
+
+
+
+    getInitialState: function () {
+        return {
+            timeline:false,
+            title:false,
+            start_date:false,
+            start_date_valid:false,
+            is_open_ended:false,
+            end_date:false,
+            end_date_valid:false
+        };
+    },
+
+
+    componentWillMount: function() {
+        /*var me = this;
+        RouteState.addDiffListeners(
+    		[
+                "page"
+            ],
+    		function ( route , prev_route ) {
+                // update
+                me.forceUpdate();
+    		},
+            "NewTimelineModalEditor"
+    	);*/
+
+        var timeline = Mod.get( RS.route.timeline );
+        this.setState({
+            timeline:timeline,
+            title:timeline.title,
+            start_date:moment( timeline.start_date ).format('MM/DD/YYYY'),
+            start_date_valid:true,
+            end_date:moment( timeline.end_date ).format('MM/DD/YYYY'),
+            end_date_valid:true,
+            is_open_ended:timeline.is_open_ended
+        });
+    },
+
+    componentWillUnmount: function(){
+        //RouteState.removeDiffListenersViaClusterId( "NewTimelineModalEditor" );
+    },
+
+    componentDidMount: function(){
+    },
+
+    componentDidUpdate: function(){
+    },
+
+    updateTitleFromInput: function () {
+        if ( this.state.title.length > 0 ) {
+            this.state.timeline.title = this.state.title;
+            Event.fire("timeline_updated");
+            this.forceUpdate();
+        }
+    },
+
+    updateStartDateInput: function() {
+        if ( this.state.start_date_valid ) {
+            this.state.timeline.start_date
+                = moment( this.state.start_date ,'MM/DD/YYYY', true ).format();
+            Event.fire("timeline_updated");
+            this.forceUpdate();
+        }
+    },
+
+    updateEndDateInput: function () {
+        if ( this.state.end_date_valid ) {
+            if ( this.state.end_date == "" ) {
+                this.state.is_open_ended = true;
+                this.state.timeline.end_date
+                    = moment().format();
+            }else{
+                this.state.timeline.end_date
+                    = moment( this.state.end_date ,'MM/DD/YYYY', true ).format();
+            }
+            Event.fire("timeline_updated");
+            this.forceUpdate();
+        }
+    },
+
+    render: function() {
+
+        var me = this;
+
+        return  React.createElement("div", {className: classNames([
+                        "c-newTimelineModal"
+                    ])}, 
+                    React.createElement("div", {className: 
+                        "c-newTimelineModal__page"}, 
+                        React.createElement("div", {className: 
+                            "o-form__v-layout" + ' ' +
+                            "a-height-row-3" + ' ' +
+                            "a-margin-bottom-row"}, 
+                            React.createElement("div", {className: 
+                                "o-form__label"}, 
+                                "title"
+                            ), 
+                            React.createElement("input", {className: classNames([
+                                    "o-form__input",
+                                    {"o-form--invalid":this.state.title.length == 0}
+                                ]), 
+                                value:  this.state.title, 
+                                onChange: function(evt){
+                                    me.state.title = evt.target.value;
+                                    me.forceUpdate();
+                                }, 
+                                onKeyUp: function(evt){
+                                    if (evt.key === 'Enter') {
+                                        me.updateTitleFromInput();
+                                    }
+                                }, 
+                                onBlur: this.updateTitleFromInput})
+                        ), 
+                        React.createElement("div", {className: 
+                            "o-form__v-layout" + ' ' +
+                            "a-height-row-3" + ' ' +
+                            "a-margin-bottom-row"}, 
+                            React.createElement("div", {className: 
+                                "o-form__label"}, 
+                                React.createElement("div", {className: 
+                                    "a-fill"}, 
+                                    "start"
+                                ), 
+                                React.createElement("div", {className: 
+                                    "o-form__hint"}, 
+                                    "(mm/dd/yyyy)"
+                                )
+                            ), 
+                            React.createElement("input", {className: classNames([
+                                    "o-form__input",
+                                    {"o-form--invalid":!this.state.start_date_valid}
+                                ]), 
+                                value:  me.state.start_date, 
+                                onChange: function(evt){
+                                    me.state.start_date = evt.target.value;
+                                    me.state.start_date_valid
+                                        = moment( evt.target.value ,'MM/DD/YYYY', true ).isValid();
+                                    me.forceUpdate();
+                                }, 
+                                onKeyUp: function(evt){
+                                    if (evt.key === 'Enter') {
+                                        me.updateStartDateInput();
+                                    }
+                                }, 
+                                onBlur: this.updateStartDateInput})
+                        ), 
+                        React.createElement("div", {className: 
+                            "o-form__v-layout" + ' ' +
+                            "a-height-row-3" + ' ' +
+                            "a-margin-bottom-row"}, 
+                            React.createElement("div", {className: 
+                                "o-form__label"}, 
+                                React.createElement("div", {className: 
+                                    "a-fill"}, 
+                                    "end"
+                                ), 
+                                React.createElement("div", {className: 
+                                    "o-form__hint"}, 
+                                    "(date or blank)"
+                                )
+                            ), 
+                            React.createElement("input", {className: classNames([
+                                    "o-form__input",
+                                    {"o-form--invalid":!this.state.end_date_valid}
+                                ]), 
+                                value:  me.state.end_date, 
+                                onChange: function(evt){
+                                    me.state.end_date = evt.target.value;
+                                    if ( me.state.end_date == "" ) {
+                                        me.state.end_date_valid = true;
+                                    }else{
+                                        me.state.end_date_valid
+                                            = moment( evt.target.value ,'MM/DD/YYYY', true ).isValid();
+                                    }
+                                    me.forceUpdate();
+                                }, 
+                                onKeyUp: function(evt){
+                                    if (evt.key === 'Enter') {
+                                        me.updateEndDateInput();
+                                    }
+                                }, 
+                                onBlur: this.updateEndDateInput})
+                        ), 
+                        React.createElement("div", {className: 
+                            "o-form__v-layout" + ' ' +
+                            "a-flex-h-stretch" + ' ' +
+                            "a-height-row-2"}, 
+                            React.createElement("div", {className: 
+                                "o-button"}, 
+                                "cancel"
+                            ), 
+                            React.createElement("div", {className: 
+                                "a-fill"}
+                            ), 
+                            React.createElement("div", {className: 
+                                "o-roundedButton" + ' ' +
+                                "o-roundedButton--brand-primary" + ' ' +
+                                "a-width-col-2", 
+                                onClick: function(){
+
+                                    me.state.timeline.title = me.state.title;
+                                    me.state.timeline.is_open_ended = me.state.is_open_ended;
+                                    //me.state.timeline.start_date
+                                    //    = moment( me.state.start_date ,'MM/DD/YYYY' ).format();
+                                    //me.state.timeline.end_date
+                                    //    = moment( me.state.end_date ,'MM/DD/YYYY' ).format();
+
+                                    RS.merge({
+                                        page:"timeline",
+                                        "page:editing":"editing",
+                                        modal:false
+                                    });
+                                }}, 
+                                "Create"
+                            )
+                        )
                     )
                 );
     }
@@ -30333,7 +30777,7 @@ var Timeline = React.createClass({displayName: "Timeline",
     },
 
     componentDidMount: function(){
-        this.renderTimeline();
+        //this.renderTimeline();
     },
 
     componentDidUpdate: function(){
@@ -30356,7 +30800,7 @@ var Timeline = React.createClass({displayName: "Timeline",
         }
         var time_span = end.getTime() - start.getTime();
 
-        var new_mood = Mod.get("event_new");
+        var new_mood = Mod.get("event_new" + Math.round( Math.random() * 10000 ));
         new_mood.timeline = timeline;
         new_mood.title = "New Mood";
         new_mood.note = "Describe your experience...";
@@ -30369,8 +30813,6 @@ var Timeline = React.createClass({displayName: "Timeline",
                     )
                 ).format();
 
-        console.log( new_mood );
-
         timeline.moods.push( new_mood );
         Event.fire("timeline_updated");
         RS.merge({
@@ -30378,26 +30820,15 @@ var Timeline = React.createClass({displayName: "Timeline",
         });
     },
 
-    renderTimeline : function() {
+    renderTimelineLabels : function() {
 
-        var graph_dom = $(".c-timeline__graph");
-        var labels_dom = $(".c-timeline__xaxis");
-        var mood_edit_dom = $(".c-timeline__moodEdit");
+        var timeline_labels = [];
+        var timeline = this.props.timeline;
 
-        var timeline = this.props.timeline;//Model.get( RS.route.timeline );
-
-        var fills = ["#EF45FF","#52DFFF","#FAFF69","#FF9425","#FE4040"];
-        var fills_faded = ["#F58EFF","#92E6FA","#F8FBA0","#FFBE7A","#FD8A8A"];
-
-        var start = new Date( timeline.start_date );
-        var end = new Date();
-        if ( !timeline.is_open_ended ) {
-            end = new Date( timeline.end_date );
-        }
-
-        var time_span = end.getTime() - start.getTime();
-
-
+        var dateInfo = TimelineMetrics.dateInfo( timeline );
+        var start = dateInfo.start;
+        var end = dateInfo.end;
+        var time_span = dateInfo.time_span;
 
         //=====NOW LABELS======
         var years = time_span / 1000 / 60 / 60 / 24 / 365;
@@ -30408,7 +30839,9 @@ var Timeline = React.createClass({displayName: "Timeline",
                 if ( year.getTime() > end.getTime() ) {
                     break;
                 }
-                this.renderLabel( year, start, end, time_span, labels_dom );
+                timeline_labels.push(
+                    this.renderLabel( year, start, end, time_span )
+                );
             }
         }else if ( years < 30 ){
             var start_rounded;
@@ -30418,7 +30851,9 @@ var Timeline = React.createClass({displayName: "Timeline",
                 if ( year.getTime() > end.getTime() ) {
                     break;
                 }
-                this.renderLabel( year, start, end, time_span, labels_dom );
+                timeline_labels.push(
+                    this.renderLabel( year, start, end, time_span )
+                );
             }
         }else{
             var start_rounded;
@@ -30428,25 +30863,26 @@ var Timeline = React.createClass({displayName: "Timeline",
                 if ( year.getTime() > end.getTime() ) {
                     break;
                 }
-                this.renderLabel( year, start, end, time_span, labels_dom );
+                timeline_labels.push(
+                    this.renderLabel( year, start, end, time_span )
+                );
             }
         }
+        return timeline_labels;
     },
 
-    renderLabel: function ( year, start, end, time_span, labels_dom ) {
+    renderLabel: function ( year, start, end, time_span ) {
         year_percent = ( year.getTime() - start.getTime() ) / time_span;
-        year_css = "left: " + Math.round( year_percent * 100 ) + "%";
+        year_left_css = Math.round( year_percent * 100 ) + "%";
         if (
             year.getTime() > start.getTime() &&
             year.getTime() < end.getTime()
         ) {
-            labels_dom.append(
-                $(
-                    "<div class='c-timeline__label' style='"+year_css+"'>" +
-                    year.getFullYear() +
-                    "</div>"
-                )
-            );
+            return  React.createElement("div", {className: "c-timeline__label", 
+                        key:  "timeline_label_year_" + year.getFullYear(), 
+                        style: {left:year_left_css}}, 
+                         year.getFullYear() 
+                    );
         }
     },
 
@@ -30455,13 +30891,11 @@ var Timeline = React.createClass({displayName: "Timeline",
         var fills = ["#EF45FF","#52DFFF","#FAFF69","#FF9425","#FE4040"];
         var fills_faded = ["#F58EFF","#92E6FA","#F8FBA0","#FFBE7A","#FD8A8A"];
 
-        var timeline = this.props.timeline;//Model.get( RS.route.timeline );
-        var start = new Date( timeline.start_date );
-        var end = new Date();
-        if ( !timeline.is_open_ended ) {
-            end = new Date( timeline.end_date );
-        }
-        var time_span = end.getTime() - start.getTime();
+        var timeline = this.props.timeline;
+        var dateInfo = TimelineMetrics.dateInfo( timeline );
+        var start = dateInfo.start;
+        var end = dateInfo.end;
+        var time_span = dateInfo.time_span;
 
         function getEventOnClick (event){
             return function( evt ){
@@ -30507,7 +30941,6 @@ var Timeline = React.createClass({displayName: "Timeline",
             }
         }
         grads.push("#e9e9e9");
-
 
         var event,event_time,event_percent;
         var event_items = [];
@@ -30559,7 +30992,9 @@ var Timeline = React.createClass({displayName: "Timeline",
                         {"c-timeline--editing":this.props.is_editing}
                     ])}, 
 
-                    React.createElement("div", {className: "c-timeline__xaxis"}), 
+                    React.createElement("div", {className: "c-timeline__xaxis"}, 
+                         this.renderTimelineLabels() 
+                    ), 
                      selected_item, 
                     React.createElement("div", {className: "c-timeline__graph", 
                         style: {
@@ -30725,6 +31160,31 @@ _TimelineMetrics.prototype = {
             values:values,
             total_percent:new_totes
         };
+    },
+
+    nextAndPreviousEvent: function( event ) {
+        var timeline = event.timeline;
+        var all_events = timeline.events.concat( timeline.moods );
+        all_events.sort(function(a,b) {
+            return new Date(a.date).getTime() - new Date(b.date).getTime()
+        });
+
+        var prev = false,next = false,all_event;
+        for ( var i=0; i<all_events.length; i++ ) {
+            all_event = all_events[i];
+            console.log( all_event.guid );
+            if ( all_event.guid == event.guid ) {
+                if ( i < all_events.length-1 ) {
+                    next = all_events[i+1];
+                }
+                break;
+            }
+            prev = all_event;
+        }
+        return {
+            next:next,
+            prev:prev
+        }
     }
 
 };

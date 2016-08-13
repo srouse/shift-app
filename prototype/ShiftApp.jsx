@@ -7,7 +7,7 @@ var ShiftApp = React.createClass({
         var me = this;
         RouteState.addDiffListeners(
     		[
-                "page"
+                "page","modal"
             ],
     		function ( route , prev_route ) {
                 me.forceUpdate();
@@ -42,10 +42,16 @@ var ShiftApp = React.createClass({
             content = <TimelineEditor />;
         }
 
+        var modal = "";
+        if ( RS.route.modal == "newtimeline" ) {
+            modal = <NewTimelineModal />;
+        }
+
         return  <div className={classNames([
                         "c-shiftApp"
                     ])}>
                     { content }
+                    { modal }
                 </div>;
     }
 

@@ -31,11 +31,41 @@
 .o-icon-arrow-left-96 {
   background-size: 96px 96px;
 }
+.o-icon-arrow-right-16,
+.o-icon-arrow-right-32,
+.o-icon-arrow-right-64 {
+  background-image: url('data:image/svg+xml;charset=US-ASCII,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%20standalone%3D%22no%22%3F%3E%0A%3Csvg%20width%3D%2264px%22%20height%3D%2264px%22%20viewBox%3D%220%200%2064%2064%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0A%20%20%20%20%3C!--%20Generator%3A%20Sketch%2039.1%20(31720)%20-%20http%3A%2F%2Fwww.bohemiancoding.com%2Fsketch%20--%3E%0A%20%20%20%20%3Ctitle%3Earrow-right-16%2C32%2C64%3C%2Ftitle%3E%0A%20%20%20%20%3Cdesc%3ECreated%20with%20Sketch.%3C%2Fdesc%3E%0A%20%20%20%20%3Cdefs%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Cg%20id%3D%22Page-1%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Cg%20id%3D%22Artboard%22%20transform%3D%22translate(-202.000000%2C%20-221.000000)%22%20fill%3D%22%23555555%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M235.360803%2C253%20L251.181818%2C238.163636%20L251.181818%2C229%20L225%2C253%20C225.030408%2C253.027152%20251.181818%2C277%20251.181818%2C277%20L251.181818%2C267.836364%20L235.360803%2C253%20Z%22%20id%3D%22back_arrow_xsm%22%20transform%3D%22translate(238.090909%2C%20253.000000)%20scale(-1%2C%201)%20translate(-238.090909%2C%20-253.000000)%20%22%3E%3C%2Fpath%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E');
+  background-repeat: no-repeat;
+}
+.o-icon-arrow-right-16 {
+  background-size: 16px 16px;
+}
+.o-icon-arrow-right-32 {
+  background-size: 32px 32px;
+}
+.o-icon-arrow-right-64 {
+  background-size: 64px 64px;
+}
+.o-icon-arrow-right-24,
+.o-icon-arrow-right-48,
+.o-icon-arrow-right-96 {
+  background-image: url('data:image/svg+xml;charset=US-ASCII,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%20standalone%3D%22no%22%3F%3E%0A%3Csvg%20width%3D%2296px%22%20height%3D%2296px%22%20viewBox%3D%220%200%2096%2096%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0A%20%20%20%20%3C!--%20Generator%3A%20Sketch%2039.1%20(31720)%20-%20http%3A%2F%2Fwww.bohemiancoding.com%2Fsketch%20--%3E%0A%20%20%20%20%3Ctitle%3Earrow-right-24%2C48%2C96%3C%2Ftitle%3E%0A%20%20%20%20%3Cdesc%3ECreated%20with%20Sketch.%3C%2Fdesc%3E%0A%20%20%20%20%3Cdefs%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Cg%20id%3D%22Page-1%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Cg%20id%3D%22Artboard%22%20transform%3D%22translate(-300.000000%2C%20-189.000000)%22%20fill%3D%22%23555555%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M348.147737%2C237%20L368.909091%2C217.551515%20L368.909091%2C205%20L334%2C237%20C334.040544%2C237.036203%20368.909091%2C269%20368.909091%2C269%20L368.909091%2C256.448485%20L348.147737%2C237%20Z%22%20id%3D%22back_arrow_xsm%22%20transform%3D%22translate(351.454545%2C%20237.000000)%20scale(-1%2C%201)%20translate(-351.454545%2C%20-237.000000)%20%22%3E%3C%2Fpath%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E');
+  background-repeat: no-repeat;
+}
+.o-icon-arrow-right-24 {
+  background-size: 24px 24px;
+}
+.o-icon-arrow-right-48 {
+  background-size: 48px 48px;
+}
+.o-icon-arrow-right-96 {
+  background-size: 96px 96px;
+}
 .o-icon-checkbox-16,
 .o-icon-checkbox-32,
 .o-icon-checkbox-64,
 .o-form__checkbox + .o-form__label {
-  background-image: url('data:image/svg+xml;charset=US-ASCII,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%20standalone%3D%22no%22%3F%3E%0A%3Csvg%20width%3D%2264px%22%20height%3D%2264px%22%20viewBox%3D%220%200%2064%2064%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0A%20%20%20%20%3C!--%20Generator%3A%20Sketch%2039.1%20(31720)%20-%20http%3A%2F%2Fwww.bohemiancoding.com%2Fsketch%20--%3E%0A%20%20%20%20%3Ctitle%3Echeckbox-16%2C32%2C64%3C%2Ftitle%3E%0A%20%20%20%20%3Cdesc%3ECreated%20with%20Sketch.%3C%2Fdesc%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%20%20%3Crect%20id%3D%22path-1%22%20x%3D%22212%22%20y%3D%22360%22%20width%3D%2248%22%20height%3D%2248%22%3E%3C%2Frect%3E%0A%20%20%20%20%20%20%20%20%3Cmask%20id%3D%22mask-2%22%20maskContentUnits%3D%22userSpaceOnUse%22%20maskUnits%3D%22objectBoundingBox%22%20x%3D%220%22%20y%3D%220%22%20width%3D%2248%22%20height%3D%2248%22%20fill%3D%22white%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cuse%20xlink%3Ahref%3D%22%23path-1%22%3E%3C%2Fuse%3E%0A%20%20%20%20%20%20%20%20%3C%2Fmask%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Cg%20id%3D%22Page-1%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Cg%20id%3D%22Artboard%22%20transform%3D%22translate(-204.000000%2C%20-352.000000)%22%20stroke%3D%22%23CBCBCB%22%20stroke-width%3D%224%22%20fill%3D%22%23FFFFFF%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cuse%20id%3D%22Combined-Shape%22%20mask%3D%22url(%23mask-2)%22%20xlink%3Ahref%3D%22%23path-1%22%3E%3C%2Fuse%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E');
+  background-image: url('data:image/svg+xml;charset=US-ASCII,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%20standalone%3D%22no%22%3F%3E%0A%3Csvg%20width%3D%2264px%22%20height%3D%2264px%22%20viewBox%3D%220%200%2064%2064%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0A%20%20%20%20%3C!--%20Generator%3A%20Sketch%2039.1%20(31720)%20-%20http%3A%2F%2Fwww.bohemiancoding.com%2Fsketch%20--%3E%0A%20%20%20%20%3Ctitle%3Echeckbox-16%2C32%2C64%3C%2Ftitle%3E%0A%20%20%20%20%3Cdesc%3ECreated%20with%20Sketch.%3C%2Fdesc%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%20%20%3Crect%20id%3D%22path-1%22%20x%3D%22212%22%20y%3D%22510%22%20width%3D%2248%22%20height%3D%2248%22%3E%3C%2Frect%3E%0A%20%20%20%20%20%20%20%20%3Cmask%20id%3D%22mask-2%22%20maskContentUnits%3D%22userSpaceOnUse%22%20maskUnits%3D%22objectBoundingBox%22%20x%3D%220%22%20y%3D%220%22%20width%3D%2248%22%20height%3D%2248%22%20fill%3D%22white%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cuse%20xlink%3Ahref%3D%22%23path-1%22%3E%3C%2Fuse%3E%0A%20%20%20%20%20%20%20%20%3C%2Fmask%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Cg%20id%3D%22Page-1%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Cg%20id%3D%22Artboard%22%20transform%3D%22translate(-204.000000%2C%20-502.000000)%22%20stroke%3D%22%23CBCBCB%22%20stroke-width%3D%224%22%20fill%3D%22%23FFFFFF%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cuse%20id%3D%22Combined-Shape%22%20mask%3D%22url(%23mask-2)%22%20xlink%3Ahref%3D%22%23path-1%22%3E%3C%2Fuse%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E');
   background-repeat: no-repeat;
 }
 .o-icon-checkbox-16 {
@@ -51,7 +81,7 @@
 .o-icon-checkbox-24,
 .o-icon-checkbox-48,
 .o-icon-checkbox-96 {
-  background-image: url('data:image/svg+xml;charset=US-ASCII,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%20standalone%3D%22no%22%3F%3E%0A%3Csvg%20width%3D%2296px%22%20height%3D%2296px%22%20viewBox%3D%220%200%2096%2096%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0A%20%20%20%20%3C!--%20Generator%3A%20Sketch%2039.1%20(31720)%20-%20http%3A%2F%2Fwww.bohemiancoding.com%2Fsketch%20--%3E%0A%20%20%20%20%3Ctitle%3Echeckbox-24%2C48%2C96%3C%2Ftitle%3E%0A%20%20%20%20%3Cdesc%3ECreated%20with%20Sketch.%3C%2Fdesc%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%20%20%3Crect%20id%3D%22path-1%22%20x%3D%22318%22%20y%3D%22336%22%20width%3D%2264%22%20height%3D%2264%22%3E%3C%2Frect%3E%0A%20%20%20%20%20%20%20%20%3Cmask%20id%3D%22mask-2%22%20maskContentUnits%3D%22userSpaceOnUse%22%20maskUnits%3D%22objectBoundingBox%22%20x%3D%220%22%20y%3D%220%22%20width%3D%2264%22%20height%3D%2264%22%20fill%3D%22white%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cuse%20xlink%3Ahref%3D%22%23path-1%22%3E%3C%2Fuse%3E%0A%20%20%20%20%20%20%20%20%3C%2Fmask%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Cg%20id%3D%22Page-1%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Cg%20id%3D%22Artboard%22%20transform%3D%22translate(-302.000000%2C%20-320.000000)%22%20stroke%3D%22%23D6D6D6%22%20stroke-width%3D%224%22%20fill%3D%22%23FFFFFF%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cuse%20id%3D%22Combined-Shape%22%20mask%3D%22url(%23mask-2)%22%20xlink%3Ahref%3D%22%23path-1%22%3E%3C%2Fuse%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E');
+  background-image: url('data:image/svg+xml;charset=US-ASCII,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%20standalone%3D%22no%22%3F%3E%0A%3Csvg%20width%3D%2296px%22%20height%3D%2296px%22%20viewBox%3D%220%200%2096%2096%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0A%20%20%20%20%3C!--%20Generator%3A%20Sketch%2039.1%20(31720)%20-%20http%3A%2F%2Fwww.bohemiancoding.com%2Fsketch%20--%3E%0A%20%20%20%20%3Ctitle%3Echeckbox-24%2C48%2C96%3C%2Ftitle%3E%0A%20%20%20%20%3Cdesc%3ECreated%20with%20Sketch.%3C%2Fdesc%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%20%20%3Crect%20id%3D%22path-1%22%20x%3D%22318%22%20y%3D%22486%22%20width%3D%2264%22%20height%3D%2264%22%3E%3C%2Frect%3E%0A%20%20%20%20%20%20%20%20%3Cmask%20id%3D%22mask-2%22%20maskContentUnits%3D%22userSpaceOnUse%22%20maskUnits%3D%22objectBoundingBox%22%20x%3D%220%22%20y%3D%220%22%20width%3D%2264%22%20height%3D%2264%22%20fill%3D%22white%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cuse%20xlink%3Ahref%3D%22%23path-1%22%3E%3C%2Fuse%3E%0A%20%20%20%20%20%20%20%20%3C%2Fmask%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Cg%20id%3D%22Page-1%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Cg%20id%3D%22Artboard%22%20transform%3D%22translate(-302.000000%2C%20-470.000000)%22%20stroke%3D%22%23D6D6D6%22%20stroke-width%3D%224%22%20fill%3D%22%23FFFFFF%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cuse%20id%3D%22Combined-Shape%22%20mask%3D%22url(%23mask-2)%22%20xlink%3Ahref%3D%22%23path-1%22%3E%3C%2Fuse%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E');
   background-repeat: no-repeat;
 }
 .o-icon-checkbox-24 {
@@ -67,7 +97,7 @@
 .o-icon-checkbox-checked-32,
 .o-icon-checkbox-checked-64,
 .o-form__checkbox:checked + .o-form__label {
-  background-image: url('data:image/svg+xml;charset=US-ASCII,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%20standalone%3D%22no%22%3F%3E%0A%3Csvg%20width%3D%2264px%22%20height%3D%2264px%22%20viewBox%3D%220%200%2064%2064%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0A%20%20%20%20%3C!--%20Generator%3A%20Sketch%2039.1%20(31720)%20-%20http%3A%2F%2Fwww.bohemiancoding.com%2Fsketch%20--%3E%0A%20%20%20%20%3Ctitle%3Echeckbox-checked-16%2C32%2C64%3C%2Ftitle%3E%0A%20%20%20%20%3Cdesc%3ECreated%20with%20Sketch.%3C%2Fdesc%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%20%20%3Crect%20id%3D%22path-1%22%20x%3D%22212%22%20y%3D%22480%22%20width%3D%2248%22%20height%3D%2248%22%3E%3C%2Frect%3E%0A%20%20%20%20%20%20%20%20%3Cmask%20id%3D%22mask-2%22%20maskContentUnits%3D%22userSpaceOnUse%22%20maskUnits%3D%22objectBoundingBox%22%20x%3D%220%22%20y%3D%220%22%20width%3D%2248%22%20height%3D%2248%22%20fill%3D%22white%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cuse%20xlink%3Ahref%3D%22%23path-1%22%3E%3C%2Fuse%3E%0A%20%20%20%20%20%20%20%20%3C%2Fmask%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Cg%20id%3D%22Page-1%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Cg%20id%3D%22Artboard%22%20transform%3D%22translate(-204.000000%2C%20-472.000000)%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cuse%20id%3D%22Combined-Shape%22%20stroke%3D%22%23CBCBCB%22%20mask%3D%22url(%23mask-2)%22%20stroke-width%3D%224%22%20fill%3D%22%23FFFFFF%22%20xlink%3Ahref%3D%22%23path-1%22%3E%3C%2Fuse%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cpolyline%20id%3D%22Path-105%22%20stroke%3D%22%23393939%22%20stroke-width%3D%226%22%20points%3D%22225%20503%20232%20511%20248%20496%22%3E%3C%2Fpolyline%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E');
+  background-image: url('data:image/svg+xml;charset=US-ASCII,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%20standalone%3D%22no%22%3F%3E%0A%3Csvg%20width%3D%2264px%22%20height%3D%2264px%22%20viewBox%3D%220%200%2064%2064%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0A%20%20%20%20%3C!--%20Generator%3A%20Sketch%2039.1%20(31720)%20-%20http%3A%2F%2Fwww.bohemiancoding.com%2Fsketch%20--%3E%0A%20%20%20%20%3Ctitle%3Echeckbox-checked-16%2C32%2C64%3C%2Ftitle%3E%0A%20%20%20%20%3Cdesc%3ECreated%20with%20Sketch.%3C%2Fdesc%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%20%20%3Crect%20id%3D%22path-1%22%20x%3D%22212%22%20y%3D%22630%22%20width%3D%2248%22%20height%3D%2248%22%3E%3C%2Frect%3E%0A%20%20%20%20%20%20%20%20%3Cmask%20id%3D%22mask-2%22%20maskContentUnits%3D%22userSpaceOnUse%22%20maskUnits%3D%22objectBoundingBox%22%20x%3D%220%22%20y%3D%220%22%20width%3D%2248%22%20height%3D%2248%22%20fill%3D%22white%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cuse%20xlink%3Ahref%3D%22%23path-1%22%3E%3C%2Fuse%3E%0A%20%20%20%20%20%20%20%20%3C%2Fmask%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Cg%20id%3D%22Page-1%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Cg%20id%3D%22Artboard%22%20transform%3D%22translate(-204.000000%2C%20-622.000000)%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cuse%20id%3D%22Combined-Shape%22%20stroke%3D%22%23CBCBCB%22%20mask%3D%22url(%23mask-2)%22%20stroke-width%3D%224%22%20fill%3D%22%23FFFFFF%22%20xlink%3Ahref%3D%22%23path-1%22%3E%3C%2Fuse%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cpolyline%20id%3D%22Path-105%22%20stroke%3D%22%23393939%22%20stroke-width%3D%226%22%20points%3D%22225%20653%20232%20661%20248%20646%22%3E%3C%2Fpolyline%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E');
   background-repeat: no-repeat;
 }
 .o-icon-checkbox-checked-16 {
@@ -83,7 +113,7 @@
 .o-icon-checkbox-checked-24,
 .o-icon-checkbox-checked-48,
 .o-icon-checkbox-checked-96 {
-  background-image: url('data:image/svg+xml;charset=US-ASCII,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%20standalone%3D%22no%22%3F%3E%0A%3Csvg%20width%3D%2296px%22%20height%3D%2296px%22%20viewBox%3D%220%200%2096%2096%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0A%20%20%20%20%3C!--%20Generator%3A%20Sketch%2039.1%20(31720)%20-%20http%3A%2F%2Fwww.bohemiancoding.com%2Fsketch%20--%3E%0A%20%20%20%20%3Ctitle%3Echeckbox-checked-24%2C48%2C96%3C%2Ftitle%3E%0A%20%20%20%20%3Cdesc%3ECreated%20with%20Sketch.%3C%2Fdesc%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%20%20%3Crect%20id%3D%22path-1%22%20x%3D%22318%22%20y%3D%22456%22%20width%3D%2264%22%20height%3D%2264%22%3E%3C%2Frect%3E%0A%20%20%20%20%20%20%20%20%3Cmask%20id%3D%22mask-2%22%20maskContentUnits%3D%22userSpaceOnUse%22%20maskUnits%3D%22objectBoundingBox%22%20x%3D%220%22%20y%3D%220%22%20width%3D%2264%22%20height%3D%2264%22%20fill%3D%22white%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cuse%20xlink%3Ahref%3D%22%23path-1%22%3E%3C%2Fuse%3E%0A%20%20%20%20%20%20%20%20%3C%2Fmask%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Cg%20id%3D%22Page-1%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Cg%20id%3D%22Artboard%22%20transform%3D%22translate(-302.000000%2C%20-440.000000)%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cuse%20id%3D%22Combined-Shape%22%20stroke%3D%22%23D6D6D6%22%20mask%3D%22url(%23mask-2)%22%20stroke-width%3D%224%22%20fill%3D%22%23FFFFFF%22%20xlink%3Ahref%3D%22%23path-1%22%3E%3C%2Fuse%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cpolyline%20id%3D%22Path-105%22%20stroke%3D%22%23393939%22%20stroke-width%3D%229%22%20points%3D%22333%20486.5%20344.25%20499%20368.5%20477%22%3E%3C%2Fpolyline%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E');
+  background-image: url('data:image/svg+xml;charset=US-ASCII,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%20standalone%3D%22no%22%3F%3E%0A%3Csvg%20width%3D%2296px%22%20height%3D%2296px%22%20viewBox%3D%220%200%2096%2096%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0A%20%20%20%20%3C!--%20Generator%3A%20Sketch%2039.1%20(31720)%20-%20http%3A%2F%2Fwww.bohemiancoding.com%2Fsketch%20--%3E%0A%20%20%20%20%3Ctitle%3Echeckbox-checked-24%2C48%2C96%3C%2Ftitle%3E%0A%20%20%20%20%3Cdesc%3ECreated%20with%20Sketch.%3C%2Fdesc%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%20%20%3Crect%20id%3D%22path-1%22%20x%3D%22318%22%20y%3D%22606%22%20width%3D%2264%22%20height%3D%2264%22%3E%3C%2Frect%3E%0A%20%20%20%20%20%20%20%20%3Cmask%20id%3D%22mask-2%22%20maskContentUnits%3D%22userSpaceOnUse%22%20maskUnits%3D%22objectBoundingBox%22%20x%3D%220%22%20y%3D%220%22%20width%3D%2264%22%20height%3D%2264%22%20fill%3D%22white%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cuse%20xlink%3Ahref%3D%22%23path-1%22%3E%3C%2Fuse%3E%0A%20%20%20%20%20%20%20%20%3C%2Fmask%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Cg%20id%3D%22Page-1%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Cg%20id%3D%22Artboard%22%20transform%3D%22translate(-302.000000%2C%20-590.000000)%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cuse%20id%3D%22Combined-Shape%22%20stroke%3D%22%23D6D6D6%22%20mask%3D%22url(%23mask-2)%22%20stroke-width%3D%224%22%20fill%3D%22%23FFFFFF%22%20xlink%3Ahref%3D%22%23path-1%22%3E%3C%2Fuse%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cpolyline%20id%3D%22Path-105%22%20stroke%3D%22%23393939%22%20stroke-width%3D%229%22%20points%3D%22333%20636.5%20344.25%20649%20368.5%20627%22%3E%3C%2Fpolyline%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E');
   background-repeat: no-repeat;
 }
 .o-icon-checkbox-checked-24 {
@@ -99,8 +129,9 @@
 .o-icon-close-32,
 .o-icon-close-64,
 .c-eventDetail__closeButton,
-.c-timelineEditor__editSubmit__header__icon {
-  background-image: url('data:image/svg+xml;charset=US-ASCII,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%20standalone%3D%22no%22%3F%3E%0A%3Csvg%20width%3D%2264px%22%20height%3D%2264px%22%20viewBox%3D%220%200%2064%2064%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0A%20%20%20%20%3C!--%20Generator%3A%20Sketch%2039.1%20(31720)%20-%20http%3A%2F%2Fwww.bohemiancoding.com%2Fsketch%20--%3E%0A%20%20%20%20%3Ctitle%3Eclose-16%2C32%2C64%3C%2Ftitle%3E%0A%20%20%20%20%3Cdesc%3ECreated%20with%20Sketch.%3C%2Fdesc%3E%0A%20%20%20%20%3Cdefs%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Cg%20id%3D%22Page-1%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Cg%20id%3D%22Artboard%22%20transform%3D%22translate(-204.000000%2C%20-225.000000)%22%20fill%3D%22%23555555%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M239.941125%2C252.941125%20L239.941125%2C232.941125%20L231.941125%2C232.941125%20L231.941125%2C252.941125%20L211.941125%2C252.941125%20L211.941125%2C260.941125%20L231.941125%2C260.941125%20L231.941125%2C280.941125%20L239.941125%2C280.941125%20L239.941125%2C260.941125%20L259.941125%2C260.941125%20L259.941125%2C252.941125%20L239.941125%2C252.941125%20Z%22%20id%3D%22Combined-Shape%22%20transform%3D%22translate(235.941125%2C%20256.941125)%20rotate(-315.000000)%20translate(-235.941125%2C%20-256.941125)%20%22%3E%3C%2Fpath%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E');
+.c-timelineEditor__editSubmit__header__icon,
+.c-timelineEditor__header__close {
+  background-image: url('data:image/svg+xml;charset=US-ASCII,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%20standalone%3D%22no%22%3F%3E%0A%3Csvg%20width%3D%2264px%22%20height%3D%2264px%22%20viewBox%3D%220%200%2064%2064%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0A%20%20%20%20%3C!--%20Generator%3A%20Sketch%2039.1%20(31720)%20-%20http%3A%2F%2Fwww.bohemiancoding.com%2Fsketch%20--%3E%0A%20%20%20%20%3Ctitle%3Eclose-16%2C32%2C64%3C%2Ftitle%3E%0A%20%20%20%20%3Cdesc%3ECreated%20with%20Sketch.%3C%2Fdesc%3E%0A%20%20%20%20%3Cdefs%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Cg%20id%3D%22Page-1%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Cg%20id%3D%22Artboard%22%20transform%3D%22translate(-204.000000%2C%20-375.000000)%22%20fill%3D%22%23555555%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M239.941125%2C402.941125%20L239.941125%2C382.941125%20L231.941125%2C382.941125%20L231.941125%2C402.941125%20L211.941125%2C402.941125%20L211.941125%2C410.941125%20L231.941125%2C410.941125%20L231.941125%2C430.941125%20L239.941125%2C430.941125%20L239.941125%2C410.941125%20L259.941125%2C410.941125%20L259.941125%2C402.941125%20L239.941125%2C402.941125%20Z%22%20id%3D%22Combined-Shape%22%20transform%3D%22translate(235.941125%2C%20406.941125)%20rotate(-315.000000)%20translate(-235.941125%2C%20-406.941125)%20%22%3E%3C%2Fpath%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E');
   background-repeat: no-repeat;
 }
 .o-icon-close-16 {
@@ -108,7 +139,8 @@
 }
 .o-icon-close-32,
 .c-eventDetail__closeButton,
-.c-timelineEditor__editSubmit__header__icon {
+.c-timelineEditor__editSubmit__header__icon,
+.c-timelineEditor__header__close {
   background-size: 32px 32px;
 }
 .o-icon-close-64 {
@@ -117,7 +149,7 @@
 .o-icon-close-24,
 .o-icon-close-48,
 .o-icon-close-96 {
-  background-image: url('data:image/svg+xml;charset=US-ASCII,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%20standalone%3D%22no%22%3F%3E%0A%3Csvg%20width%3D%2296px%22%20height%3D%2296px%22%20viewBox%3D%220%200%2096%2096%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0A%20%20%20%20%3C!--%20Generator%3A%20Sketch%2039.1%20(31720)%20-%20http%3A%2F%2Fwww.bohemiancoding.com%2Fsketch%20--%3E%0A%20%20%20%20%3Ctitle%3Eclose-24%2C48%2C96%3C%2Ftitle%3E%0A%20%20%20%20%3Cdesc%3ECreated%20with%20Sketch.%3C%2Fdesc%3E%0A%20%20%20%20%3Cdefs%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Cg%20id%3D%22Page-1%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Cg%20id%3D%22Artboard%22%20transform%3D%22translate(-302.000000%2C%20-193.000000)%22%20fill%3D%22%23555555%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M355.254834%2C235.254834%20L355.254834%2C209.254834%20L343.254834%2C209.254834%20L343.254834%2C235.254834%20L317.254834%2C235.254834%20L317.254834%2C247.254834%20L343.254834%2C247.254834%20L343.254834%2C273.254834%20L355.254834%2C273.254834%20L355.254834%2C247.254834%20L381.254834%2C247.254834%20L381.254834%2C235.254834%20L355.254834%2C235.254834%20Z%22%20id%3D%22Combined-Shape%22%20transform%3D%22translate(349.254834%2C%20241.254834)%20rotate(-315.000000)%20translate(-349.254834%2C%20-241.254834)%20%22%3E%3C%2Fpath%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E');
+  background-image: url('data:image/svg+xml;charset=US-ASCII,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%20standalone%3D%22no%22%3F%3E%0A%3Csvg%20width%3D%2296px%22%20height%3D%2296px%22%20viewBox%3D%220%200%2096%2096%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0A%20%20%20%20%3C!--%20Generator%3A%20Sketch%2039.1%20(31720)%20-%20http%3A%2F%2Fwww.bohemiancoding.com%2Fsketch%20--%3E%0A%20%20%20%20%3Ctitle%3Eclose-24%2C48%2C96%3C%2Ftitle%3E%0A%20%20%20%20%3Cdesc%3ECreated%20with%20Sketch.%3C%2Fdesc%3E%0A%20%20%20%20%3Cdefs%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Cg%20id%3D%22Page-1%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Cg%20id%3D%22Artboard%22%20transform%3D%22translate(-302.000000%2C%20-343.000000)%22%20fill%3D%22%23555555%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M355.254834%2C385.254834%20L355.254834%2C359.254834%20L343.254834%2C359.254834%20L343.254834%2C385.254834%20L317.254834%2C385.254834%20L317.254834%2C397.254834%20L343.254834%2C397.254834%20L343.254834%2C423.254834%20L355.254834%2C423.254834%20L355.254834%2C397.254834%20L381.254834%2C397.254834%20L381.254834%2C385.254834%20L355.254834%2C385.254834%20Z%22%20id%3D%22Combined-Shape%22%20transform%3D%22translate(349.254834%2C%20391.254834)%20rotate(-315.000000)%20translate(-349.254834%2C%20-391.254834)%20%22%3E%3C%2Fpath%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E');
   background-repeat: no-repeat;
 }
 .o-icon-close-24 {
@@ -132,7 +164,7 @@
 .o-icon-close-28,
 .o-icon-close-56,
 .o-icon-close-112 {
-  background-image: url('data:image/svg+xml;charset=US-ASCII,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%20standalone%3D%22no%22%3F%3E%0A%3Csvg%20width%3D%22112px%22%20height%3D%22112px%22%20viewBox%3D%220%200%20112%20112%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0A%20%20%20%20%3C!--%20Generator%3A%20Sketch%2039.1%20(31720)%20-%20http%3A%2F%2Fwww.bohemiancoding.com%2Fsketch%20--%3E%0A%20%20%20%20%3Ctitle%3Eclose-28%2C56%2C112%3C%2Ftitle%3E%0A%20%20%20%20%3Cdesc%3ECreated%20with%20Sketch.%3C%2Fdesc%3E%0A%20%20%20%20%3Cdefs%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Cg%20id%3D%22Page-1%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Cg%20id%3D%22Artboard%22%20transform%3D%22translate(-422.000000%2C%20-176.000000)%22%20fill%3D%22%23555555%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M483.911688%2C225.911688%20L483.911688%2C195.911688%20L471.911688%2C195.911688%20L471.911688%2C225.911688%20L441.911688%2C225.911688%20L441.911688%2C237.911688%20L471.911688%2C237.911688%20L471.911688%2C267.911688%20L483.911688%2C267.911688%20L483.911688%2C237.911688%20L513.911688%2C237.911688%20L513.911688%2C225.911688%20L483.911688%2C225.911688%20Z%22%20id%3D%22Combined-Shape%22%20transform%3D%22translate(477.911688%2C%20231.911688)%20rotate(-315.000000)%20translate(-477.911688%2C%20-231.911688)%20%22%3E%3C%2Fpath%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E');
+  background-image: url('data:image/svg+xml;charset=US-ASCII,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%20standalone%3D%22no%22%3F%3E%0A%3Csvg%20width%3D%22112px%22%20height%3D%22112px%22%20viewBox%3D%220%200%20112%20112%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0A%20%20%20%20%3C!--%20Generator%3A%20Sketch%2039.1%20(31720)%20-%20http%3A%2F%2Fwww.bohemiancoding.com%2Fsketch%20--%3E%0A%20%20%20%20%3Ctitle%3Eclose-28%2C56%2C112%3C%2Ftitle%3E%0A%20%20%20%20%3Cdesc%3ECreated%20with%20Sketch.%3C%2Fdesc%3E%0A%20%20%20%20%3Cdefs%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Cg%20id%3D%22Page-1%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Cg%20id%3D%22Artboard%22%20transform%3D%22translate(-422.000000%2C%20-326.000000)%22%20fill%3D%22%23555555%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M483.911688%2C375.911688%20L483.911688%2C345.911688%20L471.911688%2C345.911688%20L471.911688%2C375.911688%20L441.911688%2C375.911688%20L441.911688%2C387.911688%20L471.911688%2C387.911688%20L471.911688%2C417.911688%20L483.911688%2C417.911688%20L483.911688%2C387.911688%20L513.911688%2C387.911688%20L513.911688%2C375.911688%20L483.911688%2C375.911688%20Z%22%20id%3D%22Combined-Shape%22%20transform%3D%22translate(477.911688%2C%20381.911688)%20rotate(-315.000000)%20translate(-477.911688%2C%20-381.911688)%20%22%3E%3C%2Fpath%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E');
   background-repeat: no-repeat;
 }
 .o-icon-close-28 {
@@ -147,7 +179,7 @@
 .o-icon-select-arrow-16,
 .o-icon-select-arrow-32,
 .o-icon-select-arrow-64 {
-  background-image: url('data:image/svg+xml;charset=US-ASCII,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%20standalone%3D%22no%22%3F%3E%0A%3Csvg%20width%3D%2264px%22%20height%3D%2264px%22%20viewBox%3D%220%200%2064%2064%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0A%20%20%20%20%3C!--%20Generator%3A%20Sketch%2039.1%20(31720)%20-%20http%3A%2F%2Fwww.bohemiancoding.com%2Fsketch%20--%3E%0A%20%20%20%20%3Ctitle%3Eselect-arrow-16%2C32%2C64%3C%2Ftitle%3E%0A%20%20%20%20%3Cdesc%3ECreated%20with%20Sketch.%3C%2Fdesc%3E%0A%20%20%20%20%3Cdefs%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Cg%20id%3D%22Page-1%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Cg%20id%3D%22Artboard%22%20transform%3D%22translate(-210.000000%2C%20-583.000000)%22%20fill%3D%22%23393939%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M239.5%2C605.5%20L224.5%2C619.5%20C224.517421%2C619.515839%20239.5%2C633.5%20239.5%2C633.5%20L239.5%2C605.5%20Z%22%20id%3D%22select_arrow%22%20transform%3D%22translate(232.000000%2C%20619.500000)%20scale(1%2C%20-1)%20rotate(-270.000000)%20translate(-232.000000%2C%20-619.500000)%20%22%3E%3C%2Fpath%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E');
+  background-image: url('data:image/svg+xml;charset=US-ASCII,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%20standalone%3D%22no%22%3F%3E%0A%3Csvg%20width%3D%2264px%22%20height%3D%2264px%22%20viewBox%3D%220%200%2064%2064%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0A%20%20%20%20%3C!--%20Generator%3A%20Sketch%2039.1%20(31720)%20-%20http%3A%2F%2Fwww.bohemiancoding.com%2Fsketch%20--%3E%0A%20%20%20%20%3Ctitle%3Eselect-arrow-16%2C32%2C64%3C%2Ftitle%3E%0A%20%20%20%20%3Cdesc%3ECreated%20with%20Sketch.%3C%2Fdesc%3E%0A%20%20%20%20%3Cdefs%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Cg%20id%3D%22Page-1%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Cg%20id%3D%22Artboard%22%20transform%3D%22translate(-210.000000%2C%20-733.000000)%22%20fill%3D%22%23393939%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M239.5%2C755.5%20L224.5%2C769.5%20C224.517421%2C769.515839%20239.5%2C783.5%20239.5%2C783.5%20L239.5%2C755.5%20Z%22%20id%3D%22select_arrow%22%20transform%3D%22translate(232.000000%2C%20769.500000)%20scale(1%2C%20-1)%20rotate(-270.000000)%20translate(-232.000000%2C%20-769.500000)%20%22%3E%3C%2Fpath%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E');
   background-repeat: no-repeat;
 }
 .o-icon-select-arrow-16 {
@@ -163,7 +195,7 @@
 .o-icon-select-arrow-48,
 .o-icon-select-arrow-96,
 .o-form__select {
-  background-image: url('data:image/svg+xml;charset=US-ASCII,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%20standalone%3D%22no%22%3F%3E%0A%3Csvg%20width%3D%2296px%22%20height%3D%2296px%22%20viewBox%3D%220%200%2096%2096%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0A%20%20%20%20%3C!--%20Generator%3A%20Sketch%2039.1%20(31720)%20-%20http%3A%2F%2Fwww.bohemiancoding.com%2Fsketch%20--%3E%0A%20%20%20%20%3Ctitle%3Eselect-arrow-24%2C48%2C96%3C%2Ftitle%3E%0A%20%20%20%20%3Cdesc%3ECreated%20with%20Sketch.%3C%2Fdesc%3E%0A%20%20%20%20%3Cdefs%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Cg%20id%3D%22Page-1%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Cg%20id%3D%22Artboard%22%20transform%3D%22translate(-310.000000%2C%20-551.000000)%22%20fill%3D%22%23393939%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M358.545635%2C585.545635%20L335.454365%2C606.545635%20C335.481184%2C606.569393%20358.545635%2C627.545635%20358.545635%2C627.545635%20L358.545635%2C585.545635%20Z%22%20id%3D%22select_arrow%22%20transform%3D%22translate(347.000000%2C%20606.545635)%20scale(1%2C%20-1)%20rotate(-270.000000)%20translate(-347.000000%2C%20-606.545635)%20%22%3E%3C%2Fpath%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E');
+  background-image: url('data:image/svg+xml;charset=US-ASCII,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%20standalone%3D%22no%22%3F%3E%0A%3Csvg%20width%3D%2296px%22%20height%3D%2296px%22%20viewBox%3D%220%200%2096%2096%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0A%20%20%20%20%3C!--%20Generator%3A%20Sketch%2039.1%20(31720)%20-%20http%3A%2F%2Fwww.bohemiancoding.com%2Fsketch%20--%3E%0A%20%20%20%20%3Ctitle%3Eselect-arrow-24%2C48%2C96%3C%2Ftitle%3E%0A%20%20%20%20%3Cdesc%3ECreated%20with%20Sketch.%3C%2Fdesc%3E%0A%20%20%20%20%3Cdefs%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Cg%20id%3D%22Page-1%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Cg%20id%3D%22Artboard%22%20transform%3D%22translate(-310.000000%2C%20-701.000000)%22%20fill%3D%22%23393939%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M358.545635%2C735.545635%20L335.454365%2C756.545635%20C335.481184%2C756.569393%20358.545635%2C777.545635%20358.545635%2C777.545635%20L358.545635%2C735.545635%20Z%22%20id%3D%22select_arrow%22%20transform%3D%22translate(347.000000%2C%20756.545635)%20scale(1%2C%20-1)%20rotate(-270.000000)%20translate(-347.000000%2C%20-756.545635)%20%22%3E%3C%2Fpath%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E');
   background-repeat: no-repeat;
 }
 .o-icon-select-arrow-24,
@@ -1014,7 +1046,7 @@ select.o-form__select:invalid {
 .c-eventDetail__bottomBorder {
   position: absolute  !important;
   width: 100% !important;
-  height: 12px;
+  height: 10px !important;
   bottom: 0px  !important;
   left: 0px  !important;
   background-color: #4d4d4d;
@@ -1104,6 +1136,56 @@ select.o-form__select:invalid {
   cursor: hand  !important;
   cursor: pointer  !important;
   background-position: center right;
+}
+.c-eventDetail_pagination {
+  position: absolute  !important;
+  bottom: 0px  !important;
+  left: 0px  !important;
+  width: 100% !important;
+  height: 8.3333vh !important;
+  display: -ms-flexbox;
+  -ms-flex-direction: row ;
+  -ms-flex-pack: start ;
+  -ms-flex-align: stretch ;
+  display: flex !important;
+  flex-flow: row nowrap !important;
+  justify-content: flex-start !important;
+  align-items: stretch !important;
+  margin-bottom: 10px !important;
+  padding-left: 2.0833325vw !important;
+  padding-right: 2.0833325vw !important;
+}
+.c-eventDetail__paginationButton {
+  display: -ms-flexbox;
+  -ms-flex-direction: row ;
+  -ms-flex-pack: start ;
+  -ms-flex-align: stretch ;
+  display: flex !important;
+  flex-flow: row nowrap !important;
+  justify-content: flex-start !important;
+  align-items: stretch !important;
+  width: 16.66666vw !important;
+  cursor: hand  !important;
+  cursor: pointer  !important;
+}
+.c-eventDetail__paginationButton__label {
+  -ms-flex: 1 ;
+  flex: 1 !important;
+  min-height: 0 !important;
+  /* firefox hack for scrolling children */
+  display: flex !important;
+  /* webkit hack for height issues */
+  padding-left: 1.04166625vw !important;
+  padding-right: 1.04166625vw !important;
+  font-size: 14px !important;
+  line-height: 20px !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  color: #808080 !important;
 }
 @font-face {
   font-family: "Teko";
@@ -1668,9 +1750,12 @@ p {
   /* webkit hack for height issues */
   overflow: hidden  !important;
   position: relative  !important;
+  z-index: 400 !important;
 }
 .c-timelineEditor__baseline {
   position: absolute  !important;
+  cursor: hand  !important;
+  cursor: pointer  !important;
   right: -40px;
   height: 37.49985vh !important;
   width: 50px;
@@ -1692,8 +1777,77 @@ p {
 .c-timelineEditor--editing .c-timelineEditor__baseline {
   right: 16.66666vw !important;
 }
+.c-timelineEditor__baselineLabel {
+  font-size: 12px !important;
+  line-height: 15px !important;
+  color: #B3B3B3 !important;
+  height: 40px !important;
+  display: -ms-flexbox;
+  -ms-flex-direction: row ;
+  -ms-flex-pack: center ;
+  -ms-flex-align: center ;
+  display: flex !important;
+  flex-flow: row nowrap !important;
+  justify-content: center !important;
+  align-items: center !important;
+  position: absolute  !important;
+  width: 100% !important;
+  text-align: center  !important;
+  left: 0px  !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  opacity: 0;
+  transition: opacity .5s;
+}
+.c-timelineEditor__circleLabels {
+  width: 66.66664vw !important;
+  position: absolute  !important;
+  top: 10.416625vh !important;
+  left: 16.66666vw !important;
+  height: 4.16665vh !important;
+  background-color: #fff !important;
+  display: -ms-flexbox;
+  -ms-flex-direction: row ;
+  -ms-flex-pack: start ;
+  -ms-flex-align: center ;
+  display: flex !important;
+  flex-flow: row nowrap !important;
+  justify-content: flex-start !important;
+  align-items: center !important;
+  opacity: 0;
+  transition: opacity .5s;
+}
+.c-timelineEditor--editing .c-timelineEditor__circleLabels {
+  left: 12.499995vw !important;
+}
+.c-timelineEditor__circleLabel {
+  font-size: 13px !important;
+  line-height: 15px !important;
+  width: 37.49985vh;
+  display: -ms-flexbox;
+  -ms-flex-direction: row ;
+  -ms-flex-pack: center ;
+  -ms-flex-align: center ;
+  display: flex !important;
+  flex-flow: row nowrap !important;
+  justify-content: center !important;
+  align-items: center !important;
+  color: #B3B3B3 !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
 .c-timelineEditor__shift__circles {
   height: 37.49985vh !important;
+  cursor: hand  !important;
+  cursor: pointer  !important;
   position: absolute  !important;
   top: 14.583275vh !important;
   width: 66.66664vw !important;
@@ -1877,6 +2031,7 @@ p {
   justify-content: flex-start !important;
   align-items: stretch !important;
   transition: right 0.3s !important;
+  z-index: 500 !important;
 }
 .c-timelineEditor--editing .c-timelineEditor__editSubmit {
   right: 0px  !important;
@@ -2038,10 +2193,17 @@ p {
   flex-flow: row nowrap !important;
   justify-content: flex-start !important;
   align-items: center !important;
-  padding-right: 2.0833325vw !important;
+  padding-left: 3.12499875vw !important;
 }
 .c-timelineEditor__header__back {
   width: 4.166665vw !important;
+  -ms-flex-item-align: stretch ;
+  align-self: stretch !important;
+  cursor: hand  !important;
+  cursor: pointer  !important;
+}
+.c-timelineEditor__header__close {
+  width: 6.2499975vw !important;
   -ms-flex-item-align: stretch ;
   align-self: stretch !important;
   cursor: hand  !important;
@@ -2086,21 +2248,15 @@ p {
   flex-flow: row nowrap !important;
   justify-content: flex-end !important;
   align-items: center !important;
-  margin-right: -60.4166425vw;
+  margin-right: -68.7499725vw;
   transition: all 0.3s !important;
 }
 .c-timelineEditor--editing .c-timelineEditor__header__editForm {
-  margin-right: 8.33333vw !important;
+  margin-right: 1.04166625vw !important;
 }
 .c-timelineEditor__header__edit {
-  display: -ms-flexbox;
-  -ms-flex-direction: row ;
   -ms-flex-pack: center ;
-  -ms-flex-align: center ;
-  display: flex !important;
-  flex-flow: row nowrap !important;
   justify-content: center !important;
-  align-items: center !important;
   color: #808080 !important;
   font-size: 14px !important;
   line-height: 20px !important;
@@ -2112,11 +2268,18 @@ p {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  border-radius: 5px !important;
-  border: 1px solid #eee !important;
   height: 50px !important;
   width: 8.33333vw !important;
-  color: #B3B3B3 !important;
+  display: -ms-flexbox;
+  -ms-flex-direction: row ;
+  -ms-flex-pack: end ;
+  -ms-flex-align: center ;
+  display: flex !important;
+  flex-flow: row nowrap !important;
+  justify-content: flex-end !important;
+  align-items: center !important;
+  color: #999999 !important;
+  margin-right: 2.0833325vw !important;
 }
 .c-timelineEditor__header__edit:hover {
   color: #1A1A1A !important;
@@ -2155,12 +2318,41 @@ p {
 .c-timelineEditor__header__edit--blurred:hover {
   background-color: #fff !important;
 }
-.c-timelineEditor__header__edit--brand-primary,
-.c-timelineEditor__header__edit--brand-secondary {
-  border: 0px !important;
-}
 .c-timelineEditor__header__edit:hover {
-  color: #eee !important;
+  color: #4D4D4D !important;
+}
+.c-newTimelineModal {
+  position: fixed  !important;
+  width: 100% !important;
+  height: 100% !important;
+  top: 0px  !important;
+  left: 0px  !important;
+  z-index: 400 !important;
+  display: -ms-flexbox;
+  -ms-flex-direction: row ;
+  -ms-flex-pack: center ;
+  -ms-flex-align: center ;
+  display: flex !important;
+  flex-flow: row nowrap !important;
+  justify-content: center !important;
+  align-items: center !important;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.c-newTimelineModal__page {
+  width: 49.99998vw !important;
+  background-color: #fff !important;
+  padding-left: 8.33333vw !important;
+  padding-right: 8.33333vw !important;
+  padding-top: 8.3333vh !important;
+  padding-bottom: 8.3333vh !important;
+  display: -ms-flexbox;
+  -ms-flex-direction: column ;
+  -ms-flex-pack: start ;
+  -ms-flex-align: stretch ;
+  display: flex !important;
+  flex-flow: column nowrap !important;
+  justify-content: flex-start !important;
+  align-items: stretch !important;
 }
 .c-timeline {
   position: absolute !important;
@@ -2225,9 +2417,9 @@ p {
   transition: background-color 0.3s;
 }
 .c-timeline__label {
-  font-size: 13px !important;
+  font-size: 12px !important;
   line-height: 15px !important;
-  color: #808080 !important;
+  color: #B3B3B3 !important;
   position: absolute  !important;
   line-height: 20px !important;
   top: calc(50% - 10px);

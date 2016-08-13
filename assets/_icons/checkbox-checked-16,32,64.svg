@@ -4,15 +4,15 @@
     <title>checkbox-checked-16,32,64</title>
     <desc>Created with Sketch.</desc>
     <defs>
-        <rect id="path-1" x="212" y="480" width="48" height="48"></rect>
+        <rect id="path-1" x="212" y="630" width="48" height="48"></rect>
         <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="48" height="48" fill="white">
             <use xlink:href="#path-1"></use>
         </mask>
     </defs>
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Artboard" transform="translate(-204.000000, -472.000000)">
+        <g id="Artboard" transform="translate(-204.000000, -622.000000)">
             <use id="Combined-Shape" stroke="#CBCBCB" mask="url(#mask-2)" stroke-width="4" fill="#FFFFFF" xlink:href="#path-1"></use>
-            <polyline id="Path-105" stroke="#393939" stroke-width="6" points="225 503 232 511 248 496"></polyline>
+            <polyline id="Path-105" stroke="#393939" stroke-width="6" points="225 653 232 661 248 646"></polyline>
         </g>
     </g>
 </svg>

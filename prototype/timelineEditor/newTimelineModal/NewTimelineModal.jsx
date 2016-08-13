@@ -1,41 +1,50 @@
 
 
 
-var TimelineHeader = React.createClass({
+var NewTimelineModal = React.createClass({
 
-    getDefaultProps: function() {
-        return {
-            timeline:false,
-            is_editing:false
-        };
-    },
+
 
     getInitialState: function () {
         return {
-            title:this.props.timeline.title,
-            start_date:moment( this.props.timeline.start_date ).format('MM/DD/YYYY'),
-            start_date_valid:true,
-            end_date:moment( this.props.timeline.end_date ).format('MM/DD/YYYY'),
-            end_date_valid:true,
-            timeline:this.props.timeline
+            timeline:false,
+            title:false,
+            start_date:false,
+            start_date_valid:false,
+            is_open_ended:false,
+            end_date:false,
+            end_date_valid:false
         };
     },
 
+
     componentWillMount: function() {
-        var me = this;
+        /*var me = this;
         RouteState.addDiffListeners(
     		[
-                "editing"
+                "page"
             ],
     		function ( route , prev_route ) {
+                // update
                 me.forceUpdate();
     		},
-            "TimelineHeader"
-    	);
+            "NewTimelineModalEditor"
+    	);*/
+
+        var timeline = Mod.get( RS.route.timeline );
+        this.setState({
+            timeline:timeline,
+            title:timeline.title,
+            start_date:moment( timeline.start_date ).format('MM/DD/YYYY'),
+            start_date_valid:true,
+            end_date:moment( timeline.end_date ).format('MM/DD/YYYY'),
+            end_date_valid:true,
+            is_open_ended:timeline.is_open_ended
+        });
     },
 
     componentWillUnmount: function(){
-        RouteState.removeDiffListenersViaClusterId( "TimelineHeader" );
+        //RouteState.removeDiffListenersViaClusterId( "NewTimelineModalEditor" );
     },
 
     componentDidMount: function(){
@@ -78,43 +87,17 @@ var TimelineHeader = React.createClass({
 
     render: function() {
 
-        var timeline = this.state.timeline;
         var me = this;
 
         return  <div className={classNames([
-                        "c-timelineEditor__header"
+                        "c-newTimelineModal"
                     ])}>
-                    {/*<div className="
-                        c-timelineEditor__header__back"
-                        onClick={function(){
-                            RS.merge({
-                                page:"home",
-                                landing_page:"timelines"
-                            });
-                        }}>
-                    </div>*/}
                     <div className="
-                        c-timelineEditor__header__titleBox">
-                        <div className="
-                            c-timelineEditor__header__title">
-                            { this.state.timeline.title }
-                        </div>
-                        <div className="
-                            c-timelineEditor__header__subtitle">
-                            {
-                                moment( this.state.timeline.start_date ).format('MMMM, YYYY')
-                                + " to " +
-                                moment( this.state.timeline.end_date ).format('MMMM, YYYY')
-                            }
-                        </div>
-                    </div>
-                    <div className={classNames([
-                            "c-timelineEditor__header__editForm"
-                        ])}>
+                        c-newTimelineModal__page">
                         <div className="
                             o-form__v-layout
-                            a-width-col-2
-                            a-height-row-3">
+                            a-height-row-3
+                            a-margin-bottom-row">
                             <div className="
                                 o-form__label">
                                 title
@@ -137,9 +120,8 @@ var TimelineHeader = React.createClass({
                         </div>
                         <div className="
                             o-form__v-layout
-                            a-margin-left-col-eighth
-                            a-width-col-1-half
-                            a-height-row-3">
+                            a-height-row-3
+                            a-margin-bottom-row">
                             <div className="
                                 o-form__label">
                                 <div className="
@@ -171,9 +153,8 @@ var TimelineHeader = React.createClass({
                         </div>
                         <div className="
                             o-form__v-layout
-                            a-margin-width-col-eighth
-                            a-width-col-1-half
-                            a-height-row-3">
+                            a-height-row-3
+                            a-margin-bottom-row">
                             <div className="
                                 o-form__label">
                                 <div className="
@@ -207,25 +188,39 @@ var TimelineHeader = React.createClass({
                                 }}
                                 onBlur={this.updateEndDateInput} />
                         </div>
-                    </div>
-                    <div className="
-                        c-timelineEditor__header__edit"
-                        onClick={function(){
-                            RS.toggle(
-                                {"page:editing":"edit"},
-                                {"page:editing":false}
-                            );
-                        }}>
-                        edit
-                    </div>
-                    <div className="
-                        c-timelineEditor__header__close"
-                        onClick={function(){
-                            RS.merge({
-                                page:"home",
-                                landing_page:"timelines"
-                            });
-                        }}>
+                        <div className="
+                            o-form__v-layout
+                            a-flex-h-stretch
+                            a-height-row-2">
+                            <div className="
+                                o-button">
+                                cancel
+                            </div>
+                            <div className="
+                                a-fill">
+                            </div>
+                            <div className="
+                                o-roundedButton
+                                o-roundedButton--brand-primary
+                                a-width-col-2"
+                                onClick={function(){
+
+                                    me.state.timeline.title = me.state.title;
+                                    me.state.timeline.is_open_ended = me.state.is_open_ended;
+                                    //me.state.timeline.start_date
+                                    //    = moment( me.state.start_date ,'MM/DD/YYYY' ).format();
+                                    //me.state.timeline.end_date
+                                    //    = moment( me.state.end_date ,'MM/DD/YYYY' ).format();
+
+                                    RS.merge({
+                                        page:"timeline",
+                                        "page:editing":"editing",
+                                        modal:false
+                                    });
+                                }}>
+                                Create
+                            </div>
+                        </div>
                     </div>
                 </div>;
     }

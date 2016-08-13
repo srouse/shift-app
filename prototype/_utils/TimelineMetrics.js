@@ -72,6 +72,31 @@ _TimelineMetrics.prototype = {
             values:values,
             total_percent:new_totes
         };
+    },
+
+    nextAndPreviousEvent: function( event ) {
+        var timeline = event.timeline;
+        var all_events = timeline.events.concat( timeline.moods );
+        all_events.sort(function(a,b) {
+            return new Date(a.date).getTime() - new Date(b.date).getTime()
+        });
+
+        var prev = false,next = false,all_event;
+        for ( var i=0; i<all_events.length; i++ ) {
+            all_event = all_events[i];
+            console.log( all_event.guid );
+            if ( all_event.guid == event.guid ) {
+                if ( i < all_events.length-1 ) {
+                    next = all_events[i+1];
+                }
+                break;
+            }
+            prev = all_event;
+        }
+        return {
+            next:next,
+            prev:prev
+        }
     }
 
 };

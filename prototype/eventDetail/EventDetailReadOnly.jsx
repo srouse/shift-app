@@ -87,6 +87,8 @@ var EventDetailReadOnly = React.createClass({
                         </div>
                     </div>
 
+                    <EventPrevNextNav event={ event } />
+
                     <div className={classNames([
                             "c-eventDetail__bottomBorder",
                             /*"c-timeline--value_" + (event.value+1)*/

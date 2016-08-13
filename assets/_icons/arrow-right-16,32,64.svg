@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg width="64px" height="64px" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 39.1 (31720) - http://www.bohemiancoding.com/sketch -->
-    <title>select-arrow-16,32,64</title>
+    <title>arrow-right-16,32,64</title>
     <desc>Created with Sketch.</desc>
     <defs></defs>
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Artboard" transform="translate(-210.000000, -733.000000)" fill="#393939">
-            <path d="M239.5,755.5 L224.5,769.5 C224.517421,769.515839 239.5,783.5 239.5,783.5 L239.5,755.5 Z" id="select_arrow" transform="translate(232.000000, 769.500000) scale(1, -1) rotate(-270.000000) translate(-232.000000, -769.500000) "></path>
+        <g id="Artboard" transform="translate(-202.000000, -221.000000)" fill="#555555">
+            <path d="M235.360803,253 L251.181818,238.163636 L251.181818,229 L225,253 C225.030408,253.027152 251.181818,277 251.181818,277 L251.181818,267.836364 L235.360803,253 Z" id="back_arrow_xsm" transform="translate(238.090909, 253.000000) scale(-1, 1) translate(-238.090909, -253.000000) "></path>
         </g>
     </g>
 </svg>

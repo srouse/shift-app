@@ -113,9 +113,24 @@ var Timelines = React.createClass({
                                 c-timelines__button
                                 a-fill"
                                 onClick={function(){
+                                    var new_timeline = Mod.get("timeline_new");
+                                    new_timeline.title = "New Timeline";
+                                    new_timeline.end_date = new Date();
+                                    new_timeline.is_open_ended = true;
+                                    new_timeline.start_date = new Date().setFullYear( 2000 );
+                                    new_timeline.moods = [];
+                                    new_timeline.events = [];
+
                                     RS.merge({
-                                        "page.landing_page":false
+                                        modal:"newtimeline",
+                                        "timeline":new_timeline.guid
                                     });
+
+                                    /*RS.merge({
+                                        page:"timeline",
+                                        "page:timeline":new_timeline.guid,
+                                        "page:editing":"editing"
+                                    });*/
                                 }}>
                                 New Timeline
                             </div>

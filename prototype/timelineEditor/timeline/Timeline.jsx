@@ -30,7 +30,7 @@ var Timeline = React.createClass({
     },
 
     componentDidMount: function(){
-        this.renderTimeline();
+        //this.renderTimeline();
     },
 
     componentDidUpdate: function(){
@@ -53,7 +53,7 @@ var Timeline = React.createClass({
         }
         var time_span = end.getTime() - start.getTime();
 
-        var new_mood = Mod.get("event_new");
+        var new_mood = Mod.get("event_new" + Math.round( Math.random() * 10000 ));
         new_mood.timeline = timeline;
         new_mood.title = "New Mood";
         new_mood.note = "Describe your experience...";
@@ -66,8 +66,6 @@ var Timeline = React.createClass({
                     )
                 ).format();
 
-        console.log( new_mood );
-
         timeline.moods.push( new_mood );
         Event.fire("timeline_updated");
         RS.merge({
@@ -75,26 +73,15 @@ var Timeline = React.createClass({
         });
     },
 
-    renderTimeline : function() {
+    renderTimelineLabels : function() {
 
-        var graph_dom = $(".c-timeline__graph");
-        var labels_dom = $(".c-timeline__xaxis");
-        var mood_edit_dom = $(".c-timeline__moodEdit");
+        var timeline_labels = [];
+        var timeline = this.props.timeline;
 
-        var timeline = this.props.timeline;//Model.get( RS.route.timeline );
-
-        var fills = ["#EF45FF","#52DFFF","#FAFF69","#FF9425","#FE4040"];
-        var fills_faded = ["#F58EFF","#92E6FA","#F8FBA0","#FFBE7A","#FD8A8A"];
-
-        var start = new Date( timeline.start_date );
-        var end = new Date();
-        if ( !timeline.is_open_ended ) {
-            end = new Date( timeline.end_date );
-        }
-
-        var time_span = end.getTime() - start.getTime();
-
-
+        var dateInfo = TimelineMetrics.dateInfo( timeline );
+        var start = dateInfo.start;
+        var end = dateInfo.end;
+        var time_span = dateInfo.time_span;
 
         //=====NOW LABELS======
         var years = time_span / 1000 / 60 / 60 / 24 / 365;
@@ -105,7 +92,9 @@ var Timeline = React.createClass({
                 if ( year.getTime() > end.getTime() ) {
                     break;
                 }
-                this.renderLabel( year, start, end, time_span, labels_dom );
+                timeline_labels.push(
+                    this.renderLabel( year, start, end, time_span )
+                );
             }
         }else if ( years < 30 ){
             var start_rounded;
@@ -115,7 +104,9 @@ var Timeline = React.createClass({
                 if ( year.getTime() > end.getTime() ) {
                     break;
                 }
-                this.renderLabel( year, start, end, time_span, labels_dom );
+                timeline_labels.push(
+                    this.renderLabel( year, start, end, time_span )
+                );
             }
         }else{
             var start_rounded;
@@ -125,25 +116,26 @@ var Timeline = React.createClass({
                 if ( year.getTime() > end.getTime() ) {
                     break;
                 }
-                this.renderLabel( year, start, end, time_span, labels_dom );
+                timeline_labels.push(
+                    this.renderLabel( year, start, end, time_span )
+                );
             }
         }
+        return timeline_labels;
     },
 
-    renderLabel: function ( year, start, end, time_span, labels_dom ) {
+    renderLabel: function ( year, start, end, time_span ) {
         year_percent = ( year.getTime() - start.getTime() ) / time_span;
-        year_css = "left: " + Math.round( year_percent * 100 ) + "%";
+        year_left_css = Math.round( year_percent * 100 ) + "%";
         if (
             year.getTime() > start.getTime() &&
             year.getTime() < end.getTime()
         ) {
-            labels_dom.append(
-                $(
-                    "<div class='c-timeline__label' style='"+year_css+"'>" +
-                    year.getFullYear() +
-                    "</div>"
-                )
-            );
+            return  <div className='c-timeline__label'
+                        key={ "timeline_label_year_" + year.getFullYear() }
+                        style={{left:year_left_css}}>
+                        { year.getFullYear() }
+                    </div>;
         }
     },
 
@@ -152,13 +144,11 @@ var Timeline = React.createClass({
         var fills = ["#EF45FF","#52DFFF","#FAFF69","#FF9425","#FE4040"];
         var fills_faded = ["#F58EFF","#92E6FA","#F8FBA0","#FFBE7A","#FD8A8A"];
 
-        var timeline = this.props.timeline;//Model.get( RS.route.timeline );
-        var start = new Date( timeline.start_date );
-        var end = new Date();
-        if ( !timeline.is_open_ended ) {
-            end = new Date( timeline.end_date );
-        }
-        var time_span = end.getTime() - start.getTime();
+        var timeline = this.props.timeline;
+        var dateInfo = TimelineMetrics.dateInfo( timeline );
+        var start = dateInfo.start;
+        var end = dateInfo.end;
+        var time_span = dateInfo.time_span;
 
         function getEventOnClick (event){
             return function( evt ){
@@ -204,7 +194,6 @@ var Timeline = React.createClass({
             }
         }
         grads.push("#e9e9e9");
-
 
         var event,event_time,event_percent;
         var event_items = [];
@@ -256,7 +245,9 @@ var Timeline = React.createClass({
                         {"c-timeline--editing":this.props.is_editing}
                     ])}>
 
-                    <div className="c-timeline__xaxis"></div>
+                    <div className="c-timeline__xaxis">
+                        { this.renderTimelineLabels() }
+                    </div>
                     { selected_item }
                     <div className="c-timeline__graph"
                         style={{

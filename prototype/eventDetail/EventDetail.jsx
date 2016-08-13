@@ -54,7 +54,7 @@ var EventDetail = React.createClass({
 
     updateEventType: function( event, type ) {
         event.type = type;
-console.log( event );
+
         if ( type == "event" ) {
             if ( event.timeline.moods.indexOf( event ) != -1 ) {
                 event.timeline.moods.splice(
@@ -78,13 +78,30 @@ console.log( event );
         this.forceUpdate();
     },
 
+    delete: function (event) {
+        if ( event.timeline.moods.indexOf( event ) != -1 ) {
+            event.timeline.moods.splice(
+                event.timeline.moods.indexOf( event ), 1
+            );
+        }
+        if ( event.timeline.events.indexOf( event ) != -1 ) {
+            event.timeline.events.splice(
+                event.timeline.events.indexOf( event ), 1
+            );
+        }
+        Event.fire("timeline_updated");
+        //this.forceUpdate();
+        RS.merge({event:false});
+    },
+
     render: function() {
 
         var event = this.state.event;
         var me = this;
 
         if ( !RS.route.editing ) {
-            return <EventDetailReadOnly event={event} />;
+            return <EventDetailReadOnly
+                event={event} />;
         }
 
         var type_str = "Experience";
@@ -278,11 +295,17 @@ console.log( event );
                             a-height-row-2
                             a-margin-bottom-row-1">
                             <Button className=""
-                                title="delete" />
+                                title="delete"
+                                onClick={function(){
+                                    me.delete( event );
+                                }} />
                             <Fill />
                             <Button className="
                                 a-width-col-1"
-                                title="cancel" />
+                                title="cancel"
+                                onClick={function(){
+                                    RS.merge({event:false});
+                                }} />
                             <div className="
                                 c-eventDetail__saveButtons">
                                 <Button className="
@@ -312,6 +335,8 @@ console.log( event );
                             }}>
                         </div>
                     </div>
+
+                    <EventPrevNextNav event={ event } />
 
                     <div className={classNames([
                             "c-eventDetail__bottomBorder",

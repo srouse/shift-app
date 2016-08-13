@@ -9,7 +9,7 @@
     border-bottom: 4px solid #eee;
 
     .a-flex-h;
-    .a-padding-right-col-quarter;
+    .a-padding-left-col-three-eighths;
 }
 
     .c-timelineEditor__header__back {
@@ -18,6 +18,14 @@
         .a-interactive;
 
         &:extend( .o-icon-arrow-left-48 );
+    }
+
+    .c-timelineEditor__header__close {
+        .a-width-col-three-quarters;
+        .a-align-self-stretch;
+        .a-interactive;
+
+        &:extend( .o-icon-close-32 );
     }
 
     .c-timelineEditor__header__titleBox {
@@ -43,19 +51,21 @@
         .a-flex-h-right;
         //margin-top: -@v-row-vh-3;
         //.a-margin-right-col-1;
-        margin-right: -@v-col-7-quarter;
+        margin-right: -@v-col-8-quarter;
         .a-transition-all;
 
         .c-timelineEditor--editing & {
             //margin-top: 0px;
-            .a-margin-right-col-1;
+            .a-margin-right-col-eighth;//right-col-1;
         }
     }
 
     .c-timelineEditor__header__edit {
-        .o-roundedButton;
+        .o-button;//.o-roundedButton;
         .a-height-row-2-half;
         .a-width-col-1;
-        .a-hover-text-color-grey-9;
-        .a-text-color-grey-7;
+        .a-flex-right;
+        .a-hover-text-color-grey-3;
+        .a-text-color-grey-6;
+        .a-margin-right-col-quarter;
     }
