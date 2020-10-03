@@ -14,7 +14,7 @@
 		"grunt-contrib-less": "~1",
         "grunt-react": "~0.12",
 
-        "jquery": "~1.11",
+        "jquery": "~3.5",
 		"jquery-ui": "~1.12",
         "moment": "~2.12",
         "react": "~15.2",
